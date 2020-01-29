@@ -11,7 +11,7 @@
 
     <title>Lost - 404 Error Page</title>
 
-    <link href="https://bootswatch.com/3/united/bootstrap.min.css" rel="stylesheet">
+    <link href="https://bootswatch.com/3/readable/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
 
     <!-- Main CSS Stylesheet -->
@@ -38,7 +38,7 @@
 
     <!-- Error Page Start -->
     <section class="error-page-background">
-       <div class="container">
+       <div class="container-fluid">
 
          <div class="row">
 

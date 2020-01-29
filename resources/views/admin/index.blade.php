@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
   <div class="row">
 
     <div class="col-md-12">
       <div class="alert alert-info alert-dismissible" role="alert">
-        <p class="lead"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> Event Day <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> {{\Carbon\Carbon::createFromDate(2017, 10, 21)->diffForHumans()}}</p>
+        <p class="lead"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> Event Day <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> {{\Carbon\Carbon::parse(config('app.eventday'))->diffForHumans()}}</p>
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -19,7 +19,7 @@
                 <div class="caption text-center">
                   <i class="fa fa-users fa-5x" aria-hidden="true"></i>
                   <h3>Registration</h3>
-                  <p>View registration details including summary. Email containing QR code can be resend if required.</p>
+                  <p>View registration details including summary. You can also resend the email confirmation.</p>
                   <a href="{{route('admin_user')}}" class="btn btn-primary btn-md" role="button">Manage Registration</a>
 
                 </div>
@@ -40,7 +40,7 @@
                 <div class="caption text-center">
                   <i class="fa fa-address-book fa-5x" aria-hidden="true"></i>
                   <h3>Attendance</h3>
-                  <p>View list of paid registration. Any QR codes scanned by admin will be marked as attended.</p>
+                  <p>Manage your attendance here. Main page for event day.</p>
                   <a href="{{route('admin_attend')}}" class="btn btn-primary btn-md" role="button">View Attendance</a>
                 </div>
               </div>

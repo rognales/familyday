@@ -1,80 +1,97 @@
 <?php
 
 namespace App;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Balping\HashSlug\HasHashSlug;
 
 class Participant extends Model
 {
-    use HasHashSlug;
-    use SoftDeletes;
-    protected $guarded = ['id','created_at','updated_at','deleted_at'];
-    protected $dates = ['deleted_at'];
-    protected static $minSlugLength = 8;
+  use HasHashSlug;
+  use SoftDeletes;
+  protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
+  protected static $minSlugLength = 8;
 
-    public function dependants(){
+  protected $appends = ['zaiman'];
 
-      return $this->hasMany('App\Dependant');
-    }
+  public function getZaimanAttribute()
+  {
+    return $this->slug();
+    return $this->qr();
+  }
 
-    public function event(){
+  public function dependants()
+  {
+    return $this->hasMany('App\Dependant');
+  }
 
-       return $this->belongsTo('App\Event');
-    }
+  public function event()
+  {
+    return $this->belongsTo('App\Event');
+  }
 
-    public function qr(){
-      return route('attend', ['slug' => $this->slug()]);
-    }
+  public function qr()
+  {
+    return route('attend', ['slug' => $this->slug()]);
+  }
 
-    public function payment(){
+  public function payment()
+  {
+    return $this->hasOne('App\User', 'id', 'payment_by')->withDefault();
+  }
 
-       return $this->hasOne('App\User','id','payment_by')->withDefault();
-    }
+  public function softDeletedBy()
+  {
+    return $this->hasOne('App\User', 'id', 'deleted_by'); //->select('name','username');
+  }
 
-    public function softDeletedBy(){
+  public function attend()
+  {
+    return $this->hasOne('App\User', 'id', 'attend_by')->withDefault();
+  }
 
-       return $this->hasOne('App\User','id','deleted_by'); //->select('name','username');
-    }
+  public function adultsFamily()
+  {
+    return $this->hasMany('App\Dependant')->family()->adult();
+  }
 
-    public function attend(){
+  public function kidsFamily()
+  {
+    return $this->hasMany('App\Dependant')->family()->kids();
+  }
 
-       return $this->hasOne('App\User','id','attend_by')->withDefault();
-    }
+  public function infantsFamily()
+  {
+    return $this->hasMany('App\Dependant')->family()->infant();
+  }
 
-    public function adultsFamily(){
-      return $this->hasMany('App\Dependant')->family()->adult();
-    }
+  public function adults()
+  {
+    return $this->hasMany('App\Dependant')->adult();
+  }
 
-    public function kidsFamily(){
-      return $this->hasMany('App\Dependant')->family()->kids();
-    }
+  public function kids()
+  {
+    return $this->hasMany('App\Dependant')->kids();
+  }
 
-    public function infantsFamily(){
-      return $this->hasMany('App\Dependant')->family()->infant();
-    }
+  public function infants()
+  {
+    return $this->hasMany('App\Dependant')->infant();
+  }
 
-    public function adults(){
-      return $this->hasMany('App\Dependant')->adult();
-    }
+  public function othersAdults()
+  {
+    return $this->hasMany('App\Dependant')->others()->where('age', '>', 10);
+  }
 
-    public function kids(){
-      return $this->hasMany('App\Dependant')->kids();
-    }
+  public function othersKids()
+  {
+    return $this->hasMany('App\Dependant')->others()->whereBetween('age', [3, 10]);
+  }
 
-    public function infants(){
-      return $this->hasMany('App\Dependant')->infant();
-    }
-
-    public function othersAdults(){
-      return $this->hasMany('App\Dependant')->others()->where('age','>',10);
-    }
-
-    public function othersKids(){
-      return $this->hasMany('App\Dependant')->others()->whereBetween('age',[3,10]);
-    }
-
-    public function othersInfants(){
-      return $this->hasMany('App\Dependant')->others()->where('age','<',3);
-    }
-
+  public function othersInfants()
+  {
+    return $this->hasMany('App\Dependant')->others()->where('age', '<', 3);
+  }
 }

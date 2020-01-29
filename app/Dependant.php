@@ -7,7 +7,6 @@ class Dependant extends Model
 {
    use SoftDeletes;
    protected $guarded = ['id','created_at','updated_at','deleted_at'];
-   protected $dates = ['deleted_at'];
 
    public function member()
    {
@@ -43,5 +42,4 @@ class Dependant extends Model
    {
         return $query->where('age','<',3);
    }
-
 }

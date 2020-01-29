@@ -1,9 +1,36 @@
 <?php
 
 return [
-
-    'eventday' => ('21st October 2017'),
-    'paymentday' => ('10th October 2017'),
+    // 'eventday' => ('21st October 2017'),
+    // 'paymentday' => ('10th October 2017'),
+    'eventday' => env('EVENT_DAY', '20201021'),
+    'paymentday' => env('PAYMENT_DAY', '20171010'),
+    'counters' => [
+        [
+            'date' => '20170927',
+            'location' => 'Menara TM',
+            ],
+            [
+            'date' => '20170928',
+            'location' => 'Menara TM'
+            ],
+            [
+            'date' => '20171004',
+            'location' => 'TM Annexe 2'
+            ],
+            [
+            'date' => '20171005',
+            'location' => 'TM Annexe 2'
+            ],
+            [
+            'date' => '20171009',
+            'location' => 'Menara TM'
+            ],
+            [
+            'date' => '20171010',
+            'location' => 'Menara TM'
+            ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -180,9 +207,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class,
     ],
 
     /*
@@ -231,10 +255,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        'Form' => Collective\Html\FormFacade::class,
-        'HTML' => Collective\Html\HtmlFacade::class,
-        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

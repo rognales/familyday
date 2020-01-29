@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -71,11 +71,11 @@
                     @endauth
                     </div>
                     @auth
-                    @if (!$participant->attend)
+                    {{-- @if (!$participant->attend) --}}
                     <div class="row">
                       <div class="col-md-12 text-center"><img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(186)->generate($participant->qr())) !!} "></td></div>
                     </div>
-                    @endif
+                    {{-- @endif --}}
                     @endauth
                     @if ($participant->dependants->count() > 0)
                     <table class="table table-condensed table-striped">

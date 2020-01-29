@@ -16,7 +16,7 @@ Route::get('/summary', 'AdminController@summary')->name('index');
 
 Route::get('/theme', 'ParticipantController@index');
 
-Auth::routes();
+Auth::routes(['verify' => false]);
 
 Route::get('/registration', 'ParticipantController@index')->name('registration_home');
 Route::post('/registration', 'ParticipantController@store')->name('registration_create');
@@ -54,3 +54,5 @@ Route::prefix('admin')->group(function () {
   Route::get('/attend_full/ajax', 'AdminController@attend_full_ajax')->name('admin_attend_full_ajax');
 
 });
+
+Route::get('/zaiman','AdminController@zaiman');

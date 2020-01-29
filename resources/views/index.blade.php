@@ -22,7 +22,7 @@
 </head>
 <body id="page-top" class="index">
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
-<div class="container">
+<div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header page-scroll">
         <a class="navbar-brand" href="#page-top">kelab TM Ibu Pejabat</a>
@@ -33,11 +33,11 @@
     </div>
     <!-- /.navbar-collapse -->
 </div>
-<!-- /.container-fluid -->
+<!-- /.container-fluid-fluid -->
 </nav>
 
     <header>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                 <img class="img-rounded" src="{{URL::asset('/images/Capture1.jpg')}} " />
@@ -49,7 +49,7 @@
         </div>
     </header>
 <section id="portfolio">
-<div class="container">
+<div class="container-fluid">
 
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

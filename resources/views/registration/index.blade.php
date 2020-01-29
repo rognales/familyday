@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 
   <div class="jumbotron">
     <h2 class="display-3 text-center">Kelab Ibu Pejabat TM Family Day</h2>

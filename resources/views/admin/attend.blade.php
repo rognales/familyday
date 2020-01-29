@@ -1,96 +1,103 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
   @include('layouts.icon')
-    <div class="row">
-        <div class="col-md-12">
-          <div class="panel-group">
-            <div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><a href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Attendance Summary<a class="pull-right" href="{{route('admin_attend_full')}}" role="button" target="_blank"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></a></h3>
-              </div>
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-md-3">
-                    <ul class="list-group">
-                      <li class="list-group-item list-group-item-info text-center">Family Only</li>
-                      <li class="list-group-item">Adult <span class="badge">{{$count['adult']}}</span></li>
-                      <li class="list-group-item">Kids <span class="badge">{{$count['kids']}}</span></li>
-                      <li class="list-group-item">Infant <span class="badge">{{$count['infant']}}</span></li>
-                      <li class="list-group-item list-group-item-info">Total <span class="badge">{{$count['all']}}</span></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-3">
-                    <ul class="list-group">
-                      <li class="list-group-item list-group-item-success text-center">Others</li>
-                      <li class="list-group-item">Adult <span class="badge">{{$count['others_adult']}}</span></li>
-                      <li class="list-group-item">Kids <span class="badge">{{$count['others_kids']}}</span></li>
-                      <li class="list-group-item">Infant <span class="badge">{{$count['others_infant']}}</span></li>
-                      <li class="list-group-item list-group-item-success">Total <span class="badge">{{$count['others_total']}}</span></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-3">
-                    <ul class="list-group">
-                      <li class="list-group-item active text-center">Attendance</li>
-                      <li class="list-group-item">Attended <span class="badge">{{$attendance['yes']}}</span></li>
-                      <li class="list-group-item">Not Yet <span class="badge badge-primary">{{$attendance['no']}}</span></li>
-                      <li class="list-group-item active">Total <span class="badge ">{{$count['total']}}</span></li>
-                    </ul>
-                  </div>
-
-                </div>
-              </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel-group">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><a
+                href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right"
+                aria-hidden="true"></span>Attendance Summary<a class="pull-right" href="{{route('admin_attend_full')}}"
+                role="button" target="_blank"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></a>
+            </h3>
           </div>
-          <div class="panel panel-default panel-table">
-            <div class="panel-heading">
-              <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Attendance Management</h3>
-            </div>
-            <div class="panel-body">
-              <div class="table-responsive">
-                <table id="participants-table" class="table">
-                  <thead>
-                  <tr>
-                      <th></th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Staff Id</th>
-                      <th>Attend</th>
-                      <th>Action</th>
-				   </tr>
-                  </thead>
-                </table>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3">
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-info text-center">Family Only</li>
+                  <li class="list-group-item">Adult <span class="badge">{{$count['adult']}}</span></li>
+                  <li class="list-group-item">Kids <span class="badge">{{$count['kids']}}</span></li>
+                  <li class="list-group-item">Infant <span class="badge">{{$count['infant']}}</span></li>
+                  <li class="list-group-item list-group-item-info">Total <span class="badge">{{$count['all']}}</span>
+                  </li>
+                </ul>
               </div>
+              <div class="col-md-3">
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-success text-center">Others</li>
+                  <li class="list-group-item">Adult <span class="badge">{{$count['others_adult']}}</span></li>
+                  <li class="list-group-item">Kids <span class="badge">{{$count['others_kids']}}</span></li>
+                  <li class="list-group-item">Infant <span class="badge">{{$count['others_infant']}}</span></li>
+                  <li class="list-group-item list-group-item-success">Total <span
+                      class="badge">{{$count['others_total']}}</span></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <ul class="list-group">
+                  <li class="list-group-item active text-center">Attendance</li>
+                  <li class="list-group-item">Attended <span class="badge">{{$attendance['yes']}}</span></li>
+                  <li class="list-group-item">Not Yet <span class="badge badge-primary">{{$attendance['no']}}</span>
+                  </li>
+                  <li class="list-group-item active">Total <span class="badge ">{{$count['total']}}</span></li>
+                </ul>
+              </div>
+
             </div>
           </div>
         </div>
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a
+                href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right"
+                aria-hidden="true"></span>Attendance Management</h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table id="participants-table" class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Staff Id</th>
+                    <th>Attend</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-@stop
+  </div>
+  @stop
 
-@push('style')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap.min.css" integrity="sha256-PbaYLBab86/uCEz3diunGMEYvjah3uDFIiID+jAtIfw=" crossorigin="anonymous" />
-<style type="text/css" class="init">
-  td.details-control {
-  	background: url('{{ asset('images/details_open.png') }}') no-repeat center center;
-  	cursor: pointer;
-  }
-  tr.shown td.details-control {
-  	background: url('{{ asset('images/details_close.png') }}') no-repeat center center;
-  }
-  .sorting_disabled{
-    padding-right: 0;
-  }
-	</style>
-@endpush
+  @push('style')
+  <style type="text/css" class="init">
+    td.details-control {
+      background: url('{{ asset('images/details_open.png') }}') no-repeat center center;
+      cursor: pointer;
+    }
 
-@push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js" integrity="sha256-qcV1wr+bn4NoBtxYqghmy1WIBvxeoe8vQlCowLG+cng=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap.min.js" integrity="sha256-X/58s5WblGMAw9SpDtqnV8dLRNCawsyGwNqnZD0Je/s=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js" integrity="sha256-lsnwFhrNhbBmHfkBv9qFeiUVHti2+DmL0F1K5pysQsM=" crossorigin="anonymous"></script>
-@verbatim
-<script id="details-template" type="text/x-handlebars-template">
-        <div class="label label-info"></div>
+    tr.shown td.details-control {
+      background: url('{{ asset('images/details_close.png') }}') no-repeat center center;
+    }
+
+    .sorting_disabled {
+      padding-right: 0;
+    }
+  </style>
+  @endpush
+
+  @push('scripts')
+  @verbatim
+  <script id="details-template" type="text/x-handlebars-template">
+    <div class="label label-info"></div>
         <table class="table details-table" id="participant-{{id}}">
             <thead>
             <tr>
@@ -102,8 +109,8 @@
 
         </table>
     </script>
-<script>
-@endverbatim
+  <script>
+    @endverbatim
 var template = Handlebars.compile($("#details-template").html());
 var table = $('#participants-table').DataTable({
     processing: true,
@@ -158,12 +165,11 @@ function initTable(tableId, data) {
            language: {emptyTable: "No registered dependants." },
            ajax: data.details_url,
            columns: [
-
                { data: 'relationship', name: 'relationship' },
                { data: 'name', name: 'name' },
                { data: 'age', name: 'age' }
            ]
        })
    }
-</script>
-@endpush
+  </script>
+  @endpush
