@@ -4,13 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Balping\HashSlug\HasHashSlug;
+use Illuminate\Support\Str;
 
 class Participant extends Model
 {
   use HasHashSlug;
   use SoftDeletes;
   protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
-  protected static $minSlugLength = 8;
+
+  protected static $minSlugLength = 15;
+  protected static $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   protected $appends = ['zaiman'];
 
