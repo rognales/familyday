@@ -2,9 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Mail\RegistrationConfirmation;
 use Balping\HashSlug\HasHashSlug;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class Participant extends Model
 {
@@ -14,14 +16,6 @@ class Participant extends Model
 
   protected static $minSlugLength = 15;
   protected static $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-  protected $appends = ['zaiman'];
-
-  public function getZaimanAttribute()
-  {
-    return $this->slug();
-    return $this->qr();
-  }
 
   public function dependants()
   {
@@ -45,7 +39,7 @@ class Participant extends Model
 
   public function softDeletedBy()
   {
-    return $this->hasOne('App\User', 'id', 'deleted_by'); //->select('name','username');
+    return $this->hasOne('App\User', 'id', 'deleted_by');
   }
 
   public function attend()
@@ -96,5 +90,28 @@ class Participant extends Model
   public function othersInfants()
   {
     return $this->hasMany('App\Dependant')->others()->where('age', '<', 3);
+  }
+
+  public function isPaid()
+  {
+    return $this->payment_status != 'Pending';
+  }
+
+  public function isAttended()
+  {
+    return $this->attend;
+  }
+
+  public function markAttendance()
+  {
+    $this->attend = 1;
+    $this->attended_by = Auth::user()->id;
+    $this->attend_timestamp = now();
+    $this->save();
+  }
+
+  public function sendConfirmationEmail()
+  {
+    return Mail::to($this->email)->send(new RegistrationConfirmation($this));
   }
 }
