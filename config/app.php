@@ -1,33 +1,31 @@
 <?php
 
 return [
-    // 'eventday' => ('21st October 2017'),
-    // 'paymentday' => ('10th October 2017'),
-    'eventday' => env('EVENT_DAY', '20201021'),
-    'paymentday' => env('PAYMENT_DAY', '20171010'),
+    'eventday' => env('EVENT_DAY', '20200321'),
+    'paymentday' => env('PAYMENT_DAY', '20200311'),
     'counters' => [
         [
-            'date' => '20170927',
+            'date' => '20200927',
             'location' => 'Menara TM',
             ],
             [
-            'date' => '20170928',
+            'date' => '20200928',
             'location' => 'Menara TM'
             ],
             [
-            'date' => '20171004',
+            'date' => '20201004',
             'location' => 'TM Annexe 2'
             ],
             [
-            'date' => '20171005',
+            'date' => '20201005',
             'location' => 'TM Annexe 2'
             ],
             [
-            'date' => '20171009',
+            'date' => '20201009',
             'location' => 'Menara TM'
             ],
             [
-            'date' => '20171010',
+            'date' => '20201010',
             'location' => 'Menara TM'
             ],
     ],
