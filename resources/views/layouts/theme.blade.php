@@ -285,29 +285,42 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4 text-center">
-          <p><i class="fa fa-phone sr-contact"></i>
-            011-10009385</p>
-          <p><i class="fa fa-user sr-contact"></i>
-            Mohamad Yusri Mohamad Yusof</p>
-          <p><i class="fa fa-envelope-o sr-contact"></i>
-            <a href="mailto:mohdyusriyusof@tm.com.my">mohdyusriyusof@tm.com.my</a></p>
+        <div class="col-md-4 text-center" style="padding-top:2rem">
+          <p><i class="fa fa-building-o sr-contact"></i> TM Annexe 1 & 2</p>
+          <p><i class="fa fa-user sr-contact"></i> Mohamad Yusri Mohamad Yusof</p>
+          <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:mohdyusriyusof@tm.com.my">
+              mohdyusriyusof@tm.com.my</a></p>
+          <p><i class="fa fa-phone sr-contact"></i> 011-1000 9385</p>
         </div>
-        <div class="col-md-4 text-center">
-          <p><i class="fa fa-phone sr-contact"></i>
-            012-7009320</p>
-          <p><i class="fa fa-user sr-contact"></i>
-            Nur Syuhada Binti Zulkifli </p>
-          <p><i class="fa fa-envelope-o sr-contact"></i>
-            <a href="mailto:nursyuhada.zulkifli@tm.com.my">nursyuhada.zulkifli@tm.com.my</a></p>
+        <div class="col-md-4 text-center" style="padding-top:2rem">
+          <p><i class="fa fa-building-o sr-contact"></i> Menara TM</p>
+          <p><i class="fa fa-user sr-contact"></i> Nur Ashikin Ahmad Kamal</p>
+          <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:ashikin.kamal@tm.com.my">
+              ashikin.kamal@tm.com.my</a></p>
+          <p><i class="fa fa-phone sr-contact"></i> 013-344 0364</p>
         </div>
-        <div class="col-md-4 text-center">
-          <p><i class="fa fa-phone sr-contact"></i>
-            013-3440364</p>
-          <p><i class="fa fa-user sr-contact"></i>
-            Nur Ashikin Binti Ahmad Kamal</p>
-          <p><i class="fa fa-envelope-o sr-contact"></i>
-            <a href="mailto:ashikin.kamal@tm.com.my">ashikin.kamal@tm.com.my</a></p>
+        <div class="col-md-4 text-center" style="padding-top:2rem">
+          <p><i class="fa fa-building-o sr-contact"></i> Menara TM</p>
+          <p><i class="fa fa-user sr-contact"></i> Ruhil Ahlam Adzmi</p>
+          <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:ruhil.ahlam@tm.com.my">
+              ruhil.ahlam@tm.com.my</a></p>
+          <p><i class="fa fa-phone sr-contact"></i> 012-213 0902</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 text-center" style="padding-top:2rem">
+          <p><i class="fa fa-building-o sr-contact"></i> Menara TM One</p>
+          <p><i class="fa fa-user sr-contact"></i> Suhana Hashim</p>
+          <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:suhana.hashim@tm.com.my">
+              suhana.hashim@tm.com.my</a></p>
+          <p><i class="fa fa-phone sr-contact"></i> 019-426 0882</p>
+        </div>
+        <div class="col-md-6 text-center" style="padding-top:2rem">
+          <p><i class="fa fa-building-o sr-contact"></i> Menara KL</p>
+          <p><i class="fa fa-user sr-contact"></i> Mohd Syarriman Mohd Stapar</p>
+          <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:syarriman@tm.com.my">
+              syarriman@tm.com.my</a></p>
+          <p><i class="fa fa-phone sr-contact"></i> 017-345 3445</p>
         </div>
       </div>
     </div>
