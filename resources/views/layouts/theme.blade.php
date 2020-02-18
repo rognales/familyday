@@ -102,7 +102,7 @@
         <div class="col-sm-6 text-center">
           <div class="service-box">
             <i class="fa fa-calendar fa-5x" aria-hidden="true"></i>
-            <h3>{{config('app.eventday')}}</h3>
+            <h3>{{\Carbon\Carbon::parse(config('app.eventday'))->format('jS F Y')}}</h3>
           </div>
         </div>
         <div class="col-sm-6 text-center">
