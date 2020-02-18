@@ -8,7 +8,6 @@ use App\Participant;
 use App\Dependant;
 use App\Member;
 use App\Staff;
-use DataTables;
 
 class AdminController extends Controller
 {
@@ -28,13 +27,6 @@ class AdminController extends Controller
     $dependants = Participant::withTrashed()->find($pid)->dependants();
     return datatables()->of($dependants)->make(true);
   }
-
-  public function zaiman(){
-    $participants = Participant::all();
-
-    return $participants;
-  }
-
   //===================================PAYMENT START===============================//
 
   public function payment()

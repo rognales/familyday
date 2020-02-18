@@ -54,5 +54,3 @@ Route::prefix('admin')->group(function () {
   Route::get('/attend_full/ajax', 'AdminController@attend_full_ajax')->name('admin_attend_full_ajax');
 
 });
-
-Route::get('/zaiman','AdminController@zaiman');
