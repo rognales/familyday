@@ -7,7 +7,6 @@ use App\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -26,7 +25,6 @@ class ParticipantController extends Controller
 
   public function store(Request $request)
   {
-    Log::info('registration', [config('app.registration')]);
     // If registration is open or admin is logged in
     if (config('app.registration') || Auth::check()) {
       $validator = Validator::make($request->all(), [
@@ -74,18 +72,9 @@ class ParticipantController extends Controller
           'staff_id' => request('dependant_staff')[$key],
           'participant_id' => $participant->id,
         ]);
-        // Dependant::create([
-        //   'name' => title_case($value),
-        //   'relationship' => title_case(request('dependant_relationship')[$key]),
-        //   'age' => request('dependant_age')[$key],
-        //   'staff_id' => request('dependant_staff')[$key],
-        //   'participant_id' => $participant->id,
-        // ]);
-
       }
     };
     $participant->dependants()->createMany($dependants);
-    Log::info('dependants', [$dependants]);
     if ($participant) { //only send email if successfully created
       DB::commit();
       $participant->sendConfirmationEmail();
