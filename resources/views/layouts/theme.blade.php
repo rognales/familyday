@@ -54,7 +54,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a class="page-scroll" href="#about">Family Day 2017</a>
+            <a class="page-scroll" href="#about">Family Day 2020</a>
           </li>
           <li>
             <a class="page-scroll" href="#registration">Registration</a>
@@ -94,7 +94,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 text-center">
-          <h2 class="section-heading">Family Day 2017</h2>
+          <h2 class="section-heading">Family Day 2020</h2>
           <hr class="light">
         </div>
       </div>
@@ -260,8 +260,7 @@
             </thead>
             <tbody>
               @foreach (config('app.counters') as $counter)
-              <tr 
-              @if (now()->greaterThan(\Carbon\Carbon::parse($counter['date'])))
+              <tr @if (now()->greaterThan(\Carbon\Carbon::parse($counter['date'])))
                 class="passed"
                 @endif>
                 <td>{{$counter['location']}}</td>

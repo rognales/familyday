@@ -157,7 +157,7 @@
               <!-- COPY -->
               <tr>
                 <td bgcolor="#ffffff" align="center" style="padding: 10px 15px 20px 15px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-                  <p style="margin: 0;">We're excited to meet you at Family Day 2017 </p>
+                  <p style="margin: 0;">We're excited to meet you at Family Day 2020 </p>
                 </td>
               </tr>
               <!-- BULLETPROOF BUTTON -->
