@@ -229,7 +229,7 @@
                 </tr>
                 <tr>
                   <td bgcolor="#FFECD1" align="center" style="padding: 20px 20px 20px 20px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 10px;" >
-                    <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;"><strong>Date</strong> : {{config('app.eventday')}}</h2>
+                    <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;"><strong>Date</strong> : {{\Carbon\Carbon::parse(config('app.eventday'))->format('jS F Y')}}</h2>
                   </td>
                 </tr>
             </table>
