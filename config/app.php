@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'registration' => env('REGISTRATION', true),
     'eventday' => env('EVENT_DAY', '20200321'),
     'paymentday' => env('PAYMENT_DAY', '20200311'),
     'counters' => [
