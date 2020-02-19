@@ -60,6 +60,7 @@ class ParticipantController extends Controller
       'staff_id' => strtoupper(request('staff_id')),
       'email' => strtolower(request('email')),
       'member' => Member::where('staff_id', strtoupper(request('staff_id')))->count(),
+      'is_vege' => request('vege') == 'true' ? true : false
     ]);
 
     $dependants = [];

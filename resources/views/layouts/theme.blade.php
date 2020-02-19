@@ -157,6 +157,17 @@
                     placeholder="Use valid email address here" required>
                 </div>
               </div>
+              <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">Meal Option</label>
+                <div class="col-sm-9">
+                  <label class="radio-inline">
+                    <input type="radio" name="vege" value="false" required> Normal
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="vege" value="true" required> Vegetarian
+                  </label>
+                </div>
+              </div>
             </fieldset>
             <fieldset id="dependant_set">
               <legend>Dependant</legend>

@@ -17,6 +17,8 @@ class Participant extends Model
   protected static $minSlugLength = 15;
   protected static $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
+  protected $appends = ['meal_option'];
+
   public function dependants()
   {
     return $this->hasMany('App\Dependant');
@@ -100,6 +102,10 @@ class Participant extends Model
   public function isAttended()
   {
     return $this->attend;
+  }
+
+  public function getMealOptionAttribute(){
+    return $this->is_vege ? "Vegetarian" : "Normal";
   }
 
   public function markAttendance()

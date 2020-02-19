@@ -34,6 +34,7 @@
                 <p><strong>Staff ID :</strong> {{$participant->staff_id}}</p>
                 <p><strong>Name :</strong> {{$participant->name}}</p>
                 <p><strong>Email :</strong> {{$participant->email}}</p>
+                <p><strong>Meal <i class="fa fa-cutlery" aria-hidden="true"></i>:</strong> {{$participant->meal_option}}</p>
                 @auth
                 @if ($participant->member)
                 <p><strong>Member :</strong> <span class="text-success">YES<span></p>

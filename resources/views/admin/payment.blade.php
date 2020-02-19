@@ -54,6 +54,7 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Staff Id</th>
+                      <th>Meal</th>
                       <th>Payment Status</th>
                       <th>Payment Details</th>
                       <th>Action</th>
@@ -119,6 +120,7 @@ var table = $('#participants-table').DataTable({
         {data: 'name', name: 'name'},
         {data: 'email', name: 'email'},
         {data: 'staff_id', name: 'staff_id'},
+        {data: 'meal_option', name: 'is_vege', className: 'text-center', orderable: false},
         {data: 'payment_status', name: 'payment_status', className: 'text-center', orderable: false},
         {data: 'payment_details', name: 'payment_details', orderable: false},
         {data: 'action', name: 'action', className: 'text-center', orderable: false, searchable: false},
