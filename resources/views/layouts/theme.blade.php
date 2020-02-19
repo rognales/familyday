@@ -289,8 +289,10 @@
           </ol>
           <table class="table table-condensed text-center">
             <thead>
-              <th class="text-center">Location</th>
-              <th class="text-center">Date</th>
+              <tr>
+                <th class="text-center">Location</th>
+                <th class="text-center">Date</th>
+              </tr>
             </thead>
             <tbody>
               @foreach (config('app.counters') as $counter)
@@ -372,7 +374,6 @@
       <a
         href="https://www.google.com/maps/embed/v1/place?key=AIzaSyBD6fzCA2JRXb2ZxJROiHkP6jVih1rMH00&q=Bangi+Wonderland"></a>
     </small>
-    </iframe>
   </section>
   <section class="bg-dark">
   </section>
