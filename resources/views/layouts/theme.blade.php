@@ -220,7 +220,7 @@
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-9">
                 <button type="submit" class="btn btn-primary" id="btn-register">Register</button>
-                @Auth
+                @auth
                 <small>Rule for TM HQ only : <mark>OFF</mark></small>
                 @endauth
               </div>
@@ -468,6 +468,16 @@
         }
     // Enable map zooming with mouse scroll when the user clicks the map
   </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1014386-11"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-1014386-11');
+  </script>
+
 </body>
 
 </html>
