@@ -6,28 +6,24 @@ return [
     'paymentday' => env('PAYMENT_DAY', '20200311'),
     'counters' => [
         [
-            'date' => '20200927',
-            'location' => 'Menara TM',
+            'date' => '20200225',
+            'location' => 'MPH Menara TM',
             ],
             [
-            'date' => '20200928',
+            'date' => '20200226',
+            'location' => 'MPH Menara TM'
+            ],
+            [
+            'date' => '20200303',
             'location' => 'Menara TM'
             ],
             [
-            'date' => '20201004',
+            'date' => '20200304',
+            'location' => 'Menara TM'
+            ],
+            [
+            'date' => '20200305',
             'location' => 'TM Annexe 2'
-            ],
-            [
-            'date' => '20201005',
-            'location' => 'TM Annexe 2'
-            ],
-            [
-            'date' => '20201009',
-            'location' => 'Menara TM'
-            ],
-            [
-            'date' => '20201010',
-            'location' => 'Menara TM'
             ],
     ],
 
