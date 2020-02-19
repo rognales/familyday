@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="thumbnail">
                 <div class="caption text-center">
                   <i class="fa fa-building fa-5x" aria-hidden="true"></i>
@@ -57,13 +57,28 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="thumbnail">
                 <div class="caption text-center">
                   <i class="fa fa-id-card fa-5x" aria-hidden="true"></i>
                   <h3>Members</h3>
                   <p>View Kelab Ibu Pejabat's members list. This is a read only view.</p>
                   <a href="{{route('admin_member')}}" class="btn btn-primary btn-md" role="button">View Member</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="thumbnail">
+                <div class="caption text-center">
+                  <i class="fa fa-id-card fa-5x" aria-hidden="true"></i>
+                  <h3>Registration Status</h3>
+                  <p>Status of registration form for the public. Please contact admin to change the status.</p>
+                  @if (config('app.registration'))
+                  <button type="button" class="btn btn-success">Open for registration</button>
+                  @else
+                  <button type="button" class="btn btn-danger">Closed for registration</button> 
+                  @endif
+                  
                 </div>
               </div>
             </div>

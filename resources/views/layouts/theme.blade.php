@@ -114,7 +114,7 @@
       </div>
     </div>
   </section>
-
+  @if (config('app.registration'))
   <section id="registration">
     <div class="container-fluid">
       <div class="row">
@@ -136,7 +136,6 @@
 
             <fieldset>
               <legend>Participant</legend>
-
               <div class="form-group">
                 <label for="staff_id" class="col-sm-3 control-label">Staff Id</label>
                 <div class="col-sm-9">
@@ -169,13 +168,17 @@
                   <select class="form-control" name="dependant_relationship[]">
                     <option value="">--Relationship--</option>
                     <option value="Spouse" @if (old('dependant_relationship'.".".$key)=='Spouse' ) selected="selected"
-                      @endif>Spouse</option>
+                      @endif>
+                      Spouse</option>
                     <option value="Kids" @if (old('dependant_relationship'.".".$key)=='Kids' ) selected="selected"
-                      @endif>Kids</option>
+                      @endif>Kids
+                    </option>
                     <option value="Infant" @if (old('dependant_relationship'.".".$key)=='Infant' ) selected="selected"
-                      @endif>Infant</option>
+                      @endif>
+                      Infant</option>
                     <option value="Others" @if (old('dependant_relationship'.".".$key)=='Others' ) selected="selected"
-                      @endif>Others</option>
+                      @endif>
+                      Others</option>
                   </select>
                 </div>
                 <div class="col-sm-7">
@@ -227,6 +230,23 @@
       </div>
     </div>
   </section>
+  @else
+  <section id="registration">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h2 class="section-heading text-center">Registration</h2>
+          <hr class="primary">
+          <div class="mt-5 text-center">
+            <i class="fa fa-4x fa-heart text-primary mb-4"></i>
+            <h3 class="h4 mb-2">Whopps, registration is not yet open</h3>
+            <p class="text-muted mb-0">We will inform you once we're ready!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  @endif
   <section id="terms" class="bg-dark">
     <div class="container-fluid">
       <div class="row">
