@@ -7,11 +7,11 @@ return [
     'counters' => [
         [
             'date' => '20200225',
-            'location' => 'MPH Menara TM',
+            'location' => 'MPH@Menara TM',
             ],
             [
             'date' => '20200226',
-            'location' => 'MPH Menara TM'
+            'location' => 'MPH@Menara TM'
             ],
             [
             'date' => '20200303',
