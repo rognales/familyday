@@ -32,8 +32,7 @@ class RegistrationConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->from('kelab.ip@tm.com.my')
-                    ->subject('Kelab Ibu Pejabat - Family Day 2020 Registration Confirmation')
+        return $this->subject('Kelab Ibu Pejabat - Family Day 2020 Registration Confirmation')
                     ->view('registration.litmus');
     }
 }
