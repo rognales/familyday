@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class ParticipantController extends Controller
 {
@@ -98,9 +99,15 @@ class ParticipantController extends Controller
 
   public function attend($slug)
   {
+    $eventDay = Carbon::parse(config('app.eventday'));
+    if (now()->lessThan($eventDay)) {
+      return view('registration.error')->with('warning', "Hold up! You're here too soon. Come back on the event day.");
+    }
+
+    // Event day onwards
     $participant = Participant::findBySlug($slug);
 
-    //QR code not valid or payment status = Pending
+    // QR code not valid or payment status = Pending
     if (!$participant) {
       return view('registration.error')->with('warning', 'QR code not valid or no payment info has been captured.');
     }
