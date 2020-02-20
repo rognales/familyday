@@ -34,6 +34,7 @@ Route::prefix('admin')->group(function () {
   Route::get('/user/deleted/ajax', 'AdminController@user_deleted_ajax')->name('admin_user_deleted_ajax');
   Route::post('/user/email', 'ParticipantEmailController')->name('admin_resend_email');
   Route::delete('/user/delete', 'ParticipantController@delete')->name('admin_user_delete');
+  
   Route::get('/dependants/ajax/{pid}', 'AdminController@dependants_ajax')->name('admin_dependants_ajax');
 
   Route::get('/member', 'AdminController@member')->name('admin_member');
@@ -47,9 +48,9 @@ Route::prefix('admin')->group(function () {
     Route::post('/ajax/update', 'AdminController@paymentUpdate')->name('admin_payment_ajax_update');
     Route::get('/ajax', 'AdminController@payment_ajax')->name('admin_payment_ajax');
   });
+
   Route::get('/attend', 'AdminController@attend')->name('admin_attend');
   Route::get('/attend_full', 'AdminController@attend_full')->name('admin_attend_full');
   Route::get('/attend/ajax', 'AdminController@attend_ajax')->name('admin_attend_ajax');
   Route::get('/attend_full/ajax', 'AdminController@attend_full_ajax')->name('admin_attend_full_ajax');
-
 });
