@@ -30,40 +30,42 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p>For more info, please contact:-</p>
-                            <table class="table table-striped table-hover">
-                                <tbody>
-                                    <tr>
-                                        <th>TM Annexe 1 & 2</th>
-                                        <td>Mohamad Yusri Mohamad Yusof</td>
-                                        <td>mohdyusriyusof@tm.com.my</td>
-                                        <td>011-1000 9385</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Menara TM</th>
-                                        <td>Nur Ashikin Ahmad Kamal</td>
-                                        <td>ashikin.kamal@tm.com.my</td>
-                                        <td>013-344 0364</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Menara TM</th>
-                                        <td>Ruhil Ahlam Adzmi</td>
-                                        <td>ruhil.ahlam@tm.com.my</td>
-                                        <td>012-213 0902</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Menara TM One</th>
-                                        <td>Suhana Hashim</td>
-                                        <td>suhana.hashim@tm.com.my</td>
-                                        <td>019-426 0882</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Menara KL</th>
-                                        <td>Mohd Syarriman Mohd Stapar</td>
-                                        <td>syarriman@tm.com.my</td>
-                                        <td>017-345 3445</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th>TM Annexe 1 & 2</th>
+                                            <td>Mohamad Yusri Mohamad Yusof</td>
+                                            <td>mohdyusriyusof@tm.com.my</td>
+                                            <td>011-1000 9385</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Menara TM</th>
+                                            <td>Nur Ashikin Ahmad Kamal</td>
+                                            <td>ashikin.kamal@tm.com.my</td>
+                                            <td>013-344 0364</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Menara TM</th>
+                                            <td>Ruhil Ahlam Adzmi</td>
+                                            <td>ruhil.ahlam@tm.com.my</td>
+                                            <td>012-213 0902</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Menara TM One</th>
+                                            <td>Suhana Hashim</td>
+                                            <td>suhana.hashim@tm.com.my</td>
+                                            <td>019-426 0882</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Menara KL</th>
+                                            <td>Mohd Syarriman Mohd Stapar</td>
+                                            <td>syarriman@tm.com.my</td>
+                                            <td>017-345 3445</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
