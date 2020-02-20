@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-use App\Participant;
-
 Route::get('/', 'ParticipantController@index')->name('index');
 Route::get('/summary', 'AdminController@summary')->name('index');
 
@@ -55,9 +52,4 @@ Route::prefix('admin')->group(function () {
   Route::get('/attend/ajax', 'AdminController@attend_ajax')->name('admin_attend_ajax');
   Route::get('/attend_full/ajax', 'AdminController@attend_full_ajax')->name('admin_attend_full_ajax');
 
-});
-
-Route::get('/email', function (){
-  $p = Participant::inRandomOrder()->first();
-  return new App\Mail\RegistrationConfirmation($p);
 });
