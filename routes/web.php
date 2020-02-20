@@ -11,6 +11,8 @@
 |
 */
 
+use App\Participant;
+
 Route::get('/', 'ParticipantController@index')->name('index');
 Route::get('/summary', 'AdminController@summary')->name('index');
 
@@ -33,7 +35,7 @@ Route::prefix('admin')->group(function () {
   Route::get('/user/deleted', 'AdminController@user_deleted')->name('admin_user_deleted');
   Route::get('/user/ajax', 'AdminController@user_ajax')->name('admin_user_ajax');
   Route::get('/user/deleted/ajax', 'AdminController@user_deleted_ajax')->name('admin_user_deleted_ajax');
-  Route::post('/user/email', 'ParticipantController@sendEmail')->name('admin_resend_email');
+  Route::post('/user/email', 'ParticipantEmailController')->name('admin_resend_email');
   Route::delete('/user/delete', 'ParticipantController@delete')->name('admin_user_delete');
   Route::get('/dependants/ajax/{pid}', 'AdminController@dependants_ajax')->name('admin_dependants_ajax');
 
@@ -53,4 +55,9 @@ Route::prefix('admin')->group(function () {
   Route::get('/attend/ajax', 'AdminController@attend_ajax')->name('admin_attend_ajax');
   Route::get('/attend_full/ajax', 'AdminController@attend_full_ajax')->name('admin_attend_full_ajax');
 
+});
+
+Route::get('/email', function (){
+  $p = Participant::inRandomOrder()->first();
+  return new App\Mail\RegistrationConfirmation($p);
 });

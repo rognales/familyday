@@ -15,7 +15,7 @@ class ParticipantController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth')->only('attend', 'sendEmail', 'delete');
+    $this->middleware('auth')->only('attend', 'delete');
   }
 
   public function index()
