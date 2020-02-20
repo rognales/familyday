@@ -114,7 +114,7 @@
       </div>
     </div>
   </section>
-  @if (config('app.registration'))
+  @if (config('app.registration') || auth()->check())
   <section id="registration">
     <div class="container-fluid">
       <div class="row">
@@ -324,6 +324,8 @@
           <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:mohdyusriyusof@tm.com.my">
               mohdyusriyusof@tm.com.my</a></p>
           <p><i class="fa fa-phone sr-contact"></i> 011-1000 9385</p>
+          <p><i class="fa fa-whatsapp sr-contact"></i> <a href="https://api.whatsapp.com/send?phone=601110009385"
+              target="_blank"> Whatsapp Me</a></p>
         </div>
         <div class="col-md-4 text-center" style="padding-top:2rem">
           <p><i class="fa fa-building-o sr-contact"></i> Menara TM</p>
@@ -331,6 +333,8 @@
           <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:ashikin.kamal@tm.com.my">
               ashikin.kamal@tm.com.my</a></p>
           <p><i class="fa fa-phone sr-contact"></i> 013-344 0364</p>
+          <p><i class="fa fa-whatsapp sr-contact"></i> <a href="https://api.whatsapp.com/send?phone=60133440364"
+            target="_blank"> Whatsapp Me</a></p>
         </div>
         <div class="col-md-4 text-center" style="padding-top:2rem">
           <p><i class="fa fa-building-o sr-contact"></i> Menara TM</p>
@@ -338,22 +342,28 @@
           <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:ruhil.ahlam@tm.com.my">
               ruhil.ahlam@tm.com.my</a></p>
           <p><i class="fa fa-phone sr-contact"></i> 012-213 0902</p>
+          <p><i class="fa fa-whatsapp sr-contact"></i> <a href="https://api.whatsapp.com/send?phone=60122130902"
+            target="_blank"> Whatsapp Me</a></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 text-center" style="padding-top:2rem">
+        <div class="col-md-4 col-md-offset-2 text-center" style="padding-top:2rem">
           <p><i class="fa fa-building-o sr-contact"></i> Menara TM One</p>
           <p><i class="fa fa-user sr-contact"></i> Suhana Hashim</p>
           <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:suhana.hashim@tm.com.my">
               suhana.hashim@tm.com.my</a></p>
           <p><i class="fa fa-phone sr-contact"></i> 019-426 0882</p>
+          <p><i class="fa fa-whatsapp sr-contact"></i> <a href="https://api.whatsapp.com/send?phone=60194260882"
+            target="_blank"> Whatsapp Me</a></p>
         </div>
-        <div class="col-md-6 text-center" style="padding-top:2rem">
+        <div class="col-md-4 text-center" style="padding-top:2rem">
           <p><i class="fa fa-building-o sr-contact"></i> Menara KL</p>
           <p><i class="fa fa-user sr-contact"></i> Mohd Syarriman Mohd Stapar</p>
           <p><i class="fa fa-envelope-o sr-contact"></i><a href="mailto:syarriman@tm.com.my">
               syarriman@tm.com.my</a></p>
           <p><i class="fa fa-phone sr-contact"></i> 017-345 3445</p>
+          <p><i class="fa fa-whatsapp sr-contact"></i> <a href="https://api.whatsapp.com/send?phone=60173453445"
+            target="_blank"> Whatsapp Me</a></p>
         </div>
       </div>
     </div>
