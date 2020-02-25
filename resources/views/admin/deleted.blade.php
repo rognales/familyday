@@ -38,7 +38,7 @@
                       <li class="list-group-item active">Total <span class="badge">{{$count['total']}}</span></li>
                     </ul>
                   </div>
-                <div class="col col-xs-3 text-right">
+                <div class="col col-md-3 text-right">
                   <a href="{{route('registration_create')}}" target="_blank"><button type="button" class="btn btn-primary btn-create"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Create New</button></a>
                 </div>
                 </div>
