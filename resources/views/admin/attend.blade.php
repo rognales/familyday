@@ -7,45 +7,46 @@
     <div class="col-md-12">
       <div class="panel-group">
         <div class="panel panel-default panel-table">
-          <div class="panel-heading">
+          <div class="panel-heading" data-toggle="collapse" data-target="#summary">
             <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><a
                 href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right"
                 aria-hidden="true"></span>Attendance Summary<a class="pull-right" href="{{route('admin_attend_full')}}"
                 role="button" target="_blank"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></a>
             </h3>
           </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-3">
-                <ul class="list-group">
-                  <li class="list-group-item list-group-item-info text-center">Family Only</li>
-                  <li class="list-group-item">Adult <span class="badge">{{$count['adult']}}</span></li>
-                  <li class="list-group-item">Kids <span class="badge">{{$count['kids']}}</span></li>
-                  <li class="list-group-item">Infant <span class="badge">{{$count['infant']}}</span></li>
-                  <li class="list-group-item list-group-item-info">Total <span class="badge">{{$count['all']}}</span>
-                  </li>
-                </ul>
+          <div id="summary" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-info text-center">Family Only</li>
+                    <li class="list-group-item">Adult <span class="badge">{{$count['adult']}}</span></li>
+                    <li class="list-group-item">Kids <span class="badge">{{$count['kids']}}</span></li>
+                    <li class="list-group-item">Infant <span class="badge">{{$count['infant']}}</span></li>
+                    <li class="list-group-item list-group-item-info">Total <span class="badge">{{$count['all']}}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-success text-center">Others</li>
+                    <li class="list-group-item">Adult <span class="badge">{{$count['others_adult']}}</span></li>
+                    <li class="list-group-item">Kids <span class="badge">{{$count['others_kids']}}</span></li>
+                    <li class="list-group-item">Infant <span class="badge">{{$count['others_infant']}}</span></li>
+                    <li class="list-group-item list-group-item-success">Total <span
+                        class="badge">{{$count['others_total']}}</span></li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <ul class="list-group">
+                    <li class="list-group-item active text-center">Attendance</li>
+                    <li class="list-group-item">Attended <span class="badge">{{$attendance['yes']}}</span></li>
+                    <li class="list-group-item">Not Yet <span class="badge badge-primary">{{$attendance['no']}}</span>
+                    </li>
+                    <li class="list-group-item active">Total <span class="badge ">{{$count['total']}}</span></li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-md-3">
-                <ul class="list-group">
-                  <li class="list-group-item list-group-item-success text-center">Others</li>
-                  <li class="list-group-item">Adult <span class="badge">{{$count['others_adult']}}</span></li>
-                  <li class="list-group-item">Kids <span class="badge">{{$count['others_kids']}}</span></li>
-                  <li class="list-group-item">Infant <span class="badge">{{$count['others_infant']}}</span></li>
-                  <li class="list-group-item list-group-item-success">Total <span
-                      class="badge">{{$count['others_total']}}</span></li>
-                </ul>
-              </div>
-              <div class="col-md-3">
-                <ul class="list-group">
-                  <li class="list-group-item active text-center">Attendance</li>
-                  <li class="list-group-item">Attended <span class="badge">{{$attendance['yes']}}</span></li>
-                  <li class="list-group-item">Not Yet <span class="badge badge-primary">{{$attendance['no']}}</span>
-                  </li>
-                  <li class="list-group-item active">Total <span class="badge ">{{$count['total']}}</span></li>
-                </ul>
-              </div>
-
             </div>
           </div>
         </div>

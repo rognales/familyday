@@ -3,90 +3,100 @@
 @section('content')
 <div class="container-fluid">
   @include('layouts.icon')
-    <div class="row">
-        <div class="col-md-12">
-          <div class="panel-group">
-            <div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><a href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Payment Summary</h3>
-              </div>
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-md-3">
-                    <ul class="list-group">
-                      <li class="list-group-item list-group-item-info text-center">Family Only</li>
-                      <li class="list-group-item">Adult <span class="badge">{{$count['adult']}}</span></li>
-                      <li class="list-group-item">Kids <span class="badge">{{$count['kids']}}</span></li>
-                      <li class="list-group-item">Infant <span class="badge">{{$count['infant']}}</span></li>
-                      <li class="list-group-item list-group-item-info">Total <span class="badge">{{$count['all']}}</span></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-3">
-                    <ul class="list-group">
-                      <li class="list-group-item list-group-item-success text-center">Others</li>
-                      <li class="list-group-item">Adult <span class="badge">{{$count['others_adult']}}</span></li>
-                      <li class="list-group-item">Kids <span class="badge">{{$count['others_kids']}}</span></li>
-                      <li class="list-group-item">Infant <span class="badge">{{$count['others_infant']}}</span></li>
-                      <li class="list-group-item list-group-item-success">Total <span class="badge">{{$count['others_total']}}</span></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-3">
-                    <ul class="list-group">
-                      <li class="list-group-item active text-center">Payment</li>
-                      <li class="list-group-item">Paid<span class="badge">{{$payment['paid']}}</span></li>
-                      <li class="list-group-item">Pending<span class="badge badge-primary">{{$payment['pending']}}</span></li>
-                      <li class="list-group-item active">Total <span class="badge ">{{$count['total']}}</span></li>
-                    </ul>
-                  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel-group">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading" data-toggle="collapse" data-target="#summary">
+            <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><a
+                href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right"
+                aria-hidden="true"></span>Payment Summary</h3>
+          </div>
+          <div id="summary" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-info text-center">Family Only</li>
+                    <li class="list-group-item">Adult <span class="badge">{{$count['adult']}}</span></li>
+                    <li class="list-group-item">Kids <span class="badge">{{$count['kids']}}</span></li>
+                    <li class="list-group-item">Infant <span class="badge">{{$count['infant']}}</span></li>
+                    <li class="list-group-item list-group-item-info">Total <span class="badge">{{$count['all']}}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-success text-center">Others</li>
+                    <li class="list-group-item">Adult <span class="badge">{{$count['others_adult']}}</span></li>
+                    <li class="list-group-item">Kids <span class="badge">{{$count['others_kids']}}</span></li>
+                    <li class="list-group-item">Infant <span class="badge">{{$count['others_infant']}}</span></li>
+                    <li class="list-group-item list-group-item-success">Total <span
+                        class="badge">{{$count['others_total']}}</span></li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <ul class="list-group">
+                    <li class="list-group-item active text-center">Payment</li>
+                    <li class="list-group-item">Paid<span class="badge">{{$payment['paid']}}</span></li>
+                    <li class="list-group-item">Pending<span class="badge badge-primary">{{$payment['pending']}}</span>
+                    </li>
+                    <li class="list-group-item active">Total <span class="badge ">{{$count['total']}}</span></li>
+                  </ul>
                 </div>
               </div>
-          </div>
-          <div class="panel panel-default panel-table">
-            <div class="panel-heading">
-              <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;<a href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Payment Management</h3>
             </div>
-            <div class="panel-body">
-              <div class="table-responsive">
-                <table id="participants-table" class="table table-border table-responsive">
-                  <thead>
+          </div>
+        </div>
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;<a
+                href="{{route('admin_index')}}">Admin</a> <span class="glyphicon glyphicon-chevron-right"
+                aria-hidden="true"></span>Payment Management</h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table id="participants-table" class="table table-border table-responsive">
+                <thead>
                   <tr>
-                      <th></th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Staff Id</th>
-                      <th>Meal</th>
-                      <th>Payment Status</th>
-                      <th>Payment Details</th>
-                      <th>Action</th>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Staff Id</th>
+                    <th>Meal</th>
+                    <th>Payment Status</th>
+                    <th>Payment Details</th>
+                    <th>Action</th>
                   </tr>
-                  </thead>
-                </table>
-              </div>
+                </thead>
+              </table>
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
 @stop
 
 @push('style')
 <style type="text/css" class="init">
   td.details-control {
-  	background: url('{{ asset('images/details_open.png') }}') no-repeat center center;
-  	cursor: pointer;
+    background: url('{{ asset('images/details_open.png') }}') no-repeat center center;
+    cursor: pointer;
   }
+
   tr.shown td.details-control {
-  	background: url('{{ asset('images/details_close.png') }}') no-repeat center center;
+    background: url('{{ asset('images/details_close.png') }}') no-repeat center center;
   }
-	</style>
+</style>
 @endpush
 
 @push('scripts')
 
 @verbatim
 <script id="details-template" type="text/x-handlebars-template">
-        <div class="label label-info"></div>
+  <div class="label label-info"></div>
         {{#if payment.name}}
         <p>Payment updated by <mark>{{payment.name}}</mark> on <em>{{payment_timestamp}}</em></p>
         {{/if}}
@@ -101,7 +111,7 @@
         </table>
     </script>
 <script>
-@endverbatim
+  @endverbatim
 var template = Handlebars.compile($("#details-template").html());
 
 var table = $('#participants-table').DataTable({
