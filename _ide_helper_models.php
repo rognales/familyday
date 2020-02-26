@@ -23,7 +23,6 @@ namespace App{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property int $is_vege
  * @property-read \App\Participant $member
  * @property-read \App\Participant $participant
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Dependant adult()
@@ -41,7 +40,6 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Dependant whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Dependant whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Dependant whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Dependant whereIsVege($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Dependant whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Dependant whereParticipantId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Dependant whereRelationship($value)
@@ -51,25 +49,6 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\Dependant withoutTrashed()
  */
 	class Dependant extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Event
- *
- * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Participant[] $participants
- * @property-read int|null $participants_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereUpdatedAt($value)
- */
-	class Event extends \Eloquent {}
 }
 
 namespace App{
@@ -132,7 +111,7 @@ namespace App{
  * @property-read int|null $adults_family_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Dependant[] $dependants
  * @property-read int|null $dependants_count
- * @property-read \App\Event $event
+ * @property-read mixed $meal_option
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Dependant[] $infants
  * @property-read int|null $infants_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Dependant[] $infantsFamily
@@ -183,19 +162,9 @@ namespace App{
 /**
  * App\Staff
  *
- * @property int $id
- * @property string $name
- * @property string $staff_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereStaffId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereUpdatedAt($value)
  */
 	class Staff extends \Eloquent {}
 }
@@ -212,11 +181,13 @@ namespace App{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $active
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereId($value)
