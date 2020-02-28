@@ -43,7 +43,7 @@ class ParticipantController extends Controller
       ]);
 
       //if user logged in, rule for TM HQ members only will be bypassed
-      $validator->sometimes('staff_id', 'exists:staffs,staff_id', function ($input) {
+      $validator->sometimes('staff_id', 'exists:staffs,staff_id', function () {
         return Auth::check() ? false : true;
       });
     } else {
@@ -77,12 +77,15 @@ class ParticipantController extends Controller
       }
     };
     $participant->dependants()->createMany($dependants);
-    if ($participant) { //only send email if successfully created
-      DB::commit();
-      $participant->sendConfirmationEmail();
-    } else {
-      DB::rollBack();
-    }
+    // if ($participant) { //only send email if successfully created
+    //   DB::commit();
+    //   $participant->sendConfirmationEmail();
+    // } else {
+    //   DB::rollBack();
+    // }
+    //only send email if successfully created
+    $participant !== null ? $participant->sendConfirmationEmail() : DB::rollBack();
+    DB::commit();
 
     return redirect()->route('registration_show', ['slug' => $participant->slug()]);
   }

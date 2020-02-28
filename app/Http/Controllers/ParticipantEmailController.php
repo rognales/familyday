@@ -9,9 +9,9 @@ class ParticipantEmailController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $p = Participant::find($request->input('pid'));
-        if ($p){
-            $p->sendConfirmationEmail();
+        $participant = Participant::find($request->input('pid'));
+        if ($participant) {
+            $participant->sendConfirmationEmail();
         }
     }
 }

@@ -84,7 +84,7 @@ class AdminController extends Controller
     $p = Participant::find($request->pid);
     $p->payment_status = 'Paid';
     $p->payment_details = $request->details;
-    $p->payment_timestamp = \Carbon\Carbon::now();
+    $p->payment_timestamp = now();
     $p->payment_by = auth()->user()->id;
     $p->save();
     return $p->payment_status;
