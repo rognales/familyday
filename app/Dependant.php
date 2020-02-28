@@ -1,12 +1,13 @@
 <?php
 
 namespace App;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dependant extends Model
 {
    use SoftDeletes;
-   protected $guarded = ['id','created_at','updated_at','deleted_at'];
+   protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
    public function member()
    {
@@ -20,26 +21,26 @@ class Dependant extends Model
 
    public function scopeOthers($query)
    {
-       return $query->whereRelationship('Others');
+      return $query->whereRelationship('Others');
    }
 
    public function scopeFamily($query)
    {
-       return $query->where('relationship','<>','Others');
+      return $query->where('relationship', '<>', 'Others');
    }
 
    public function scopeAdult($query)
    {
-        return $query->where('age','>',10);
+      return $query->where('age', '>', 10);
    }
 
    public function scopeKids($query)
    {
-        return $query->whereBetween('age',[3,10]);
+      return $query->whereBetween('age', [3, 10]);
    }
 
    public function scopeInfant($query)
    {
-        return $query->where('age','<',3);
+      return $query->where('age', '<', 3);
    }
 }

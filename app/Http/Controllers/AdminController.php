@@ -15,15 +15,14 @@ class AdminController extends Controller
   {
     $this->middleware('auth');
   }
+
   public function index()
   {
-
     return view('admin.index');
   }
 
   public function dependants_ajax($pid)
   {
-
     $dependants = Participant::withTrashed()->find($pid)->dependants();
     return datatables()->of($dependants)->make(true);
   }
@@ -31,7 +30,6 @@ class AdminController extends Controller
 
   public function payment()
   {
-
     $count['total'] =  Participant::count();
 
     //$count['spouse'] = Dependant::whereRelationship('Spouse')->count();
@@ -97,7 +95,6 @@ class AdminController extends Controller
   //===================================ATTEND START==============================//
   public function attend()
   {
-
     $count['total'] =  Participant::wherePaymentStatus('Paid')->count();
 
     $count['family_adults'] = Dependant::whereHas('participant', function ($query) {
@@ -135,7 +132,6 @@ class AdminController extends Controller
 
   public function attend_ajax()
   {
-
     $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member', 'attend'])
       ->wherePaymentStatus('Paid');
 
@@ -166,7 +162,6 @@ class AdminController extends Controller
 
   public function attend_full()
   {
-
     $count['total'] =  Participant::wherePaymentStatus('Paid')->count();
 
     $count['family_adults'] = Dependant::whereHas('participant', function ($query) {
@@ -204,7 +199,6 @@ class AdminController extends Controller
 
   public function attend_full_ajax()
   {
-
     $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member', 'attend'])
       ->latest()
       ->wherePaymentStatus('Paid')
@@ -253,7 +247,6 @@ class AdminController extends Controller
 
   public function user()
   {
-
     $count['total'] =  Participant::count();
 
     //$count['spouse'] = Dependant::whereRelationship('Spouse')->count();
@@ -279,7 +272,6 @@ class AdminController extends Controller
 
   public function user_ajax()
   {
-
     $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member']);
 
     return datatables()->of($p)
@@ -304,7 +296,6 @@ class AdminController extends Controller
 
   public function user_deleted()
   {
-
     $count['total'] =  Participant::onlyTrashed()->count();
 
     //$count['spouse'] = Dependant::whereRelationship('Spouse')->count();
@@ -330,7 +321,6 @@ class AdminController extends Controller
 
   public function user_deleted_ajax()
   {
-
     $p = Participant::onlyTrashed()->with('softDeletedBy:id,name');
 
     return datatables()->of($p)
@@ -360,7 +350,6 @@ class AdminController extends Controller
 
   public function member(Request $request)
   {
-
     if ($request->ajax()) {
       $m = Member::all();
       return datatables()->of($m)->make(true);
@@ -390,7 +379,6 @@ class AdminController extends Controller
    */
   public function user_ajax_old()
   {
-
     $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member'])->latest()
       ->withCount([
         'dependants as spouse' => function ($query) {
@@ -455,8 +443,6 @@ class AdminController extends Controller
       ->make(true);
   }
 
-
-
   /**
    * Process datatables ajax request.
    *
@@ -464,7 +450,6 @@ class AdminController extends Controller
    */
   public function attend_ajax_old()
   {
-
     $p = Participant::select(['id', 'name', 'email', 'staff_id', 'attend', 'member'])
       ->where('payment_status', '=', 'Paid')
       ->withCount([
@@ -502,8 +487,7 @@ class AdminController extends Controller
         }
       ])
       ->get();
-    //dd(\DB::getQueryLog());
-    //$p = Participant::with('dependants')->select('participants.*');
+
     return datatables()->of($p)
       ->removeColumn('member')
       ->addColumn('action', function ($p) {

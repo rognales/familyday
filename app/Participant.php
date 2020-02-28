@@ -24,11 +24,6 @@ class Participant extends Model
     return $this->hasMany('App\Dependant');
   }
 
-  public function event()
-  {
-    return $this->belongsTo('App\Event');
-  }
-
   public function qr()
   {
     return route('attend', ['slug' => $this->slug()]);
@@ -104,7 +99,8 @@ class Participant extends Model
     return $this->attend;
   }
 
-  public function getMealOptionAttribute(){
+  public function getMealOptionAttribute()
+  {
     return $this->is_vege ? "Vegetarian" : "Normal";
   }
 

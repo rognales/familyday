@@ -8,23 +8,23 @@ return [
         [
             'date' => '20200225',
             'location' => 'MPH@Menara TM',
-            ],
-            [
+        ],
+        [
             'date' => '20200226',
             'location' => 'MPH@Menara TM'
-            ],
-            [
+        ],
+        [
             'date' => '20200303',
             'location' => 'Menara TM'
-            ],
-            [
+        ],
+        [
             'date' => '20200304',
             'location' => 'Menara TM'
-            ],
-            [
+        ],
+        [
             'date' => '20200305',
             'location' => 'TM Annexe 2'
-            ],
+        ],
     ],
 
     /*
