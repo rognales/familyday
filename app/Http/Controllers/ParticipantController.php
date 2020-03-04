@@ -43,7 +43,7 @@ class ParticipantController extends Controller
       ]);
 
       //if user logged in, rule for TM HQ members only will be bypassed
-      $validator->sometimes('staff_id', 'exists:staffs,staff_id', function () {
+      $validator->sometimes('staff_id', 'exists:App\Staff,staff_id', function () {
         return Auth::check() ? false : true;
       });
     } else {
