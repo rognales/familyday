@@ -9,6 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="designer" content="Laravel {{app()->version()}}">
 
   <title>{{ config('app.name') }}</title>
 

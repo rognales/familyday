@@ -82,7 +82,8 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>  
+          <p class="text-center">&copy; Alasapan Inc. <span class="pull-right label label-success">v{{app()->version()}}</span></p>
         </div>
       </div>
     </div>
