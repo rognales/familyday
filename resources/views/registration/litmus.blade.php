@@ -160,7 +160,7 @@
             <td bgcolor="#ffffff" align="center">
               <p>&nbsp;</p>
               @isset($message)
-              <img src="{{ $message->embed(asset('images/logo.png')) }}" />
+              <img src="{{ $message->embed(public_path('images/logo.png')) }}" />
               @else
               <img src="{{ asset('images/logo.png') }}" />
               @endisset
