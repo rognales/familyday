@@ -364,8 +364,8 @@ class AdminController extends Controller
   public function staff(Request $request)
   {
     if ($request->ajax()) {
-      $s = Staff::all();
-      return datatables()->of($s)->make(true);
+      $staff = Staff::all();
+      return datatables()->of($staff)->make(true);
     }
     return view('admin.staff');
   }
