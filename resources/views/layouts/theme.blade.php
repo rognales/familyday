@@ -267,24 +267,29 @@
           <hr class="primary">
           <ol>
             <li>TM Family Day is open for all <em>TM HQ staff only</em>.</li>
+            <li>Every admission to the Family Day will be charged <mark>RM 20.00 per family</mark>
+              <code>(married)</code> or <mark>RM 10.00 per person</mark> <code>(single)</code> as commitment fee.</li>
             <li>Children age <em>3-10 years old</em> or with the <em>height of 90-130 cm</em> are categorized as
               <mark>Kids</mark>.</li>
             <li>Children <em>below 3 years old</em> or with <em>height less than 90 cm</em> are categorized as
               <mark>Infant</mark>.</li>
-            <li>You may need to purchase additional ticket at the special counter provided during the event day for
-              admission of non-family member such as Staff’s parents, sibling, relative or maid.</li>
+            <li>You need to purchase additional ticket at the special counter available during event day for
+              admission of :-
+              <ul>
+                <li>family member aged above <em>21 years old</em></li>
+                <li>non-family member i.e. staff’s parents, siblings, cousins, relatives or maid</li>
+              </ul>
+            </li>
+            <li>Every admission to the Family Day for <mark>(Terms No. 5)</mark>
+              will be charged <mark>RM 60.00 (Adult)</mark> & <mark>RM 50.00 (Kids)</mark> per pax.</li>
             <li>Participation in games will be categorized by age and will be determined by the organizer.</li>
-            <li>Every admission to the Family Day will be charged <mark>RM 20.00 per family</mark>
-              <code>(married)</code> or <mark>RM 10.00 per person</mark> <code>(single)</code> as commitment fee.</li>
-            <li>Every admission to the Family Day for non dependents <code>(such as parents, cousin, maid etc.)</code>
-              will be charged <mark>RM 60.00 (Adult)</mark> & <mark>RM 50.00 (kid)</mark> per head.</li>
-            <li>Payment should be made after you received the QR code. You will be needed to show your QR code to the
-              secretariat in-charge at the booth during the payment process.</li>
-            <li>If a Staff withdraws the admission to the Family Day once the payment has been made, we will not issue a
-              refund of the commitment fee.</li>
+            <li>Payment shall be made after you received the QR code. You will be need to present your QR code at the
+              booth during the payment process.</li>
+            <li>If staff withdraws the admission to the Family Day once the payment has been made, no refund for the
+              commitment fee will be made.</li>
             <li>Registration and payment should be made before
               <mark>{{ \Carbon\Carbon::parse(config('app.paymentday'))->format('jS F Y') }}</mark>.</li>
-            <li>For TM staff who are husband and wife, please register in two separate forms. Please make sure your
+            <li>For TM staff who are husband and wife, please register in two separate forms. Do make sure your
               children information are only in one of the form.</li>
             <li>Payment counter will be open as below :-</li>
           </ol>
