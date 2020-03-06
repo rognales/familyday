@@ -297,7 +297,7 @@
             </thead>
             <tbody>
               @foreach (config('app.counters') as $counter)
-              <tr @if (now()->greaterThan(\Carbon\Carbon::parse($counter['date'])))
+              <tr @if (now()->subDays(1)->greaterThanOrEqualTo(\Carbon\Carbon::parse($counter['date'])))
                 class="passed"
                 @endif>
                 <td>{{$counter['location']}}</td>
