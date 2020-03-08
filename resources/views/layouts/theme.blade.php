@@ -417,103 +417,101 @@
         integrity="sha256-4F7e4JsAJyLUdpP7Q8Sah866jCOhv72zU5E8lIRER4w=" crossorigin="anonymous"></script>
     <!-- Theme JavaScript -->
 
-    <script type="text/javascript">
-        (function($) {
-    "use strict"; // Start of use strict
+<script type="text/javascript">
+    (function($) {
+"use strict"; // Start of use strict
 
-    // jQuery for page scrolling feature - requires jQuery Easing plugin
-    $('a.page-scroll').bind('click', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: ($($anchor.attr('href')).offset().top - 50)
-        }, 1250, 'easeInOutExpo');
-        event.preventDefault();
-    });
+// jQuery for page scrolling feature - requires jQuery Easing plugin
+$('a.page-scroll').bind('click', function(event) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+        scrollTop: ($($anchor.attr('href')).offset().top - 50)
+    }, 1250, 'easeInOutExpo');
+    event.preventDefault();
+});
 
-    // Highlight the top nav as scrolling occurs
-    $('body').scrollspy({
-        target: '.navbar-fixed-top',
-        offset: 51
-    });
+// Highlight the top nav as scrolling occurs
+$('body').scrollspy({
+    target: '.navbar-fixed-top',
+    offset: 51
+});
 
-    // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a').click(function() {
-        $('.navbar-toggle:visible').click();
-    });
+// Closes the Responsive Menu on Menu Item Click
+$('.navbar-collapse ul li a').click(function() {
+    $('.navbar-toggle:visible').click();
+});
 
-    // Offset for Main Navigation
-    $('#mainNav').affix({
-        offset: {
-            top: 100
-        }
-    })
-
-    // Initialize and Configure Scroll Reveal Animation
-    window.sr = ScrollReveal();
-    sr.reveal('.sr-icons', {
-        duration: 600,
-        scale: 0.3,
-        distance: '0px'
-    }, 200);
-    sr.reveal('.sr-button', {
-        duration: 1000,
-        delay: 200
-    });
-    sr.reveal('.sr-contact', {
-        duration: 600,
-        scale: 0.3,
-        distance: '0px'
-    }, 300);
-
-    })(jQuery); // End of use strict
-
-    $(document).ready(function() {
-      //Dynamically add dependant form
-      $("#add_dependant").click(function() {
-        $("#dependant_list").clone().removeAttr('id')
-        .find('select').val('').end()
-        .find('input').val('').end()
-        .appendTo( "#dependant_set" );
-      });
-
-      $("#form").on('submit',function(){
-        //Disabled register button after the first successful submission. Restored on page reload.
-        $("#btn-register").prop('disabled',true);
-      });
-
-      $('.map').on('click', onMapClickHandler);
-
-    });
-    // Disable Google Maps scrolling
-    // See http://stackoverflow.com/a/25904582/1607849
-    // Disable scroll zooming and bind back the click event
-    var onMapMouseleaveHandler = function(event) {
-        var that = $(this);
-        that.on('click', onMapClickHandler);
-        that.off('mouseleave', onMapMouseleaveHandler);
-        that.find('iframe').css("pointer-events", "none");
+// Offset for Main Navigation
+$('#mainNav').affix({
+    offset: {
+        top: 100
     }
-    var onMapClickHandler = function(event) {
-            var that = $(this);
-            // Disable the click handler until the user leaves the map area
-            that.off('click', onMapClickHandler);
-            // Enable scrolling zoom
-            that.find('iframe').css("pointer-events", "auto");
-            // Handle the mouse leave event
-            that.on('mouseleave', onMapMouseleaveHandler);
-        }
-    // Enable map zooming with mouse scroll when the user clicks the map
-    </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1014386-11"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+})
 
-  gtag('config', 'UA-1014386-11');
-    </script>
+// Initialize and Configure Scroll Reveal Animation
+window.sr = ScrollReveal();
+sr.reveal('.sr-icons', {
+    duration: 600,
+    scale: 0.3,
+    distance: '0px'
+}, 200);
+sr.reveal('.sr-button', {
+    duration: 1000,
+    delay: 200
+});
+sr.reveal('.sr-contact', {
+    duration: 600,
+    scale: 0.3,
+    distance: '0px'
+}, 300);
 
+})(jQuery); // End of use strict
+
+$(document).ready(function() {
+    //Dynamically add dependant form
+    $("#add_dependant").click(function() {
+    $("#dependant_list").clone().removeAttr('id')
+    .find('select').val('').end()
+    .find('input').val('').end()
+    .appendTo( "#dependant_set" );
+    });
+
+    $("#form").on('submit',function(){
+    //Disabled register button after the first successful submission. Restored on page reload.
+    $("#btn-register").prop('disabled',true);
+    });
+
+    $('.map').on('click', onMapClickHandler);
+
+});
+// Disable Google Maps scrolling
+// See http://stackoverflow.com/a/25904582/1607849
+// Disable scroll zooming and bind back the click event
+var onMapMouseleaveHandler = function(event) {
+    var that = $(this);
+    that.on('click', onMapClickHandler);
+    that.off('mouseleave', onMapMouseleaveHandler);
+    that.find('iframe').css("pointer-events", "none");
+}
+var onMapClickHandler = function(event) {
+        var that = $(this);
+        // Disable the click handler until the user leaves the map area
+        that.off('click', onMapClickHandler);
+        // Enable scrolling zoom
+        that.find('iframe').css("pointer-events", "auto");
+        // Handle the mouse leave event
+        that.on('mouseleave', onMapMouseleaveHandler);
+    }
+// Enable map zooming with mouse scroll when the user clicks the map
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1014386-11"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-1014386-11');
+</script>
 </body>
-
 </html>
