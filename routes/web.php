@@ -15,9 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'ParticipantController@index')->name('index');
-Route::get('/summary', 'AdminController@summary')->name('index');
-
-// Route::get('/theme', 'ParticipantController@index');
 
 Auth::routes();
 
