@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', 'ParticipantController@index')->name('index');
 
 Auth::routes();

@@ -11,27 +11,27 @@ return [
         ],
         [
             'date' => '20200226',
-            'location' => 'MPH@Menara TM'
+            'location' => 'MPH@Menara TM',
         ],
         [
             'date' => '20200303',
-            'location' => 'Menara TM'
+            'location' => 'Menara TM',
         ],
         [
             'date' => '20200304',
-            'location' => 'Menara TM'
+            'location' => 'Menara TM',
         ],
         [
             'date' => '20200305',
-            'location' => 'TM Annexe 2'
+            'location' => 'TM Annexe 2',
         ],
         [
             'date' => '20200306',
-            'location' => 'TM One'
+            'location' => 'TM One',
         ],
         [
             'date' => '20200309',
-            'location' => 'TM One'
+            'location' => 'TM One',
         ],
     ],
     /*
@@ -167,7 +167,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -206,7 +205,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -221,7 +219,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -258,7 +255,5 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
     ],
-
 ];
