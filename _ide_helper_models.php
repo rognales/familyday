@@ -162,9 +162,19 @@ namespace App{
 /**
  * App\Staff
  *
+ * @property int $id
+ * @property string $name
+ * @property string $staff_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereStaffId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Staff whereUpdatedAt($value)
  */
 	class Staff extends \Eloquent {}
 }
