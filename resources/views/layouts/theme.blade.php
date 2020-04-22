@@ -417,8 +417,8 @@
         integrity="sha256-4F7e4JsAJyLUdpP7Q8Sah866jCOhv72zU5E8lIRER4w=" crossorigin="anonymous"></script>
     <!-- Theme JavaScript -->
 
-<script type="text/javascript">
-    (function($) {
+    <script type="text/javascript">
+        (function($) {
 "use strict"; // Start of use strict
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
@@ -503,15 +503,29 @@ var onMapClickHandler = function(event) {
         that.on('mouseleave', onMapMouseleaveHandler);
     }
 // Enable map zooming with mouse scroll when the user clicks the map
-</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1014386-11"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1014386-11"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
 gtag('config', 'UA-1014386-11');
-</script>
+    </script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5e9ff0f969e9320caac61942/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
+
 </html>
