@@ -95,7 +95,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Family Day 2020</h2>
+                    <h2 class="section-heading">{{config('app.eventname')}}</h2>
                     <hr class="light">
                 </div>
             </div>
