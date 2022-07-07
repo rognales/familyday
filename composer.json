@@ -24,6 +24,7 @@
         "barryvdh/laravel-ide-helper": "^2.6",
         "facade/ignition": "^2.0",
         "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^0.2.3",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"
@@ -64,6 +65,7 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "pint" : "./vendor/bin/pint -v"
     }
 }
