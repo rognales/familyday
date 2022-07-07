@@ -73,7 +73,7 @@ class ParticipantController extends Controller
                     'name' => title_case($value),
                     'relationship' => title_case(request('dependant_relationship')[$key]),
                     'age' => request('dependant_age')[$key],
-                    'staff_id' => request('dependant_staff')[$key],
+                    'staff_id' => $participant->staff_id,
                     'participant_id' => $participant->id,
                 ]);
             }
