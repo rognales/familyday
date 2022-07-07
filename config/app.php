@@ -2,35 +2,36 @@
 
 return [
     'registration' => env('REGISTRATION', true),
-    'eventday' => env('EVENT_DAY', '20200321'),
-    'paymentday' => env('PAYMENT_DAY', '20200311'),
+    'eventname' => env('EVENT_NAME', 'Family Day 2022'),
+    'eventday' => env('EVENT_DAY', '20220321'),
+    'paymentday' => env('PAYMENT_DAY', '20220311'),
     'counters' => [
         [
-            'date' => '20200225',
+            'date' => '20225',
             'location' => 'MPH@Menara TM',
         ],
         [
-            'date' => '20200226',
+            'date' => '20220226',
             'location' => 'MPH@Menara TM',
         ],
         [
-            'date' => '20200303',
+            'date' => '20220303',
             'location' => 'Menara TM',
         ],
         [
-            'date' => '20200304',
+            'date' => '20220304',
             'location' => 'Menara TM',
         ],
         [
-            'date' => '20200305',
+            'date' => '20220305',
             'location' => 'TM Annexe 2',
         ],
         [
-            'date' => '20200306',
+            'date' => '20220306',
             'location' => 'TM One',
         ],
         [
-            'date' => '20200309',
+            'date' => '20220309',
             'location' => 'TM One',
         ],
     ],
