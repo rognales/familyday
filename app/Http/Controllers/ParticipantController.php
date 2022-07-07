@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Member;
-use Carbon\Carbon;
 use App\Participant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class ParticipantController extends Controller
@@ -53,7 +53,7 @@ class ParticipantController extends Controller
         }
 
         if ($validator->fails()) {
-            return Redirect::to(URL::previous() . '#registration')->withErrors($validator)->withInput();
+            return Redirect::to(URL::previous().'#registration')->withErrors($validator)->withInput();
         }
 
         DB::beginTransaction();
@@ -77,13 +77,14 @@ class ParticipantController extends Controller
                     'participant_id' => $participant->id,
                 ]);
             }
-        };
+        }
         $participant->dependants()->createMany($dependants);
 
         //only send email if successfully created
         if (! $participant) {
             DB::rollBack();
-            return Redirect::to(URL::previous() . '#registration')->withErrors('Registration failed. Please contact admin for details.')->withInput();
+
+            return Redirect::to(URL::previous().'#registration')->withErrors('Registration failed. Please contact admin for details.')->withInput();
         }
 
         DB::commit();

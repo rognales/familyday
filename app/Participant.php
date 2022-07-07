@@ -2,19 +2,21 @@
 
 namespace App;
 
+use App\Mail\RegistrationConfirmation;
 use Balping\HashSlug\HasHashSlug;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\RegistrationConfirmation;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Participant extends Model
 {
     use HasHashSlug;
     use SoftDeletes;
+
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     protected static $minSlugLength = 15;
+
     protected static $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     protected $appends = ['meal_option'];

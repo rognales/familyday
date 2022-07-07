@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Staff;
-use App\Member;
 use App\Dependant;
+use App\Member;
 use App\Participant;
+use App\Staff;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -23,13 +23,14 @@ class AdminController extends Controller
     public function dependants_ajax($pid)
     {
         $dependants = Participant::withTrashed()->find($pid)->dependants();
+
         return datatables()->of($dependants)->make(true);
     }
     //===================================PAYMENT START===============================//
 
     public function payment()
     {
-        $count['total'] =  Participant::count();
+        $count['total'] = Participant::count();
 
         //$count['spouse'] = Dependant::whereRelationship('Spouse')->count();
         $count['kids'] = Dependant::family()->kids()->count();
@@ -46,8 +47,8 @@ class AdminController extends Controller
 
         $count['others_total'] = $count['others_adult'] + $count['others_kids'] + $count['others_infant'];
 
-        $payment['pending'] =  Participant::wherePaymentStatus('Pending')->count();
-        $payment['paid'] =  Participant::wherePaymentStatus('Paid')->count();
+        $payment['pending'] = Participant::wherePaymentStatus('Pending')->count();
+        $payment['paid'] = Participant::wherePaymentStatus('Paid')->count();
 
         return view('admin.payment', compact('count', 'payment'));
     }
@@ -63,10 +64,11 @@ class AdminController extends Controller
 
           $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" role="button" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-          $href .= '<button type="button" data-pid="' . $p->id . '" id="edit-' . $p->id . '" class="btn btn-primary btn-edit" title="Update payment details" ' . $disabled . '><i class="glyphicon glyphicon-edit"></i></button>';
+          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" role="button" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+          $href .= '<button type="button" data-pid="'.$p->id.'" id="edit-'.$p->id.'" class="btn btn-primary btn-edit" title="Update payment details" '.$disabled.'><i class="glyphicon glyphicon-edit"></i></button>';
 
           $href .= '</div>';
+
           return $href;
       })
       ->addColumn('details_url', function ($p) {
@@ -86,6 +88,7 @@ class AdminController extends Controller
         $p->payment_timestamp = now();
         $p->payment_by = auth()->user()->id;
         $p->save();
+
         return $p->payment_status;
     }
 
@@ -94,7 +97,7 @@ class AdminController extends Controller
     //===================================ATTEND START==============================//
     public function attend()
     {
-        $count['total'] =  Participant::wherePaymentStatus('Paid')->count();
+        $count['total'] = Participant::wherePaymentStatus('Paid')->count();
 
         $count['family_adults'] = Dependant::whereHas('participant', function ($query) {
             $query->wherePaymentStatus('Paid');
@@ -120,11 +123,11 @@ class AdminController extends Controller
 
         $count['others_total'] = $count['others_adult'] + $count['others_kids'] + $count['others_infant'];
 
-        $member['yes'] =  Participant::whereMember(true)->wherePaymentStatus('Paid')->count();
-        $member['no'] =  Participant::whereMember(false)->wherePaymentStatus('Paid')->count();
+        $member['yes'] = Participant::whereMember(true)->wherePaymentStatus('Paid')->count();
+        $member['no'] = Participant::whereMember(false)->wherePaymentStatus('Paid')->count();
 
-        $attendance['yes'] =  Participant::whereAttend(true)->wherePaymentStatus('Paid')->count();
-        $attendance['no'] =  Participant::whereAttend(false)->wherePaymentStatus('Paid')->count();
+        $attendance['yes'] = Participant::whereAttend(true)->wherePaymentStatus('Paid')->count();
+        $attendance['no'] = Participant::whereAttend(false)->wherePaymentStatus('Paid')->count();
 
         return view('admin.attend', compact('count', 'attendance', 'member'));
     }
@@ -139,7 +142,7 @@ class AdminController extends Controller
       ->addColumn('action', function ($p) {
           $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
+          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
 
           return $href;
       })
@@ -162,7 +165,7 @@ class AdminController extends Controller
 
     public function attend_full()
     {
-        $count['total'] =  Participant::wherePaymentStatus('Paid')->count();
+        $count['total'] = Participant::wherePaymentStatus('Paid')->count();
 
         $count['family_adults'] = Dependant::whereHas('participant', function ($query) {
             $query->wherePaymentStatus('Paid');
@@ -188,11 +191,11 @@ class AdminController extends Controller
 
         $count['others_total'] = $count['others_adult'] + $count['others_kids'] + $count['others_infant'];
 
-        $member['yes'] =  Participant::whereMember(true)->wherePaymentStatus('Paid')->count();
-        $member['no'] =  Participant::whereMember(false)->wherePaymentStatus('Paid')->count();
+        $member['yes'] = Participant::whereMember(true)->wherePaymentStatus('Paid')->count();
+        $member['no'] = Participant::whereMember(false)->wherePaymentStatus('Paid')->count();
 
-        $attendance['yes'] =  Participant::whereAttend(true)->wherePaymentStatus('Paid')->count();
-        $attendance['no'] =  Participant::whereAttend(false)->wherePaymentStatus('Paid')->count();
+        $attendance['yes'] = Participant::whereAttend(true)->wherePaymentStatus('Paid')->count();
+        $attendance['no'] = Participant::whereAttend(false)->wherePaymentStatus('Paid')->count();
 
         return view('admin.attendFull', compact('count', 'attendance', 'member'));
     }
@@ -222,7 +225,7 @@ class AdminController extends Controller
       ->addColumn('action', function ($p) {
           $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
+          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
 
           return $href;
       })
@@ -248,7 +251,7 @@ class AdminController extends Controller
 
     public function user()
     {
-        $count['total'] =  Participant::count();
+        $count['total'] = Participant::count();
 
         //$count['spouse'] = Dependant::whereRelationship('Spouse')->count();
         $count['kids'] = Dependant::family()->kids()->count();
@@ -265,8 +268,8 @@ class AdminController extends Controller
 
         $count['others_total'] = $count['others_adult'] + $count['others_kids'] + $count['others_infant'];
 
-        $member['yes'] =  Participant::whereMember(true)->count();
-        $member['no'] =  Participant::whereMember(false)->count();
+        $member['yes'] = Participant::whereMember(true)->count();
+        $member['no'] = Participant::whereMember(false)->count();
 
         return view('admin.user', compact('count', 'member'));
     }
@@ -279,9 +282,9 @@ class AdminController extends Controller
       ->addColumn('action', function ($p) {
           $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-          $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
-          $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="' . $p->id . '" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
+          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+          $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="'.$p->id.'" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
+          $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="'.$p->id.'" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
 
           $href .= '</div>';
 
@@ -297,7 +300,7 @@ class AdminController extends Controller
 
     public function user_deleted()
     {
-        $count['total'] =  Participant::onlyTrashed()->count();
+        $count['total'] = Participant::onlyTrashed()->count();
 
         //$count['spouse'] = Dependant::whereRelationship('Spouse')->count();
         $count['kids'] = Dependant::onlyTrashed()->family()->kids()->count();
@@ -314,8 +317,8 @@ class AdminController extends Controller
 
         $count['others_total'] = $count['others_adult'] + $count['others_kids'] + $count['others_infant'];
 
-        $member['yes'] =  Participant::onlyTrashed()->whereMember(true)->count();
-        $member['no'] =  Participant::onlyTrashed()->whereMember(false)->count();
+        $member['yes'] = Participant::onlyTrashed()->whereMember(true)->count();
+        $member['no'] = Participant::onlyTrashed()->whereMember(false)->count();
 
         return view('admin.deleted', compact('count', 'member'));
     }
@@ -328,12 +331,13 @@ class AdminController extends Controller
       ->addColumn('action', function ($p) {
           $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-          if ($p->deleted_at <> null) {
-              $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
-              $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="' . $p->id . '" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
+          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+          if ($p->deleted_at != null) {
+              $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="'.$p->id.'" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
+              $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="'.$p->id.'" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
           }
           $href .= '</div>';
+
           return $href;
       })
       ->editColumn('soft_deleted_by.name', function ($p) {
@@ -353,8 +357,10 @@ class AdminController extends Controller
     {
         if ($request->ajax()) {
             $m = Member::all();
+
             return datatables()->of($m)->make(true);
         }
+
         return view('admin.member');
     }
 
@@ -366,8 +372,10 @@ class AdminController extends Controller
     {
         if ($request->ajax()) {
             $staff = Staff::all();
+
             return datatables()->of($staff)->make(true);
         }
+
         return view('admin.staff');
     }
 

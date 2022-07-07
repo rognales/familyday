@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Dependant extends Model
 {
     use SoftDeletes;
+
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     public function member()

@@ -10,7 +10,9 @@ use Illuminate\Queue\SerializesModels;
 class RegistrationConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $participant;
+
     /**
      * Create a new message instance.
      *
