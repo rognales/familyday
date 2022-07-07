@@ -7,7 +7,7 @@ return [
     'paymentday' => env('PAYMENT_DAY', '20220311'),
     'counters' => [
         [
-            'date' => '20225',
+            'date' => '20220225',
             'location' => 'MPH@Menara TM',
         ],
         [
