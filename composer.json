@@ -16,7 +16,6 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/helpers": "^1.2",
-        "laravel/telescope": "^3.1",
         "laravel/ui": "^2.0",
         "simplesoftwareio/simple-qrcode": "~4",
         "yajra/laravel-datatables-oracle": "^9.9"
