@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use App\Notifications\RegistrationIsConfirmed;
 use App\Participant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,7 +89,8 @@ class ParticipantController extends Controller
         }
 
         DB::commit();
-        $participant->sendConfirmationEmail();
+
+        $participant->notify(new RegistrationIsConfirmed($participant));
 
         return redirect()->route('registration_show', ['slug' => $participant->slug()]);
     }

@@ -21,7 +21,7 @@ class RegistrationConfirmation extends Mailable implements ShouldQueue
      */
     public function __construct(Participant $participant)
     {
-        $this->participant = $participant;
+        $this->participant = $participant->loadCount('dependants')->load('dependants');
     }
 
     /**
@@ -31,7 +31,7 @@ class RegistrationConfirmation extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject(config('app.name').' - '.config('familyday.eventname').' Registration Confirmation')
-            ->view('registration.litmus');
+        return $this->subject(config('app.name').' - '.config('familyday.eventname').' Registration Confirmation');
+            // ->view('registration.litmus');
     }
 }
