@@ -116,6 +116,6 @@ class Participant extends Model
 
     public function sendConfirmationEmail()
     {
-        return Mail::to($this->email)->send(new RegistrationConfirmation($this));
+        return Mail::to($this)->send(new RegistrationConfirmation($this));
     }
 }
