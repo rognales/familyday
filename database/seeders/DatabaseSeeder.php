@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\User;
+use App\Staff;
+use App\Member;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,11 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Admins
         User::factory()->create([
             'name' => 'Zaiman Noris',
             'username' => 'rognales',
             'email' => 'rognales@gmail.com',
-            'password' => Hash::make('password'),
             'active' => true,
         ]);
 
@@ -27,8 +29,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Affiq Rashid',
             'username' => 'affiqr',
             'email' => 'sonic21danger@gmail.com',
-            'password' => Hash::make('password'),
             'active' => true,
         ]);
+
+        // Only seed test data in non-prod
+        if (!app()->isProduction()) {
+            Member::factory()->count(10)->create();
+            Staff::factory()->count(10)->create();
+        }
     }
 }
