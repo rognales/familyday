@@ -207,11 +207,11 @@
                         <td align="center">
                           @isset($message)
                           <img
-                            src="{!!$message->embedData(QrCode::format('png')->size(186)->generate(route('attend', ['slug' => $participant->slug()])), 'QrCode.png', 'image/png')!!}">
+                            src="{!!$message->embedData((string) QrCode::format('png')->size(186)->generate(route('attend', ['slug' => $participant->slug()])), 'QrCode.png', 'image/png')!!}">
                         </td>
                         @else
                         <img
-                          src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(186)->generate($participant->qr())) !!} ">
+                          src="data:image/png;base64, {!! base64_encode((string) QrCode::format('png')->size(186)->generate($participant->qr())) !!} ">
                   </td>
                   @endisset
                 </tr>
