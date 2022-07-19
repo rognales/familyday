@@ -100,7 +100,7 @@ return [
         'raw' => ['action'],
 
         /*
-         * List of columns are are forbidden from being searched/sorted.
+         * List of columns are forbidden from being searched/sorted.
          */
         'blacklist' => ['password', 'remember_token'],
 
@@ -118,4 +118,5 @@ return [
         'header' => [],
         'options' => 0,
     ],
+
 ];

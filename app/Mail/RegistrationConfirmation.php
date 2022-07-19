@@ -4,10 +4,11 @@ namespace App\Mail;
 
 use App\Participant;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RegistrationConfirmation extends Mailable
+class RegistrationConfirmation extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +31,7 @@ class RegistrationConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->subject(config('app.name').' - '.config('app.eventname').' Registration Confirmation')->view('registration.litmus');
+        return $this->subject(config('app.name').' - '.config('familyday.eventname').' Registration Confirmation')
+            ->view('registration.litmus');
     }
 }

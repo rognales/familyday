@@ -55,7 +55,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">{{config('app.eventname')}}</a>
+                        <a class="page-scroll" href="#about">{{config('familyday.eventname')}}</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#registration">Registration</a>
@@ -95,7 +95,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">{{config('app.eventname')}}</h2>
+                    <h2 class="section-heading">{{config('familyday.eventname')}}</h2>
                     <hr class="light">
                 </div>
             </div>
@@ -103,7 +103,7 @@
                 <div class="col-sm-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-calendar fa-5x" aria-hidden="true"></i>
-                        <h3>{{\Carbon\Carbon::parse(config('app.eventday'))->format('jS F Y')}}</h3>
+                        <h3>{{\Carbon\Carbon::parse(config('familyday.eventday'))->format('jS F Y')}}</h3>
                     </div>
                 </div>
                 <div class="col-sm-6 text-center">
@@ -115,7 +115,7 @@
             </div>
         </div>
     </section>
-    @if (config('app.registration') || auth()->check())
+    @if (config('familyday.registration') || auth()->check())
     <section id="registration">
         <div class="container-fluid">
             <div class="row">
@@ -295,7 +295,7 @@
                             for the
                             commitment fee will be made.</li>
                         <li>Registration and payment should be made before
-                            <mark>{{ \Carbon\Carbon::parse(config('app.paymentday'))->format('jS F Y') }}</mark>.</li>
+                            <mark>{{ \Carbon\Carbon::parse(config('familyday.paymentday'))->format('jS F Y') }}</mark>.</li>
                         <li>For TM staff who are husband and wife, please register in two separate forms. Do make sure
                             your
                             children information are only in one of the form.</li>
@@ -309,7 +309,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (config('app.counters') as $counter)
+                            @foreach (config('familyday.counters') as $counter)
                             <tr @if (now()->subDays(1)->greaterThanOrEqualTo(\Carbon\Carbon::parse($counter['date'])))
                                 class="passed"
                                 @endif>

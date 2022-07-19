@@ -26,12 +26,12 @@ class ParticipantController extends Controller
 
     public function store(Request $request)
     {
-        // if (!(config('app.registration') || Auth::check())) {
+        // if (!(config('familyday.registration') || Auth::check())) {
         //   return Redirect::to(URL::previous() . "#registration")->withErrors('Please contact admin for details.')->withInput();
         // }
 
         // If registration is open or admin is logged in
-        if (config('app.registration') || Auth::check()) {
+        if (config('familyday.registration') || Auth::check()) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|min:5',
                 'staff_id' => 'required|unique:participants,staff_id,NULL,id,deleted_at,NULL',
@@ -105,7 +105,7 @@ class ParticipantController extends Controller
 
     public function attend($slug)
     {
-        $eventDay = Carbon::parse(config('app.eventday'));
+        $eventDay = Carbon::parse(config('familyday.eventday'));
         if (now()->lessThan($eventDay)) {
             return view('registration.error')->with('warning', "Hold up! You're here too soon. Come back on the event day.");
         }

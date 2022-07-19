@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Default Mailer
@@ -28,7 +29,7 @@ return [
     | mailers below. You are free to add additional mailers as required.
     |
     | Supported: "smtp", "sendmail", "mailgun", "ses",
-    |            "postmark", "log", "array"
+    |            "postmark", "log", "array", "failover"
     |
     */
 
@@ -40,15 +41,25 @@ return [
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
+            'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
 
         'ses' => [
             'transport' => 'ses',
         ],
 
+        'mailgun' => [
+            'transport' => 'mailgun',
+        ],
+
+        'postmark' => [
+            'transport' => 'postmark',
+        ],
+
         'sendmail' => [
             'transport' => 'sendmail',
-            'path' => '/usr/sbin/sendmail -bs',
+            'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
         ],
 
         'log' => [
@@ -58,6 +69,14 @@ return [
 
         'array' => [
             'transport' => 'array',
+        ],
+
+        'failover' => [
+            'transport' => 'failover',
+            'mailers' => [
+                'smtp',
+                'log',
+            ],
         ],
     ],
 
@@ -73,8 +92,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'kelab.ip@tm.com.my'),
-        'name' => env('MAIL_FROM_NAME', 'Kelab Ibu Pejabat'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
@@ -95,4 +114,5 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+
 ];

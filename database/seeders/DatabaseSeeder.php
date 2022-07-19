@@ -1,7 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'name' => 'Zaiman Noris',
             'username' => 'rognales',
             'email' => 'rognales@gmail.com',
@@ -20,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'active' => true,
         ]);
 
-        factory(User::class)->create([
+        User::factory()->create([
             'name' => 'Affiq Rashid',
             'username' => 'affiqr',
             'email' => 'sonic21danger@gmail.com',

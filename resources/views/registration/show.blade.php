@@ -111,7 +111,7 @@
                 <mark><strong>{{$participant->email}}</strong></mark> with personalized QR code. Please present this QR
                 code during registration day!</em></p>
             <p class="text-center"><em>Payment must be done before
-                <mark><strong>{{ \Carbon\Carbon::parse(config('app.paymentday'))->format('jS F Y') }}</strong></mark>.
+                <mark><strong>{{ \Carbon\Carbon::parse(config('familyday.paymentday'))->format('jS F Y') }}</strong></mark>.
                 For your convinience, we will open payment counter as below:-</em></p>
 
             <div class="col-md-8 col-md-offset-2">
@@ -121,7 +121,7 @@
                   <th class="text-center">Date</th>
                 </thead>
                 <tbody>
-                  @foreach (config('app.counters') as $counter)
+                  @foreach (config('familyday.counters') as $counter)
                   <tr @if (now()->greaterThan(\Carbon\Carbon::parse($counter['date'])))
                     class="passed"
                     @endif>

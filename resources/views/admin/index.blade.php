@@ -8,9 +8,9 @@
             <div class="alert alert-info alert-dismissible" role="alert">
                 <p class="lead"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> Event Day <span
                         class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    {{\Carbon\Carbon::parse(config('app.eventday'))->format('jS F Y')}} <span
+                    {{\Carbon\Carbon::parse(config('familyday.eventday'))->format('jS F Y')}} <span
                         class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    {{\Carbon\Carbon::parse(config('app.eventday'))->diffForHumans()}}</p>
+                    {{\Carbon\Carbon::parse(config('familyday.eventday'))->diffForHumans()}}</p>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -85,7 +85,7 @@
                                     <h3>Registration Status</h3>
                                     <p>Status of registration form for the public. Please contact admin to change the
                                         status.</p>
-                                    @if (config('app.registration'))
+                                    @if (config('familyday.registration'))
                                     <button type="button" class="btn btn-success">Open for registration</button>
                                     @else
                                     <button type="button" class="btn btn-danger">Closed for registration</button>

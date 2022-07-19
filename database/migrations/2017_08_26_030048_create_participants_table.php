@@ -30,6 +30,8 @@ class CreateParticipantsTable extends Migration
             $table->integer('deleted_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->index(['staff_id','deleted_at']);
         });
     }
 
