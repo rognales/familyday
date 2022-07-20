@@ -156,7 +156,7 @@ header {
   -o-background-size: cover;
   background-position: center;
   /* background-image: url('https://res.cloudinary.com/rognales/image/upload/f_auto,q_auto/header_familyday_1200x600px_o4vblo.png'); */
-  background-image: url('/images/banner-2022.jpg');
+  background-image: url('https://res.cloudinary.com/rognales/image/upload/f_auto,q_auto/banner_2022_scrv9r.png');
   text-align: center;
   color: white;
 }
