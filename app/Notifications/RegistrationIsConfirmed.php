@@ -2,13 +2,12 @@
 
 namespace App\Notifications;
 
+use App\Mail\RegistrationConfirmation;
 use App\Participant;
 use Illuminate\Bus\Queueable;
-use App\Mail\RegistrationConfirmation;
-use Illuminate\Contracts\Mail\Mailable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class RegistrationIsConfirmed extends Notification implements ShouldQueue
 {
@@ -41,12 +40,12 @@ class RegistrationIsConfirmed extends Notification implements ShouldQueue
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Contracts\Mail\Mailable|\Illuminate\Notifications\Messages\MailMessage 
+     * @return \Illuminate\Contracts\Mail\Mailable|\Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         // return (new RegistrationConfirmation($this->participant))->to($notifiable->email);
-        
+
         return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))

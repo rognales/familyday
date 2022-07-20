@@ -3,12 +3,9 @@
 namespace App;
 
 use Balping\HashSlug\HasHashSlug;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\RegistrationConfirmation;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Notifications\RegistrationIsConfirmed;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class Participant extends Model
 {

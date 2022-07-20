@@ -31,7 +31,7 @@ class CreateParticipantsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->index(['staff_id','deleted_at']);
+            $table->index(['staff_id', 'deleted_at']);
         });
     }
 

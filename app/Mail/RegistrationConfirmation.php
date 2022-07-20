@@ -32,6 +32,6 @@ class RegistrationConfirmation extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->subject(config('app.name').' - '.config('familyday.eventname').' Registration Confirmation');
-            // ->view('registration.litmus');
+        // ->view('registration.litmus');
     }
 }

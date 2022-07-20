@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\User;
-use App\Staff;
 use App\Member;
+use App\Staff;
+use App\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,7 +32,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Only seed test data in non-prod
-        if (!app()->isProduction()) {
+        if (! app()->isProduction()) {
             Member::factory()->count(10)->create();
             Staff::factory()->count(10)->create();
         }
