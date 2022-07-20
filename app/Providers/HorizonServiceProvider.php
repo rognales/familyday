@@ -33,9 +33,14 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
      */
     protected function gate()
     {
-        Gate::define('viewHorizon', function ($user) {
+        Gate::define('viewHorizon', function ($user = null) {
+            if (request()->bearerToken() && request()->bearerToken() === config('services.horizon.token')) {
+                return true;
+            }
+
             return in_array($user->email, [
-                //
+                'rognales@gmail.com',
+                'sonic21danger@gmail.com',
             ]);
         });
     }
