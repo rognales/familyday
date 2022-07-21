@@ -305,7 +305,7 @@
                                         <td></td>
                                     </tr>
                                     <tr class="secondary">
-                                        <th class="text-center">>#</th>
+                                        <th class="text-center">#</th>
                                         <th class="text-center" colspan="2">Others: i.e. staff’s parents, siblings,
                                             cousins, relatives or maid.</th>
                                     </tr>
