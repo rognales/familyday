@@ -336,23 +336,6 @@
                         <li>For TM staff who are husband and wife, please register in two separate forms. Do make sure
                             your children information are only in one of the form.</li>
                     </ol>
-
-                    <table class="table table-condensed text-center">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Location</th>
-                                <th class="text-center">Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (config('familyday.counters') as $counter)
-                                <tr @if (now()->subDays(1)->greaterThanOrEqualTo(\Carbon\Carbon::parse($counter['date']))) class="passed" @endif>
-                                    <td>{{ $counter['location'] }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($counter['date'])->format('jS F Y') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
