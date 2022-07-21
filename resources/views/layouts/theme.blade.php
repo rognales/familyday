@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="designer" content="Laravel {{app()->version()}}">
+    <meta name="designer" content="Laravel {{ app()->version() }}">
 
     <title>{{ config('app.name') }}</title>
 
@@ -27,7 +27,7 @@
         rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
-    <link href="{{asset('css/creative.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/creative.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,7 +55,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">{{config('familyday.eventname')}}</a>
+                        <a class="page-scroll" href="#about">{{ config('familyday.eventname') }}</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#registration">Registration</a>
@@ -67,13 +67,13 @@
                         <a class="page-scroll" href="#location">Location</a>
                     </li>
                     @guest
-                    <li>
-                        <a href="{{ route('login') }}">Login</a>
-                    </li>
+                        <li>
+                            <a href="{{ route('login') }}">Login</a>
+                        </li>
                     @else
-                    <li>
-                        <a href="{{ route('admin_index') }}">Admin</a>
-                    </li>
+                        <li>
+                            <a href="{{ route('admin_index') }}">Admin</a>
+                        </li>
                     @endguest
                 </ul>
 
@@ -95,7 +95,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">{{config('familyday.eventname')}}</h2>
+                    <h2 class="section-heading">{{ config('familyday.eventname') }}</h2>
                     <hr class="light">
                 </div>
             </div>
@@ -103,7 +103,7 @@
                 <div class="col-sm-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-calendar fa-5x" aria-hidden="true"></i>
-                        <h3>{{\Carbon\Carbon::parse(config('familyday.eventday'))->format('jS F Y')}}</h3>
+                        <h3>{{ \Carbon\Carbon::parse(config('familyday.eventday'))->format('jS F Y') }}</h3>
                     </div>
                 </div>
                 <div class="col-sm-6 text-center">
@@ -116,149 +116,156 @@
         </div>
     </section>
     @if (config('familyday.registration') || auth()->check())
-    <section id="registration">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <h2 class="section-heading text-center">Registration</h2>
-                    <hr class="primary">
-                    <form id="form" class="form-horizontal" method="POST" action="{{route('registration_create')}}">
-                        {{csrf_field()}}
-                        @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissable fade in">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-
-                        <fieldset>
-                            <legend>Participant</legend>
-                            <div class="form-group">
-                                <label for="staff_id" class="col-sm-3 control-label">Staff Id</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="staff_id" name="staff_id"
-                                        value="{{old('staff_id')}}" placeholder="TM12345" required>
+        <section id="registration">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h2 class="section-heading text-center">Registration</h2>
+                        <hr class="primary">
+                        <form id="form" class="form-horizontal" method="POST"
+                            action="{{ route('registration_create') }}">
+                            {{ csrf_field() }}
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissable fade in">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-sm-3 control-label">Name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        value="{{old('name')}}" placeholder="Ali Bin Abu" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-sm-3 control-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        value="{{old('email')}}" placeholder="Use valid email address here" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-sm-3 control-label">Meal Option</label>
-                                <div class="col-sm-9">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="vege" value="false" required> Normal
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="vege" value="true" required> Vegetarian
-                                    </label>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset id="dependant_set">
-                            <legend>Dependant</legend>
-                            <!---start--->
-                            @if (old('dependant_name')> 0)
-                            @foreach (old('dependant_name') as $key => $value)
-                            <div @if ($key==0) id="dependant_list" @endif class="row form-group">
-                                <div class="col-sm-3">
-                                    <select class="form-control" name="dependant_relationship[]">
-                                        <option value="">--Relationship--</option>
-                                        <option value="Spouse" @if (old('dependant_relationship'.".".$key)=='Spouse' )
-                                            selected="selected" @endif>
-                                            Spouse</option>
-                                        <option value="Kids" @if (old('dependant_relationship'.".".$key)=='Kids' )
-                                            selected="selected" @endif>Kids
-                                        </option>
-                                        <option value="Infant" @if (old('dependant_relationship'.".".$key)=='Infant' )
-                                            selected="selected" @endif>
-                                            Infant</option>
-                                        <option value="Others" @if (old('dependant_relationship'.".".$key)=='Others' )
-                                            selected="selected" @endif>
-                                            Others</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" class="form-control" name="dependant_name[]" placeholder="Name"
-                                        value="{{old('dependant_name'.".".$key)}}">
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control" name="dependant_age[]" placeholder="Age"
-                                        min="1" max="80" value="{{old('dependant_age'.".".$key)}}">
-                                </div>
-                            </div>
-                            @endforeach
-                            @else
-                            <div id="dependant_list" class="row form-group">
-                                <div class="col-sm-3">
-                                    <select class="form-control" name="dependant_relationship[]">
-                                        <option selected="selected" value="">--Relationship--</option>
-                                        <option value="Spouse">Spouse</option>
-                                        <option value="Kids">Children</option>
-                                        <option value="Infant">Infant</option>
-                                        <option value="Others">Others</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" class="form-control" name="dependant_name[]" placeholder="Name">
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control" name="dependant_age[]" placeholder="Age"
-                                        min="1" max="80">
-                                </div>
-                            </div>
                             @endif
-                            <!---end--->
-                        </fieldset>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-4">
-                                <button type="button" id="add_dependant" class="btn btn-info">Add More</button>
+
+                            <fieldset>
+                                <legend>Participant</legend>
+                                <div class="form-group">
+                                    <label for="staff_id" class="col-sm-3 control-label">Staff Id</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="staff_id" name="staff_id"
+                                            value="{{ old('staff_id') }}" placeholder="TM12345" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-3 control-label">Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            value="{{ old('name') }}" placeholder="Ali Bin Abu" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            value="{{ old('email') }}" placeholder="Use valid email address here"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">Meal Option</label>
+                                    <div class="col-sm-9">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="vege" value="false" required> Normal
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="vege" value="true" required> Vegetarian
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="dependant_set">
+                                <legend>Dependant</legend>
+                                <!---start--->
+                                @if (old('dependant_name') > 0)
+                                    @foreach (old('dependant_name') as $key => $value)
+                                        <div @if ($key == 0) id="dependant_list" @endif
+                                            class="row form-group">
+                                            <div class="col-sm-3">
+                                                <select class="form-control" name="dependant_relationship[]">
+                                                    <option value="">--Relationship--</option>
+                                                    <option value="Spouse"
+                                                        @if (old('dependant_relationship' . '.' . $key) == 'Spouse') selected="selected" @endif>
+                                                        Spouse</option>
+                                                    <option value="Kids"
+                                                        @if (old('dependant_relationship' . '.' . $key) == 'Kids') selected="selected" @endif>
+                                                        Kids
+                                                    </option>
+                                                    <option value="Infant"
+                                                        @if (old('dependant_relationship' . '.' . $key) == 'Infant') selected="selected" @endif>
+                                                        Infant</option>
+                                                    <option value="Others"
+                                                        @if (old('dependant_relationship' . '.' . $key) == 'Others') selected="selected" @endif>
+                                                        Others</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="dependant_name[]"
+                                                    placeholder="Name" value="{{ old('dependant_name' . '.' . $key) }}">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="number" class="form-control" name="dependant_age[]"
+                                                    placeholder="Age" min="1" max="80"
+                                                    value="{{ old('dependant_age' . '.' . $key) }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div id="dependant_list" class="row form-group">
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="dependant_relationship[]">
+                                                <option selected="selected" value="">--Relationship--</option>
+                                                <option value="Spouse">Spouse</option>
+                                                <option value="Kids">Children</option>
+                                                <option value="Infant">Infant</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="dependant_name[]"
+                                                placeholder="Name">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" name="dependant_age[]"
+                                                placeholder="Age" min="1" max="80">
+                                        </div>
+                                    </div>
+                                @endif
+                                <!---end--->
+                            </fieldset>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-4">
+                                    <button type="button" id="add_dependant" class="btn btn-info">Add More</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-primary" id="btn-register">Register</button>
-                                @auth
-                                <small>Rule for TM HQ only : <mark>OFF</mark></small>
-                                @endauth
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="submit" class="btn btn-primary"
+                                        id="btn-register">Register</button>
+                                    @auth
+                                        <small>Rule for TM HQ only : <mark>OFF</mark></small>
+                                    @endauth
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    @else
-    <section id="registration">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <h2 class="section-heading text-center">Registration</h2>
-                    <hr class="primary">
-                    <div class="mt-5 text-center">
-                        <i class="fa fa-4x fa-heart text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Whopps, registration is not yet open</h3>
-                        <p class="text-muted mb-0">We will inform you once we're ready!</p>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @else
+        <section id="registration">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h2 class="section-heading text-center">Registration</h2>
+                        <hr class="primary">
+                        <div class="mt-5 text-center">
+                            <i class="fa fa-4x fa-heart text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Whopps, registration is not yet open</h3>
+                            <p class="text-muted mb-0">We will inform you once we're ready!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     @endif
     <section id="terms" class="bg-dark">
         <div class="container-fluid">
@@ -270,13 +277,16 @@
                         <li>TM Family Day is open for all <em>TM HQ staff only</em>.</li>
                         <li>Every admission to the Family Day will be charged <mark>RM 20.00 per family</mark>
                             <code>(married)</code> or <mark>RM 10.00 per person</mark> <code>(single)</code> as
-                            commitment fee.</li>
+                            commitment fee.
+                        </li>
                         <li>Children age <em>3-10 years old</em> or with the <em>height of 90-130 cm</em> are
                             categorized as
-                            <mark>Kids</mark>.</li>
+                            <mark>Kids</mark>.
+                        </li>
                         <li>Children <em>below 3 years old</em> or with <em>height less than 90 cm</em> are categorized
                             as
-                            <mark>Infant</mark>.</li>
+                            <mark>Infant</mark>.
+                        </li>
                         <li>You need to purchase additional ticket at the special counter available during event day for
                             admission of :-
                             <ul>
@@ -295,7 +305,8 @@
                             for the
                             commitment fee will be made.</li>
                         <li>Registration and payment should be made before
-                            <mark>{{ \Carbon\Carbon::parse(config('familyday.paymentday'))->format('jS F Y') }}</mark>.</li>
+                            <mark>{{ \Carbon\Carbon::parse(config('familyday.paymentday'))->format('jS F Y') }}</mark>.
+                        </li>
                         <li>For TM staff who are husband and wife, please register in two separate forms. Do make sure
                             your
                             children information are only in one of the form.</li>
@@ -310,12 +321,10 @@
                         </thead>
                         <tbody>
                             @foreach (config('familyday.counters') as $counter)
-                            <tr @if (now()->subDays(1)->greaterThanOrEqualTo(\Carbon\Carbon::parse($counter['date'])))
-                                class="passed"
-                                @endif>
-                                <td>{{$counter['location']}}</td>
-                                <td>{{\Carbon\Carbon::parse($counter['date'])->format('jS F Y')}}</td>
-                            </tr>
+                                <tr @if (now()->subDays(1)->greaterThanOrEqualTo(\Carbon\Carbon::parse($counter['date']))) class="passed" @endif>
+                                    <td>{{ $counter['location'] }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($counter['date'])->format('jS F Y') }}</td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -339,7 +348,8 @@
                             mohdyusriyusof@tm.com.my</a></p>
                     <p><i class="fa fa-phone sr-contact"></i> 011-1000 9385</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
-                            href="https://api.whatsapp.com/send?phone=601110009385" target="_blank"> Whatsapp Me</a></p>
+                            href="https://api.whatsapp.com/send?phone=601110009385" target="_blank"> Whatsapp Me</a>
+                    </p>
                 </div>
                 <div class="col-md-4 text-center" style="padding-top:2rem">
                     <p><i class="fa fa-building-o sr-contact"></i> Menara TM</p>
@@ -348,7 +358,8 @@
                             ashikin.kamal@tm.com.my</a></p>
                     <p><i class="fa fa-phone sr-contact"></i> 013-344 0364</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
-                            href="https://api.whatsapp.com/send?phone=60133440364" target="_blank"> Whatsapp Me</a></p>
+                            href="https://api.whatsapp.com/send?phone=60133440364" target="_blank"> Whatsapp Me</a>
+                    </p>
                 </div>
                 <div class="col-md-4 text-center" style="padding-top:2rem">
                     <p><i class="fa fa-building-o sr-contact"></i> Menara TM</p>
@@ -357,7 +368,8 @@
                             ruhil.ahlam@tm.com.my</a></p>
                     <p><i class="fa fa-phone sr-contact"></i> 012-213 0902</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
-                            href="https://api.whatsapp.com/send?phone=60122130902" target="_blank"> Whatsapp Me</a></p>
+                            href="https://api.whatsapp.com/send?phone=60122130902" target="_blank"> Whatsapp Me</a>
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -368,7 +380,8 @@
                             suhana.hashim@tm.com.my</a></p>
                     <p><i class="fa fa-phone sr-contact"></i> 019-426 0882</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
-                            href="https://api.whatsapp.com/send?phone=60194260882" target="_blank"> Whatsapp Me</a></p>
+                            href="https://api.whatsapp.com/send?phone=60194260882" target="_blank"> Whatsapp Me</a>
+                    </p>
                 </div>
                 <div class="col-md-4 text-center" style="padding-top:2rem">
                     <p><i class="fa fa-building-o sr-contact"></i> Menara KL</p>
@@ -377,7 +390,8 @@
                             syarriman@tm.com.my</a></p>
                     <p><i class="fa fa-phone sr-contact"></i> 017-345 3445</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
-                            href="https://api.whatsapp.com/send?phone=60173453445" target="_blank"> Whatsapp Me</a></p>
+                            href="https://api.whatsapp.com/send?phone=60173453445" target="_blank"> Whatsapp Me</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -419,111 +433,116 @@
 
     <script type="text/javascript">
         (function($) {
-"use strict"; // Start of use strict
+            "use strict"; // Start of use strict
 
-// jQuery for page scrolling feature - requires jQuery Easing plugin
-$('a.page-scroll').bind('click', function(event) {
-    var $anchor = $(this);
-    $('html, body').stop().animate({
-        scrollTop: ($($anchor.attr('href')).offset().top - 50)
-    }, 1250, 'easeInOutExpo');
-    event.preventDefault();
-});
+            // jQuery for page scrolling feature - requires jQuery Easing plugin
+            $('a.page-scroll').bind('click', function(event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: ($($anchor.attr('href')).offset().top - 50)
+                }, 1250, 'easeInOutExpo');
+                event.preventDefault();
+            });
 
-// Highlight the top nav as scrolling occurs
-$('body').scrollspy({
-    target: '.navbar-fixed-top',
-    offset: 51
-});
+            // Highlight the top nav as scrolling occurs
+            $('body').scrollspy({
+                target: '.navbar-fixed-top',
+                offset: 51
+            });
 
-// Closes the Responsive Menu on Menu Item Click
-$('.navbar-collapse ul li a').click(function() {
-    $('.navbar-toggle:visible').click();
-});
+            // Closes the Responsive Menu on Menu Item Click
+            $('.navbar-collapse ul li a').click(function() {
+                $('.navbar-toggle:visible').click();
+            });
 
-// Offset for Main Navigation
-$('#mainNav').affix({
-    offset: {
-        top: 100
-    }
-})
+            // Offset for Main Navigation
+            $('#mainNav').affix({
+                offset: {
+                    top: 100
+                }
+            })
 
-// Initialize and Configure Scroll Reveal Animation
-window.sr = ScrollReveal();
-sr.reveal('.sr-icons', {
-    duration: 600,
-    scale: 0.3,
-    distance: '0px'
-}, 200);
-sr.reveal('.sr-button', {
-    duration: 1000,
-    delay: 200
-});
-sr.reveal('.sr-contact', {
-    duration: 600,
-    scale: 0.3,
-    distance: '0px'
-}, 300);
+            // Initialize and Configure Scroll Reveal Animation
+            window.sr = ScrollReveal();
+            sr.reveal('.sr-icons', {
+                duration: 600,
+                scale: 0.3,
+                distance: '0px'
+            }, 200);
+            sr.reveal('.sr-button', {
+                duration: 1000,
+                delay: 200
+            });
+            sr.reveal('.sr-contact', {
+                duration: 600,
+                scale: 0.3,
+                distance: '0px'
+            }, 300);
 
-})(jQuery); // End of use strict
+        })(jQuery); // End of use strict
 
-$(document).ready(function() {
-    //Dynamically add dependant form
-    $("#add_dependant").click(function() {
-    $("#dependant_list").clone().removeAttr('id')
-    .find('select').val('').end()
-    .find('input').val('').end()
-    .appendTo( "#dependant_set" );
-    });
+        $(document).ready(function() {
+            //Dynamically add dependant form
+            $("#add_dependant").click(function() {
+                $("#dependant_list").clone().removeAttr('id')
+                    .find('select').val('').end()
+                    .find('input').val('').end()
+                    .appendTo("#dependant_set");
+            });
 
-    $("#form").on('submit',function(){
-    //Disabled register button after the first successful submission. Restored on page reload.
-    $("#btn-register").prop('disabled',true);
-    });
+            $("#form").on('submit', function() {
+                //Disabled register button after the first successful submission. Restored on page reload.
+                $("#btn-register").prop('disabled', true);
+            });
 
-    $('.map').on('click', onMapClickHandler);
+            $('.map').on('click', onMapClickHandler);
 
-});
-// Disable Google Maps scrolling
-// See http://stackoverflow.com/a/25904582/1607849
-// Disable scroll zooming and bind back the click event
-var onMapMouseleaveHandler = function(event) {
-    var that = $(this);
-    that.on('click', onMapClickHandler);
-    that.off('mouseleave', onMapMouseleaveHandler);
-    that.find('iframe').css("pointer-events", "none");
-}
-var onMapClickHandler = function(event) {
-        var that = $(this);
-        // Disable the click handler until the user leaves the map area
-        that.off('click', onMapClickHandler);
-        // Enable scrolling zoom
-        that.find('iframe').css("pointer-events", "auto");
-        // Handle the mouse leave event
-        that.on('mouseleave', onMapMouseleaveHandler);
-    }
-// Enable map zooming with mouse scroll when the user clicks the map
+        });
+        // Disable Google Maps scrolling
+        // See http://stackoverflow.com/a/25904582/1607849
+        // Disable scroll zooming and bind back the click event
+        var onMapMouseleaveHandler = function(event) {
+            var that = $(this);
+            that.on('click', onMapClickHandler);
+            that.off('mouseleave', onMapMouseleaveHandler);
+            that.find('iframe').css("pointer-events", "none");
+        }
+        var onMapClickHandler = function(event) {
+            var that = $(this);
+            // Disable the click handler until the user leaves the map area
+            that.off('click', onMapClickHandler);
+            // Enable scrolling zoom
+            that.find('iframe').css("pointer-events", "auto");
+            // Handle the mouse leave event
+            that.on('mouseleave', onMapMouseleaveHandler);
+        }
+        // Enable map zooming with mouse scroll when the user clicks the map
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1014386-11"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
 
-gtag('config', 'UA-1014386-11');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-1014386-11');
     </script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/5e9ff0f969e9320caac61942/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5e9ff0f969e9320caac61942/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
     <!--End of Tawk.to Script-->
 </body>
