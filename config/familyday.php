@@ -3,8 +3,8 @@
 return [
     'registration' => env('REGISTRATION', true),
     'eventname' => env('EVENT_NAME', 'Family Day 2022'),
-    'eventday' => env('EVENT_DAY', '20220321'),
-    'paymentday' => env('PAYMENT_DAY', '20220311'),
+    'eventday' => env('EVENT_DAY', '20220821'),
+    'paymentday' => env('PAYMENT_DAY', '20220811'),
     'counters' => [
         [
             'date' => '20220225',
