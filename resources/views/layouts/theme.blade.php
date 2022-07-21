@@ -199,7 +199,8 @@
                                             </div>
                                             <div class="col-sm-7">
                                                 <input type="text" class="form-control" name="dependant_name[]"
-                                                    placeholder="Name" value="{{ old('dependant_name' . '.' . $key) }}">
+                                                    placeholder="Name"
+                                                    value="{{ old('dependant_name' . '.' . $key) }}">
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="number" class="form-control" name="dependant_age[]"
@@ -304,8 +305,8 @@
                                         <td></td>
                                     </tr>
                                     <tr class="secondary">
-                                        <th>#</th>
-                                        <th colspan="2" class="text-center">Others: i.e. staff’s parents, siblings,
+                                        <th class="text-center">>#</th>
+                                        <th class="text-center" colspan="2">Others: i.e. staff’s parents, siblings,
                                             cousins, relatives or maid.</th>
                                     </tr>
                                     <tr>
