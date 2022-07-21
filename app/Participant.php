@@ -3,6 +3,7 @@
 namespace App;
 
 use Balping\HashSlug\HasHashSlug;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,7 @@ class Participant extends Model
     use HasHashSlug;
     use SoftDeletes;
     use Notifiable;
+    use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
@@ -20,6 +22,10 @@ class Participant extends Model
     // protected static $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     protected $appends = ['meal_option'];
+
+    protected $casts = [
+        'member' => 'boolean',
+    ];
 
     public function dependants()
     {
@@ -99,6 +105,11 @@ class Participant extends Model
     public function isAttended()
     {
         return $this->attend;
+    }
+
+    public function isMember()
+    {
+        return $this->member;
     }
 
     public function getMealOptionAttribute()

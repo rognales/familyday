@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Member;
+use App\Participant;
 use App\Staff;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -35,6 +36,14 @@ class DatabaseSeeder extends Seeder
         if (! app()->isProduction()) {
             Member::factory()->count(10)->create();
             Staff::factory()->count(10)->create();
+
+            Participant::factory()
+                ->addSpouse()
+                ->addChildren()
+                ->addInfant()
+                ->addOthers()
+                ->count(15)
+                ->create();
         }
     }
 }
