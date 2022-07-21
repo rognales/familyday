@@ -286,23 +286,21 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <tr>
+                                    <tr >
                                         <td><mark>Adult</mark> <br /> (age 13 &amp; above)</td>
-                                        <td>RM15</td>
-                                        <td>RM35</td>
+                                        <td style="vertical-align: middle">RM15</td>
+                                        <td style="vertical-align: middle">RM35</td>
                                     </tr>
                                     <tr>
-                                        <td><mark>Kids</mark> <br /> (age 3-10 years old or with the height of 90-130
-                                            cm)</td>
-                                        <td>RM10</td>
-                                        <td>RM25</td>
+                                        <td><mark>Kids</mark> <br /> (age 3-10 years old)</td>
+                                        <td style="vertical-align: middle">RM10</td>
+                                        <td style="vertical-align: middle"> RM25</td>
                                     </tr>
                                     <tr>
-                                        <td><mark>Infant</mark> <br /> (age less than 3 years old or with height less
-                                            than 90 cm )
+                                        <td><mark>Infant</mark> <br /> (age less than 3 years old)
                                         </td>
-                                        <td>Free</td>
-                                        <td></td>
+                                        <td style="vertical-align: middle">Free</td>
+                                        <td style="vertical-align: middle">FREE</td>
                                     </tr>
                                     <tr class="secondary">
                                         <th class="text-center">#</th>
@@ -311,14 +309,13 @@
                                     </tr>
                                     <tr>
                                         <td><mark>Adult</mark> <br /> (age 13 &amp; above)</td>
-                                        <td>RM35</td>
-                                        <td>RM35</td>
+                                        <td style="vertical-align: middle">RM35</td>
+                                        <td style="vertical-align: middle">RM35</td>
                                     </tr>
                                     <tr>
-                                        <td><mark>Kids</mark> <br /> (age 3-10 years old or with the height of 90-130
-                                            cm)</td>
-                                        <td>RM25</td>
-                                        <td>RM25</td>
+                                        <td><mark>Kids</mark> <br /> (age 3-10 years old)</td>
+                                        <td style="vertical-align: middle">RM25</td>
+                                        <td style="vertical-align: middle">RM25</td>
                                     </tr>
                                 </tbody>
                             </table>
