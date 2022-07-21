@@ -292,7 +292,7 @@
                                         <td style="vertical-align: middle">RM35</td>
                                     </tr>
                                     <tr>
-                                        <td><mark>Kids</mark> <br /> (age 3-10 years old)</td>
+                                        <td><mark>Kids</mark> <br /> (age 3-12 years old)</td>
                                         <td style="vertical-align: middle">RM10</td>
                                         <td style="vertical-align: middle"> RM25</td>
                                     </tr>
@@ -313,7 +313,7 @@
                                         <td style="vertical-align: middle">RM35</td>
                                     </tr>
                                     <tr>
-                                        <td><mark>Kids</mark> <br /> (age 3-10 years old)</td>
+                                        <td><mark>Kids</mark> <br /> (age 3-12 years old)</td>
                                         <td style="vertical-align: middle">RM25</td>
                                         <td style="vertical-align: middle">RM25</td>
                                     </tr>
