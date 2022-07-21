@@ -351,14 +351,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 text-center" style="padding-top:2rem">
+                <div class="col-md-5 col-md-offset-1 text-center" style="padding-top:2rem">
                     <p><i class="fa fa-user sr-contact"></i> Mohamad Yusri Mohamad Yusof</p>
                     <p><i class="fa fa-phone sr-contact"></i> 011-1000 9385</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
                             href="https://api.whatsapp.com/send?phone=601110009385" target="_blank"> Whatsapp Me</a>
                     </p>
                 </div>
-                <div class="col-md-6 text-center" style="padding-top:2rem">
+                <div class="col-md-5 text-center" style="padding-top:2rem">
                     <p><i class="fa fa-user sr-contact"></i> Ruhil Ahlam</p>
                     <p><i class="fa fa-phone sr-contact"></i> 012-213 0902</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
@@ -367,14 +367,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 text-center" style="padding-top:2rem">
+                <div class="col-md-5 col-md-offset-1  text-center" style="padding-top:2rem">
                     <p><i class="fa fa-user sr-contact"></i> Hizamuddin</p>
                     <p><i class="fa fa-phone sr-contact"></i> 019-327 5754</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
                             href="https://api.whatsapp.com/send?phone=60193275754" target="_blank"> Whatsapp Me</a>
                     </p>
                 </div>
-                <div class="col-md-6 text-center" style="padding-top:2rem">
+                <div class="col-md-5 text-center" style="padding-top:2rem">
                     <p><i class="fa fa-user sr-contact"></i> Hafiz Hamdan</p>
                     <p><i class="fa fa-phone sr-contact"></i> 013-501 4749</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
