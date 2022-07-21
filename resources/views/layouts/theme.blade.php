@@ -274,44 +274,69 @@
                     <h2 class=" text-center">Terms &amp; Conditions</h2>
                     <hr class="primary">
                     <ol>
-                        <li>TM Family Day is open for all <em>TM HQ staff only</em>.</li>
-                        <li>Every admission to the Family Day will be charged <mark>RM 20.00 per family</mark>
-                            <code>(married)</code> or <mark>RM 10.00 per person</mark> <code>(single)</code> as
-                            commitment fee.
+                        <li>TM Family Day is open for all TM HQ & Subsidaries HQ staff only.</li>
+                        <li>Every admission to the Family Day will be charged as below:-
+                            <table class="table table-sm table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Members of KTMIP</th>
+                                        <th class="text-center">Non-members</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td><mark>Adult</mark> <br /> (age 13 &amp; above)</td>
+                                        <td>RM15</td>
+                                        <td>RM35</td>
+                                    </tr>
+                                    <tr>
+                                        <td><mark>Kids</mark> <br /> (age 3-10 years old or with the height of 90-130
+                                            cm)</td>
+                                        <td>RM10</td>
+                                        <td>RM25</td>
+                                    </tr>
+                                    <tr>
+                                        <td><mark>Infant</mark> <br /> (age less than 3 years old or with height less
+                                            than 90 cm )
+                                        </td>
+                                        <td>Free</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="secondary">
+                                        <th colspan="3" class="text-center">Others: i.e. staff’s parents, siblings,
+                                            cousins, relatives or maid.</th>
+                                    </tr>
+                                    <tr>
+                                        <td><mark>Adult</mark> <br /> (age 13 &amp; above)</td>
+                                        <td>RM35</td>
+                                        <td>RM35</td>
+                                    </tr>
+                                    <tr>
+                                        <td><mark>Kids</mark> <br /> (age 3-10 years old or with the height of 90-130
+                                            cm)</td>
+                                        <td>RM25</td>
+                                        <td>RM25</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </li>
-                        <li>Children age <em>3-10 years old</em> or with the <em>height of 90-130 cm</em> are
-                            categorized as
-                            <mark>Kids</mark>.
+                        <li>Participation in games will be categorised by age and will be determined by the organiser.
                         </li>
-                        <li>Children <em>below 3 years old</em> or with <em>height less than 90 cm</em> are categorized
-                            as
-                            <mark>Infant</mark>.
+                        <li>Payment can be made after you received email by fill up form proof of payment (receipt).
                         </li>
-                        <li>You need to purchase additional ticket at the special counter available during event day for
-                            admission of :-
-                            <ul>
-                                <li>family member aged above <em>21 years old</em></li>
-                                <li>non-family member i.e. staff’s parents, siblings, cousins, relatives or maid</li>
-                            </ul>
-                        </li>
-                        <li>Every admission to the Family Day for <mark>(Terms No. 5)</mark>
-                            will be charged <mark>RM 60.00 (Adult)</mark> & <mark>RM 50.00 (Kids)</mark> per pax.</li>
-                        <li>Participation in games will be categorized by age and will be determined by the organizer.
-                        </li>
-                        <li>Payment shall be made after you received the QR code. You will be need to present your QR
-                            code at the
-                            booth during the payment process.</li>
+                        <li>The QR code (for park admission) & receipt will be generate after you made &amp; upload
+                            proof of payment.</li>
+                        <li>You will need to present your QR code at the admission booth on the event day.</li>
                         <li>If staff withdraws the admission to the Family Day once the payment has been made, no refund
-                            for the
-                            commitment fee will be made.</li>
+                            will be made.</li>
                         <li>Registration and payment should be made before
                             <mark>{{ \Carbon\Carbon::parse(config('familyday.paymentday'))->format('jS F Y') }}</mark>.
                         </li>
                         <li>For TM staff who are husband and wife, please register in two separate forms. Do make sure
-                            your
-                            children information are only in one of the form.</li>
-                        <li>Payment counter will be open as below :-</li>
+                            your children information are only in one of the form.</li>
                     </ol>
+
                     <table class="table table-condensed text-center">
                         <thead>
                             <tr>
