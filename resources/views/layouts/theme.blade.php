@@ -300,7 +300,7 @@
                                         <td><mark>Infant</mark> <br /> (age less than 3 years old)
                                         </td>
                                         <td style="vertical-align: middle">Free</td>
-                                        <td style="vertical-align: middle">FREE</td>
+                                        <td style="vertical-align: middle">Free</td>
                                     </tr>
                                     <tr class="secondary">
                                         <th class="text-center">#</th>
