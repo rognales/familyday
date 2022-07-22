@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="{{ config('familyday.eventname') }} by {{ config('app.name') }}">
+    <meta name="author" content="Zaiman Noris <rognales@gmail.com>">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="designer" content="Laravel {{ app()->version() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('familyday.eventname') }} - {{ config('app.name') }}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
