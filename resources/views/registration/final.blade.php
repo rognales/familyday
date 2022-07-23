@@ -161,6 +161,8 @@
               <p>&nbsp;</p>
               @isset($message)
               <img src="{{ $message->embed(public_path('images/logo.png')) }}" />
+              @else
+              <img src="{{ asset('images/logo.png') }}" />
               @endisset
             </td>
           </tr>
@@ -198,15 +200,33 @@
           <tr>
             <td bgcolor="#ffffff" align="left">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                
+              <tr>
+                  <td bgcolor="#ffffff">
+                    <p align="center"><span style="font-size: 11.5pt; font-family: Lato; color: black">
+                        Hi <strong>{{$participant->name}}</strong>, we have received your payment. See you there! </span>
+                  </td>
+                </tr>
                 <tr>
                   <td bgcolor="#ffffff" align="center" style="padding: 10px 15px 30px 15px;">
                     <table border="0" cellspacing="0" cellpadding="0">
                       <tr>
+                        <td align="center">
+                          @isset($message)
+                          <img
+                            src="{!!$message->embedData((string) QrCode::format('png')->size(186)->generate(route('attend', ['slug' => $participant->slug()])), 'QrCode.png', 'image/png')!!}">
+                        </td>
+                        @else
+                        <img
+                          src="data:image/png;base64, {!! base64_encode((string) QrCode::format('png')->size(186)->generate($participant->qr())) !!} ">
+                  </td>
+                  @endisset
                 </tr>
                 <tr>
                   <td bgcolor="#ffffff">
                     <p align="center"><span style="font-size: 11.5pt; font-family: Lato; color: black">
-                    You may now proceed with online payment. Kindly refer to banking details below:-</span>
+                        Please bring this QR code for admission during the event. Each QR code is unique and
+                        personalised. Kindly do not share with others. </span>
                   </td>
                 </tr>
                 <tr>
@@ -240,52 +260,23 @@
           <td
             style="border: 1px solid #003399; padding: 15px 25px; font-size: 20px; font-family: Helvetica,Arial,sans-serif; color: rgb(255, 255, 255); text-decoration: none;"
             align="center" bgcolor="#003399">
-            Payment Instruction
+            Event Details
           </td>
         </tr>
         <tr>
           <td bgcolor="#e6f4ff" align="center"
             style="padding: 20px 20px 20px 20px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 10px;">
             <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">
-              <strong>Bank Name</strong> : {{config('familyday.banking.bank')}}</h2>
+              <strong>Venue</strong> : Bangi Wonderland</h2>
           </td>
         </tr>
         <tr>
           <td bgcolor="#e6f4ff" align="center"
             style="padding: 20px 20px 20px 20px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 10px;">
-            <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">
-              <strong>Account Name</strong> : {{config('familyday.banking.name')}}</h2>
+            <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;"><strong>Date</strong>
+              : {{\Carbon\Carbon::parse(config('familyday.eventday'))->format('jS F Y')}}</h2>
           </td>
         </tr>
-        <tr>
-          <td bgcolor="#e6f4ff" align="center"
-            style="padding: 20px 20px 20px 20px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 10px;">
-            <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">
-              <strong>Account Number</strong> : {{config('familyday.banking.number')}}</h2>
-          </td>
-        </tr>
-        <tr>
-          <td bgcolor="#e6f4ff" align="center"
-            style="padding: 20px 20px 20px 20px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 10px;">
-            <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">
-              <strong>Amount Payable</strong> : RM {{$participant->total_price}}</h2>
-          </td>
-        </tr>
-        <tr>
-                <td bgcolor="#ffffff" align="left">
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td bgcolor="#e6f4ff" align="center" style="padding: 20px 30px 30px 30px;">
-                        <table border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                              <td align="center" style="border-radius: 3px;" bgcolor="#fffff"><a href="{{route('registration_show', $participant)}}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #003399; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #003399; display: inline-block;">Update Payment Info</a></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
       </table>
       <!--[if (gte mso 9)|(IE)]>
             </td>
@@ -330,6 +321,12 @@
             style="padding: 20px 20px 20px 20px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 10px;">
             <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;"><strong>Meal
                 Option</strong> : {{$participant->meal_option}}</h2>
+          </td>
+        </tr>
+        <tr>
+          <td bgcolor="#e6f4ff" align="center"
+            style="padding: 20px 20px 20px 20px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 10px;">
+            <h2 align="left" style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;"><strong>Payment Status</strong> : PAID</h2>
           </td>
         </tr>
       </table>

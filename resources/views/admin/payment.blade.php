@@ -66,6 +66,7 @@
                     <th>Meal</th>
                     <th>Payment Status</th>
                     <th>Payment Details</th>
+                    <th>Upload Count</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -133,6 +134,7 @@ var table = $('#participants-table').DataTable({
         {data: 'meal_option', name: 'is_vege', className: 'text-center', orderable: false},
         {data: 'payment_status', name: 'payment_status', className: 'text-center', orderable: false},
         {data: 'payment_details', name: 'payment_details', orderable: false},
+        {data: 'uploads_count', name: 'uploads_count', className: 'text-center', orderable: false},
         {data: 'action', name: 'action', className: 'text-center', orderable: false, searchable: false},
         {data: 'payment_by', name: 'payment_by', visible: false},
         {data: 'payment_timestamp', name: 'payment_timestamp', visible:false}

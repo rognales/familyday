@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Services\EntranceRate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,12 +11,19 @@ class Dependant extends Model
     use SoftDeletes;
     use HasFactory;
 
-    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
-
-    public function member()
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
     {
-        return $this->belongsTo('App\Participant')->withDefault();
+        static::saving(function ($dependant) {
+            return $dependant->price = EntranceRate::calculate($dependant->age, $dependant->member);
+        });
     }
+
+    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     public function participant()
     {
@@ -45,5 +53,10 @@ class Dependant extends Model
     public function scopeInfant($query)
     {
         return $query->where('age', '<', 3);
+    }
+
+    public function getPriceAttribute($value)
+    {
+        return number_format($value / 100, 2);
     }
 }

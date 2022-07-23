@@ -42,8 +42,11 @@ class DatabaseSeeder extends Seeder
                 ->addChildren()
                 ->addInfant()
                 ->addOthers()
+                ->hasUploads(1)
                 ->count(15)
                 ->create();
+
+            
         }
     }
 }

@@ -10,11 +10,8 @@
 @endif
 @endif
 
-{{-- Intro Lines --}}
-@foreach ($introLines as $line)
-{{ $line }}
-
-@endforeach
+We're excited to meet you at **{{config('familyday.eventname')}}!**
+We got your details and you may proceed with payment at the link below:-
 
 {{-- Action Button --}}
 @isset($actionText)
@@ -24,26 +21,32 @@
         default => 'primary',
     };
 ?>
-@isset($participant->dependants)
+
+## Here's your registration summary:-
+
+@component('mail::table', ['participant' => $participant])
+| Name       | Staff Id   | Meal Option    | KTMIP Member  
+| ------------- |:-------------:|:-------------:|:-------------:|
+| {{$participant->name}}      | {{$participant->staff_id}}         |  {{$participant->meal_option}}  | {{$participant->is_member}}
+@endcomponent
+
+@if($participant->dependants->count() > 0)
+## And your dependants
 @component('mail::table')
-| Name       | Age         
-| ------------- |:-------------:|
+|Relationship| Name       | Age         
+| ------------- |:-------------:|:-------------:|
 @foreach ($participant->dependants as $dependant)
-| {{$dependant->name}}      | {{$dependant->age}}         | 
+| {{$dependant->relationship}} | {{$dependant->name}}      | {{$dependant->age}}         | 
 @endforeach
 @endcomponent
-@endisset
+@endif
 
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])
 {{ $actionText }}
 @endcomponent
 @endisset
 
-{{-- Outro Lines --}}
-@foreach ($outroLines as $line)
-{{ $line }}
-
-@endforeach
+See you there!
 
 {{-- Salutation --}}
 @if (! empty($salutation))

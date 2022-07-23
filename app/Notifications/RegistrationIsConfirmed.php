@@ -46,10 +46,12 @@ class RegistrationIsConfirmed extends Notification implements ShouldQueue
     {
         // return (new RegistrationConfirmation($this->participant))->to($notifiable->email);
 
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new MailMessage)->greeting("Hello, {$this->participant->name}!")
+            ->success()
+            ->action('Upload Proof of Payment', route('registration_upload', $this->participant))
+            ->markdown('vendor.notifications.email', [
+                'participant' => $this->participant,
+            ]);
     }
 
     /**

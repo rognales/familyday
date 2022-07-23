@@ -55,41 +55,39 @@ class AdminController extends Controller
 
     public function payment_ajax()
     {
-        $p = Participant::with(['payment'])->latest();
+        $p = Participant::withCount(['uploads'])->latest();
 
         return datatables()->of($p)
-      ->removeColumn('member')
-      ->addColumn('action', function ($p) {
-          $disabled = ($p->payment_status == 'Paid') ? 'disabled' : '';
+            ->removeColumn('member')
+            ->addColumn('action', function ($p) {
+            $disabled = ($p->payment_status == 'Paid') ? 'disabled' : '';
 
-          $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" role="button" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-          $href .= '<button type="button" data-pid="'.$p->id.'" id="edit-'.$p->id.'" class="btn btn-primary btn-edit" title="Update payment details" '.$disabled.'><i class="glyphicon glyphicon-edit"></i></button>';
+            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" role="button" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+            $href .= '<button type="button" data-pid="' . $p->id . '" id="edit-' . $p->id . '" class="btn btn-primary btn-edit" title="Update payment details" ' . $disabled . '><i class="glyphicon glyphicon-edit"></i></button>';
 
-          $href .= '</div>';
+            $href .= '</div>';
 
-          return $href;
-      })
-      ->addColumn('details_url', function ($p) {
-          return route('admin_dependants_ajax', ['pid' => $p->id]);
-      })
-      ->setRowClass(function ($p) {
-          return $p->member == 1 ? 'member' : '';
-      })
-      ->make(true);
+            return $href;
+        })
+            ->addColumn('details_url', function ($p) {
+            return route('admin_dependants_ajax', ['pid' => $p->id]);
+        })
+            ->setRowClass(function ($p) {
+            return $p->member == 1 ? 'member' : '';
+        })
+            ->make(true);
     }
 
     public function paymentUpdate(Request $request)
     {
         $p = Participant::find($request->pid);
-        $p->payment_status = 'Paid';
-        $p->payment_details = $request->details;
-        $p->payment_timestamp = now();
-        $p->payment_by = auth()->user()->id;
-        $p->save();
+        $p->markAsPaid($request->details);
 
-        return $p->payment_status;
+        $p->sendPaymentConfirmationEmail();
+
+        return response()->json($p->payment_status);
     }
 
     //===================================PAYMENT END===============================//
@@ -135,30 +133,32 @@ class AdminController extends Controller
     public function attend_ajax()
     {
         $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member', 'attend'])
-      ->wherePaymentStatus('Paid');
+            ->wherePaymentStatus('Paid');
 
         return datatables()->of($p)
-      ->removeColumn('member')
-      ->addColumn('action', function ($p) {
-          $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+            ->removeColumn('member')
+            ->addColumn('action', function ($p) {
+            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
+            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
 
-          return $href;
-      })
-      ->addColumn('details_url', function ($p) {
-          return route('admin_dependants_ajax', ['pid' => $p->id]);
-      })
-      ->setRowClass(function ($p) {
-          if ($p->member == 1 && $p->attend == 1) {
-              return 'member attend';
-          } elseif ($p->member == 1 && $p->attend == 0) {
-              return 'member';
-          } elseif ($p->member == 0 && $p->attend == 1) {
-              return 'attend';
-          }
-      })
-      ->make(true);
+            return $href;
+        })
+            ->addColumn('details_url', function ($p) {
+            return route('admin_dependants_ajax', ['pid' => $p->id]);
+        })
+            ->setRowClass(function ($p) {
+            if ($p->member == 1 && $p->attend == 1) {
+                return 'member attend';
+            }
+            elseif ($p->member == 1 && $p->attend == 0) {
+                return 'member';
+            }
+            elseif ($p->member == 0 && $p->attend == 1) {
+                return 'attend';
+            }
+        })
+            ->make(true);
     }
 
     //===================================ATTEND ENDS==============================//
@@ -203,46 +203,48 @@ class AdminController extends Controller
     public function attend_full_ajax()
     {
         $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member', 'attend'])
-      ->latest()
-      ->wherePaymentStatus('Paid')
-      ->withCount([
-          'dependants as spouse' => function ($query) {
-              $query->whereRelationship('Spouse');
-          },
-          'adultsFamily',
-          'kidsFamily',
-          'infantsFamily',
-          'othersAdults',
-          'othersKids',
-          'othersInfants',
-          'adults',
-          'kids',
-          'infants',
-      ]);
+            ->latest()
+            ->wherePaymentStatus('Paid')
+            ->withCount([
+            'dependants as spouse' => function ($query) {
+            $query->whereRelationship('Spouse');
+        },
+            'adultsFamily',
+            'kidsFamily',
+            'infantsFamily',
+            'othersAdults',
+            'othersKids',
+            'othersInfants',
+            'adults',
+            'kids',
+            'infants',
+        ]);
 
         return datatables()->of($p)
-      ->removeColumn('member')
-      ->addColumn('action', function ($p) {
-          $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+            ->removeColumn('member')
+            ->addColumn('action', function ($p) {
+            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
+            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
 
-          return $href;
-      })
-      ->addColumn('details_url', function ($p) {
-          return route('admin_dependants_ajax', ['pid' => $p->id]);
-      })
-      ->editColumn('adults_family_count', '{{$adults_family_count+1}}')
-      ->setRowClass(function ($p) {
-          if ($p->member == 1 && $p->attend == 1) {
-              return 'member attend';
-          } elseif ($p->member == 1 && $p->attend == 0) {
-              return 'member';
-          } elseif ($p->member == 0 && $p->attend == 1) {
-              return 'attend';
-          }
-      })
-      ->make(true);
+            return $href;
+        })
+            ->addColumn('details_url', function ($p) {
+            return route('admin_dependants_ajax', ['pid' => $p->id]);
+        })
+            ->editColumn('adults_family_count', '{{$adults_family_count+1}}')
+            ->setRowClass(function ($p) {
+            if ($p->member == 1 && $p->attend == 1) {
+                return 'member attend';
+            }
+            elseif ($p->member == 1 && $p->attend == 0) {
+                return 'member';
+            }
+            elseif ($p->member == 0 && $p->attend == 1) {
+                return 'attend';
+            }
+        })
+            ->make(true);
     }
 
     //===================================ATTEND ENDS==============================//
@@ -279,23 +281,23 @@ class AdminController extends Controller
         $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member']);
 
         return datatables()->of($p)
-      ->addColumn('action', function ($p) {
-          $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+            ->addColumn('action', function ($p) {
+            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-          $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="'.$p->id.'" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
-          $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="'.$p->id.'" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
+            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+            $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
+            $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="' . $p->id . '" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
 
-          $href .= '</div>';
+            $href .= '</div>';
 
-          return $href;
-      })
-      //->editColumn('adults_count','{{$adults_count+1}}')
-      //->editColumn('adults_family_count','{{$adults_family_count+1}}')
-      ->setRowClass(function ($p) {
-          return $p->member == 1 ? 'member' : '';
-      })
-      ->make(true);
+            return $href;
+        })
+            //->editColumn('adults_count','{{$adults_count+1}}')
+            //->editColumn('adults_family_count','{{$adults_family_count+1}}')
+            ->setRowClass(function ($p) {
+            return $p->member == 1 ? 'member' : '';
+        })
+            ->make(true);
     }
 
     public function user_deleted()
@@ -328,25 +330,25 @@ class AdminController extends Controller
         $p = Participant::onlyTrashed()->with('softDeletedBy:id,name');
 
         return datatables()->of($p)
-      ->addColumn('action', function ($p) {
-          $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+            ->addColumn('action', function ($p) {
+            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-          $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-          if ($p->deleted_at != null) {
-              $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="'.$p->id.'" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
-              $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="'.$p->id.'" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
-          }
-          $href .= '</div>';
+            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+            if ($p->deleted_at != null) {
+                $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
+                $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="' . $p->id . '" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
+            }
+            $href .= '</div>';
 
-          return $href;
-      })
-      ->editColumn('soft_deleted_by.name', function ($p) {
-          return ucwords(strtolower($p->softDeletedBy->name));
-      })
-      ->setRowClass(function ($p) {
-          return $p->member == 1 ? 'member' : '';
-      })
-      ->make(true);
+            return $href;
+        })
+            ->editColumn('soft_deleted_by.name', function ($p) {
+            return ucwords(strtolower($p->softDeletedBy->name));
+        })
+            ->setRowClass(function ($p) {
+            return $p->member == 1 ? 'member' : '';
+        })
+            ->make(true);
     }
 
     //================================REGISTRATIONS ENDS=========================//
@@ -379,5 +381,5 @@ class AdminController extends Controller
         return view('admin.staff');
     }
 
-    //================================STAFF ENDS=========================//
+//================================STAFF ENDS=========================//
 }

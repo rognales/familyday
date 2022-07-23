@@ -1,11 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\ParticipantController;
-use App\Http\Controllers\ParticipantEmailController;
+use App\Participant;
+use App\Services\EntranceRate;
+use App\Mail\PaymentConfirmation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Mail\RegistrationConfirmation;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\AttendanceController;
+use App\Notifications\RegistrationIsConfirmed;
+use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\ParticipantEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +31,9 @@ Auth::routes();
 Route::get('/registration', [ParticipantController::class, 'index'])->name('registration_home');
 Route::post('/registration', [ParticipantController::class, 'store'])->name('registration_create');
 
+Route::get('/participant/{slug}/upload', [UploadController::class, 'create'])->name('registration_upload');
+Route::post('/participant/{slug}/upload', [UploadController::class, 'store'])->name('registration_upload_store');
+Route::get('/uploads/{upload}', [UploadController::class, 'show'])->name('upload_show');
 Route::get('/participant/{slug}', [ParticipantController::class, 'show'])->name('registration_show');
 
 Route::get('/attend/{slug}', [ParticipantController::class, 'attend'])->name('attend');
@@ -58,4 +67,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/attend_full', [AdminController::class, 'attend_full'])->name('admin_attend_full');
     Route::get('/attend/ajax', [AdminController::class, 'attend_ajax'])->name('admin_attend_ajax');
     Route::get('/attend_full/ajax', [AdminController::class, 'attend_full_ajax'])->name('admin_attend_full_ajax');
+});
+
+Route::get('preview', function () {
+    $participant = Participant::inRandomOrder()->first();
+    return (new RegistrationConfirmation($participant));
+});
+
+Route::get('/paid', function(){
+    $participant = Participant::inRandomOrder()->first();
+    return (new PaymentConfirmation($participant));
 });

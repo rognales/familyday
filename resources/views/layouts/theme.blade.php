@@ -164,10 +164,10 @@
                                     <label for="email" class="col-sm-3 control-label">Meal Option</label>
                                     <div class="col-sm-9">
                                         <label class="radio-inline">
-                                            <input type="radio" name="vege" value="false" required> Normal
+                                            <input type="radio" name="is_vege" value="0" @checked(old('is_vege', 0)) required> Normal
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="vege" value="true" required> Vegetarian
+                                            <input type="radio" name="is_vege" value="1" @checked(old('is_vege', 1)) required> Vegetarian
                                         </label>
                                     </div>
                                 </div>

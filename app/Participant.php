@@ -2,11 +2,15 @@
 
 namespace App;
 
+use App\Services\EntranceRate;
+use App\Mail\PaymentConfirmation;
 use Balping\HashSlug\HasHashSlug;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegistrationConfirmation;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Participant extends Model
 {
@@ -15,13 +19,26 @@ class Participant extends Model
     use Notifiable;
     use HasFactory;
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::saving(function ($participant) {
+            // Always adult price
+            return $participant->price = EntranceRate::calculate(21, $participant->member);
+        });
+    }
+
+    protected $appends = ['meal_option'];
+
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     protected static $minSlugLength = 15;
 
     // protected static $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-    protected $appends = ['meal_option'];
 
     protected $casts = [
         'member' => 'boolean',
@@ -97,6 +114,16 @@ class Participant extends Model
         return $this->hasMany('App\Dependant')->others()->where('age', '<', 3);
     }
 
+    /**
+     * Get all of the uploads for the Participant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function uploads()
+    {
+        return $this->hasMany(Upload::class);
+    }
+
     public function isPaid()
     {
         return $this->payment_status != 'Pending';
@@ -117,11 +144,53 @@ class Participant extends Model
         return $this->is_vege ? 'Vegetarian' : 'Normal';
     }
 
+    public function getIsMemberAttribute()
+    {
+        return $this->member ? 'Yes!' : 'No';
+    }
+
+    public function hasPaid()
+    {
+        return $this->payment_status === 'Paid';
+    }
+
+    public function getPriceAttribute($value)
+    {
+        return number_format($value / 100, 2);
+    }
+
+    public function getTotalPriceAttribute()
+    {
+        $subTotal = $this->dependants()->sum('price');
+        $total = $subTotal + $this->getRawOriginal('price');
+        // dd( $subTotal, $this->getRawOriginal('price'), $total);
+        return number_format($total / 100, 2);
+    }
+
     public function markAttendance()
     {
         $this->attend = 1;
         $this->attended_by = Auth::user()->id;
         $this->attend_timestamp = now();
         $this->save();
+    }
+
+    public function markAsPaid($details)
+    {
+        $this->payment_status = 'Paid';
+        $this->payment_details = $details;
+        $this->payment_timestamp = now();
+        $this->payment_by = auth()->user()->id;
+        $this->save();
+    }
+
+    public function sendConfirmationEmail()
+    {
+        return Mail::to($this->email)->send(new RegistrationConfirmation($this));
+    }
+
+    public function sendPaymentConfirmationEmail()
+    {
+        return Mail::to($this->email)->send(new PaymentConfirmation($this));
     }
 }

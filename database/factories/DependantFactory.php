@@ -32,8 +32,8 @@ class DependantFactory extends Factory
             'relationship' => $this->faker->randomElement($relationships),
             'age' => fn (array $attributes) => $age[$attributes['relationship']],
             'participant_id' => Participant::factory(),
-            'staff_id' => function (array $attributes) {
-                return Participant::find($attributes['participant_id'])->staff_id;
+            'member' => function (array $attributes) {
+                return Participant::find($attributes['participant_id'])->member;
             },
         ];
     }
