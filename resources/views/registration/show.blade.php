@@ -129,6 +129,7 @@
         </ul>
     </div>
 @endif
+@guest
 <fieldset>
                   <legend>Payment Instructions</legend>
                   <ul>
@@ -162,7 +163,6 @@
                 </div>
             <p class="text-center"><em></em></p>
 </fieldset>
-            @guest
             @if(!$participant->hasPaid())
             <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{route('registration_upload_store',$participant)}}">
               @csrf
