@@ -223,7 +223,7 @@
                   <td title="{{$upload->paid_at}}">{{$upload->paid_at->diffForHumans()}}</td>
                   <td>{{$upload->reference}}</td>
                   <td class="text-center">RM {{$upload->amount}}</td>
-                  <td class="text-center"> <a class="btn btn-default btn-xs" href="{{route('upload_show', [$upload])}}" >View</a>                 </td>
+                  <td class="text-center"> <a target="_blank" class="btn btn-default btn-xs" href="{{route('upload_show', [$upload])}}" >View</a>                 </td>
                 </tr>
                 @endforeach
               </tbody>
