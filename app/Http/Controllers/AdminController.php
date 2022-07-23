@@ -74,6 +74,9 @@ class AdminController extends Controller
             ->addColumn('details_url', function ($p) {
             return route('admin_dependants_ajax', ['pid' => $p->id]);
         })
+            ->addColumn('uploads_count', function ($p) {
+            return $p->uploads_count;
+        })
             ->setRowClass(function ($p) {
             return $p->member == 1 ? 'member' : '';
         })
