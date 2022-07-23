@@ -14,13 +14,13 @@ return [
     'rate' => [
         'adult' => [
             'member' => 1500,
-            'nonmember' => 3500,
-            'others' => 3500,
+            'nonmember' => 5000,
+            'others' => 5000,
         ],
         'kids' => [
             'member' => 1000,
-            'nonmember' => 2500,
-            'others' => 2500,
+            'nonmember' => 2000,
+            'others' => 2000,
         ],
     ],
     'counters' => [
