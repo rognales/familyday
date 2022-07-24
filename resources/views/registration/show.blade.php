@@ -123,7 +123,7 @@
         </ul>
     </div>
 @endif
-@guest
+@if (!auth()->check() || !$participant->hasPaid())
 <fieldset>
                   <legend>Payment Instructions</legend>
                   <ul>
