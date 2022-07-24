@@ -45,7 +45,8 @@ class CreateParticipantRequest extends FormRequest
             'staff_id' => ['required', 'unique:participants,staff_id,NULL,id,deleted_at,NULL', 'exists:staff'],
             'email' => ['required', 'email'],
             'is_vege' => ['required', 'boolean'],
-            'dependant_relationship.*' => ['nullable', 'required_with:dependant_name.*', 'max:6'],
+            'dependant_relationship' => ['nullable', 'array', 'max:6'],
+            'dependant_relationship.*' => ['nullable', 'required_with:dependant_name.*'],
             'dependant_age.*' => ['nullable', 'required_with:dependant_name.*', 'numeric'],
             'dependant_name.*' => ['nullable', 'required_with:dependant_name.*', 'string'],
         ];
@@ -64,7 +65,7 @@ class CreateParticipantRequest extends FormRequest
             'dependant_age.*.numeric' => 'Please enter number only for age',
             'dependant_age.*.required_with' => "Please specify age for Dependant #:position",
             'dependant_relationship.*.required_with' => 'Please specify relationship for Dependant #:position',
-            'dependant_relationship.*.max' => 'You can only register up to 6 peoples.',
+            'dependant_relationship.max' => 'You can only register up to 6 peoples (excluding yourself)',
         ];
     }
 
