@@ -36,13 +36,7 @@
                 <p><strong>Email :</strong> {{$participant->email}}</p>
                 <p><strong>Meal <i class="fa fa-cutlery" aria-hidden="true"></i>:</strong> {{$participant->meal_option}}</p>
                 <p><strong>Payment Status <i class="fa fa-money" aria-hidden="true"></i>:</strong> {{$participant->payment_status}}</p>
-                @auth
-                @if ($participant->member)
-                <p><strong>Member :</strong> <span class="text-success">YES<span></p>
-                @else
-                <p><strong>Member :</strong> <span class="text-danger">NO<span></p>
-                @endif
-                @endauth
+                <p><strong>KTMIP Member :</strong> <span>{{$participant->is_member}}<span></p>
               </div>
               @auth
               <div class="col-sm-6">
