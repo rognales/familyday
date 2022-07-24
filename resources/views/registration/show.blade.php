@@ -183,7 +183,7 @@
                   <div class="form-group">
                     <label for="payment-date" class="col-lg-3 control-label">Payment Date</label>
                     <div class="col-lg-9">
-                      <input type="date" class="form-control" id="payment-date" name="paid_at" required value="{{old('paid_at')}}">
+                      <input type="date" class="form-control" id="payment-date" name="paid_at" required value="{{old('paid_at')}}" min="{{\Carbon\Carbon::parse(config('familyday.registrationday'))->toDateString()}}" max="{{now()->toDateString()}}">
                     </div>
                   </div>
                   <div class="form-group">
