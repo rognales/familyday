@@ -42,7 +42,7 @@ class CreateParticipantRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:5'],
-            'staff_id' => ['required', 'unique:participants,staff_id,NULL,id,deleted_at,NULL', 'exists:staff'],
+            'staff_id' => ['required', 'unique:participants,staff_id,NULL,id,deleted_at,NULL'],
             'email' => ['required', 'email'],
             'is_vege' => ['required', 'boolean'],
             'dependant_relationship' => ['nullable', 'array', 'max:6'],
@@ -76,8 +76,8 @@ class CreateParticipantRequest extends FormRequest
      * @return void
      */public function withValidator($validator)
     {
-    // $validator->sometimes('staff_id', ['exists:App\Staff,staff_id'], function () {
-    //     return Auth::check() ? false : true;
-    // });
+    $validator->sometimes('staff_id', ['exists:App\Staff,staff_id'], function () {
+        return Auth::check() ? false : true;
+    });
     }
 }
