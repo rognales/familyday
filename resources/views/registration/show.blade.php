@@ -153,10 +153,10 @@
                                             <li>Kindly refer to banking details below:-</li>
                                         </ul>
                                         <br />
-                                        <div class="col-md-8 col-md-offset-2">
+                                        <div class="col-md-10 col-md-offset-1">
                                             <table class="table table-condensed table-striped">
                                                 <tr>
-                                                    <th>Bank Name</th>
+                                                    <th class="col-md-3">Bank Name</th>
                                                     <td>{{ config('familyday.banking.bank') }}</td>
                                                 </tr>
                                                 <tr>
@@ -166,6 +166,14 @@
                                                 <tr>
                                                     <th>Account Name</th>
                                                     <td>{{ config('familyday.banking.name') }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Payment Remarks</th>
+                                                    <td>Kindly put <mark><small>FDTMHQ2022</small></mark> for reference</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Payment Email</th>
+                                                    <td>If available, kindly put this email <mark><small>FDTMHQ2022@example.org</small></mark> as recipient</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Amount Payable</th>
