@@ -5,10 +5,10 @@ namespace App\Actions;
 use App\Member;
 use App\Participant;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class CreateParticipantAction
 {
@@ -19,7 +19,7 @@ class CreateParticipantAction
 
         DB::beginTransaction();
 
-        Log::info('Registering for ' . $validated['staff_id'] . ':' . $validated['email'], [$validated, $isMember]);
+        Log::info('Registering for '.$validated['staff_id'].':'.$validated['email'], [$validated, $isMember]);
 
         $participant = Participant::create($validated);
 
