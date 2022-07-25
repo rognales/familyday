@@ -234,7 +234,7 @@
                                             <thead>
                                                 <th class="col-sm-2 text-right">Paid At</th>
                                                 <th class="col-sm-6">Reference</th>
-                                                <th class="col-sm-2 text-center">Amount</th>
+                                                <th class="col-sm-2 text-right">Amount</th>
                                                 <th class="col-sm-2 text-center">Download</th>
                                             </thead>
 
@@ -244,7 +244,7 @@
                                                         <td class="text-right" title="{{ $upload->paid_at }}">
                                                             {{ $upload->paid_at->toDateString() }}</td>
                                                         <td>{{ $upload->reference }}</td>
-                                                        <td class="text-center">RM {{ $upload->amount }}</td>
+                                                        <td class="text-right">RM {{ $upload->amount }}</td>
                                                         <td class="text-center"> <a target="_blank"
                                                                 class="btn btn-default btn-xs"
                                                                 href="{{ route('upload_show', [$upload]) }}">View</a>
