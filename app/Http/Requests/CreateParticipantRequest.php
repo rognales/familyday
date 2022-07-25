@@ -27,7 +27,7 @@ class CreateParticipantRequest extends FormRequest
     {
         $this->merge([
             'name' => Str::title($this->name),
-            'staff_id' => Str::lower($this->staff_id),
+            'staff_id' => Str::upper($this->staff_id),
             'email' => Str::lower($this->email),
         ]);
     }
