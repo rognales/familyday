@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Member;
-use App\Participant;
-use App\Staff;
 use App\User;
+use App\Staff;
+use App\Member;
+use App\Upload;
+use App\Participant;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,9 +44,15 @@ class DatabaseSeeder extends Seeder
                 ->addChildren()
                 ->addInfant()
                 ->addOthers()
-                ->hasUploads(1)
                 ->count(15)
                 ->create();
+
+            Upload::factory()
+            ->count(5)
+            ->state(new Sequence(
+                fn ($sequence) => ['participant_id' => Participant::all()->random()],
+            ))
+            ->create();
         }
     }
 }
