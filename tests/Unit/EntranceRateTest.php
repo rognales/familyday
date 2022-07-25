@@ -2,57 +2,125 @@
 
 namespace Tests\Unit;
 
-use App\Services\EntranceRate;
+use App\Dependant;
+use App\Participant;
+use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\CreatesApplication;
 use Tests\TestCase;
 
 class EntranceRateTest extends TestCase
 {
-    use CreatesApplication;
+    // use CreatesApplication;
+    use RefreshDatabase;
     use WithFaker;
 
-    public function test_it_should_properly_rate_member()
+    public function test_members_without_dependant()
     {
-        $rateAdult = EntranceRate::calculate($this->faker->numberBetween(13, 60), $member = true);
-        $rateKids = EntranceRate::calculate($this->faker->numberBetween(4, 12), $member = true);
-        $rateInfant = EntranceRate::calculate($this->faker->numberBetween(1, 3), $member = true);
+        $member = Participant::factory()->member()->create();
 
-        $this->assertEquals(config('familyday.rate.adult.member'), $rateAdult);
-        $this->assertEquals(config('familyday.rate.kids.member'), $rateKids);
-        $this->assertEquals(0, $rateInfant);
+        $this->assertEquals(15, $member->total_price);
     }
 
-    public function test_it_should_properly_rate_non_member()
+    public function test_members_with_spouse()
     {
-        $rateAdult = EntranceRate::calculate($this->faker->numberBetween(13, 60), $member = false);
-        $rateKids = EntranceRate::calculate($this->faker->numberBetween(4, 12), $member = false);
-        $rateInfant = EntranceRate::calculate($this->faker->numberBetween(1, 3), $member = false);
+        $member = Participant::factory()->member()->create();
 
-        $this->assertEquals(config('familyday.rate.adult.nonmember'), $rateAdult);
-        $this->assertEquals(config('familyday.rate.kids.nonmember'), $rateKids);
-        $this->assertEquals(0, $rateInfant);
+        Dependant::factory()->for($member)->spouse()->create();
+
+        $this->assertEquals(15 + 15, $member->total_price);
     }
 
-    public function test_it_should_properly_rate_others_for_member()
+    public function test_members_with_family()
     {
-        $rateAdult = EntranceRate::calculate($this->faker->numberBetween(13, 60), $member = true, $others = true);
-        $rateKids = EntranceRate::calculate($this->faker->numberBetween(4, 12), $member = true, $others = true);
-        $rateInfant = EntranceRate::calculate($this->faker->numberBetween(1, 3), $member = true, $others = true);
+        $member = Participant::factory()->member()->create();
 
-        $this->assertEquals(config('familyday.rate.adult.others'), $rateAdult);
-        $this->assertEquals(config('familyday.rate.kids.others'), $rateKids);
-        $this->assertEquals(0, $rateInfant);
+        Dependant::factory()
+            ->for($member)
+            ->count(4)
+            ->state(new Sequence(
+                ['relationship' => 'Spouse', 'age' => 20],
+                ['relationship' => 'Kids', 'age' => 11],
+                ['relationship' => 'Kids', 'age' => 5],
+                ['relationship' => 'Infant', 'age' => 1],
+            ))
+            ->create();
+
+        $this->assertEquals(15 + 15 + 10 + 10 + 0, $member->total_price);
     }
 
-    public function test_it_should_properly_rate_others_for_non_member()
+    public function test_members_with_family_and_others()
     {
-        $rateAdult = EntranceRate::calculate($this->faker->numberBetween(13, 60), $member = false, $others = true);
-        $rateKids = EntranceRate::calculate($this->faker->numberBetween(4, 12), $member = false, $others = true);
-        $rateInfant = EntranceRate::calculate($this->faker->numberBetween(1, 3), $member = false, $others = true);
+        $member = Participant::factory()->member()->create();
 
-        $this->assertEquals(config('familyday.rate.adult.others'), $rateAdult);
-        $this->assertEquals(config('familyday.rate.kids.others'), $rateKids);
-        $this->assertEquals(0, $rateInfant);
+        Dependant::factory()
+            ->for($member)
+            ->count(6)
+            ->state(new Sequence(
+                ['relationship' => 'Spouse', 'age' => 20],
+                ['relationship' => 'Kids', 'age' => 11],
+                ['relationship' => 'Kids', 'age' => 5],
+                ['relationship' => 'Infant', 'age' => 1],
+                ['relationship' => 'Others', 'age' => 14],
+                ['relationship' => 'Others', 'age' => 4],
+            ))
+            ->create();
+
+        $this->assertEquals(15 + 15 + 10 + 10 + 0 + 50 + 20, $member->total_price);
+    }
+
+    public function test_non_members_without_dependant()
+    {
+        $nonMember = Participant::factory()->nonMember()->create();
+
+        $this->assertEquals(50, $nonMember->total_price);
+    }
+
+    public function test_non_members_with_spouse()
+    {
+        $nonMember = Participant::factory()->nonMember()->create();
+
+        Dependant::factory()->for($nonMember)->spouse()->create();
+
+        $this->assertEquals(50 + 50, $nonMember->total_price);
+    }
+
+    public function test_non_members_with_family()
+    {
+        $nonMember = Participant::factory()->nonMember()->create();
+
+        Dependant::factory()
+            ->for($nonMember)
+            ->count(4)
+            ->state(new Sequence(
+                ['relationship' => 'Spouse', 'age' => 20],
+                ['relationship' => 'Kids', 'age' => 11],
+                ['relationship' => 'Kids', 'age' => 5],
+                ['relationship' => 'Infant', 'age' => 1],
+            ))
+            ->create();
+
+        $this->assertEquals(50 + 50 + 20 + 20 + 0, $nonMember->total_price);
+    }
+
+    public function test_non_members_with_family_and_others()
+    {
+        $nonMember = Participant::factory()->nonMember()->create();
+
+        Dependant::factory()
+            ->for($nonMember)
+            ->count(6)
+            ->state(new Sequence(
+                ['relationship' => 'Spouse', 'age' => 20],
+                ['relationship' => 'Kids', 'age' => 11],
+                ['relationship' => 'Kids', 'age' => 5],
+                ['relationship' => 'Infant', 'age' => 1],
+                ['relationship' => 'Others', 'age' => 14],
+                ['relationship' => 'Others', 'age' => 4],
+            ))
+            ->create();
+
+        $this->assertEquals(50 + 50 + 20 + 20 + 0 + 50 + 20, $nonMember->total_price);
     }
 }
