@@ -162,7 +162,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Payment Remarks</th>
-                                                    <td>Kindly put <mark><small>FDTMHQ2022</small></mark> for our tracking %amp;
+                                                    <td>Kindly put <mark><small>FDTMHQ2022</small></mark> for our tracking &amp;
                                                         reference</td>
                                                 </tr>
                                                 <tr>
@@ -210,7 +210,9 @@
                                                 <div class="col-lg-9">
                                                     <input class="form-control" type="file" id="payment-upload"
                                                         name="filename" required value="{{ old('file') }}">
-                                                    <span class="help-block">Kindly ensure the transaction date, transaction amount & account number is clearly visible to ensure smooth verification.</span>
+                                                    <span class="help-block">Kindly ensure the transaction date, transaction
+                                                        amount & account number is clearly visible to ensure smooth
+                                                        verification.</span>
                                                     <small>(accepted: PDF, JPG, PNG only)</small>
                                                     <small>(max size: 2MB)</small>
                                                 </div>
