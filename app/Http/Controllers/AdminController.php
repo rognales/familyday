@@ -60,13 +60,14 @@ class AdminController extends Controller
         return datatables()->of($p)
             ->removeColumn('member')
             ->addColumn('action', function ($p) {
-            $disabled = ($p->payment_status == 'Paid') ? 'disabled' : '';
+            $disabled = ($p->hasPaid()) ? 'disabled' : '';
+            $enabled = ($p->hasPaid()) ? '' : 'disabled';
 
             $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
             $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" role="button" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
             $href .= '<button type="button" data-pid="' . $p->id . '" id="edit-' . $p->id . '" class="btn btn-primary btn-edit" title="Update payment details" ' . $disabled . '><i class="glyphicon glyphicon-edit"></i></button>';
-
+            $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend payment confirmation email." ' . $enabled . '><i class="glyphicon glyphicon-envelope"></i></button>';
             $href .= '</div>';
 
             return $href;
@@ -288,7 +289,7 @@ class AdminController extends Controller
             $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
             $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-            $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
+            $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend registration confirmation email."><i class="glyphicon glyphicon-envelope"></i></button>';
             $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="' . $p->id . '" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
 
             $href .= '</div>';
@@ -338,7 +339,7 @@ class AdminController extends Controller
 
             $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
             if ($p->deleted_at != null) {
-                $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend confimation email to the registered email address"><i class="glyphicon glyphicon-envelope"></i></button>';
+                $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend registration confirmation email."><i class="glyphicon glyphicon-envelope"></i></button>';
                 $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="' . $p->id . '" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
             }
             $href .= '</div>';

@@ -180,8 +180,13 @@ $('#participants-table tbody').on('click', 'td.details-control', function () {
   switch (type){
     case 'email':
       method = "POST";
-      prompt_message = "This will resend the confimation email to the registered email address.<br />Do you want to proceed?";
-      prompt_url = "{{route('admin_resend_email')}}";
+      prompt_message = "This will resend the registration confimation email (without QR code) to the registered email address.<br />Do you want to proceed?";
+      prompt_url = "{{route('admin_resend_email', ['type' => 'registration'])}}";
+      break;
+    case 'payment':
+      method = "POST";
+      prompt_message = "This will resend the payment confimation email (with QR code) to the registered email address.<br />Do you want to proceed?";
+      prompt_url = "{{route('admin_resend_email', ['type' => 'payment'])}}";
       break;
     case 'delete':
       method = "DELETE";
