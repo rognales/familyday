@@ -233,7 +233,6 @@
                                         <table class="table table-condensed table-striped">
                                             <thead>
                                                 <th class="col-sm-2 text-right">Paid At</th>
-                                                <th class="col-sm-2"></th>
                                                 <th class="col-sm-6">Reference</th>
                                                 <th class="col-sm-2 text-center">Amount</th>
                                                 <th class="col-sm-2 text-center">Download</th>
@@ -244,8 +243,6 @@
                                                     <tr>
                                                         <td class="text-right" title="{{ $upload->paid_at }}">
                                                             {{ $upload->paid_at->toDateString() }}</td>
-                                                        <td title="{{ $upload->paid_at }}">
-                                                            {{ $upload->paid_at->diffForHumans() }}</td>
                                                         <td>{{ $upload->reference }}</td>
                                                         <td class="text-center">RM {{ $upload->amount }}</td>
                                                         <td class="text-center"> <a target="_blank"
