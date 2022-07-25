@@ -77,6 +77,7 @@ class CreateParticipantRequest extends FormRequest
      */
     public function withValidator($validator)
     {
+        $this->redirect = route('registration_home') . '#registration';
         $validator->sometimes('staff_id', ['exists:App\Staff,staff_id'], function () {
             return Auth::check() ? false : true;
         });
