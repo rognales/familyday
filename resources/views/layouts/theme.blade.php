@@ -283,8 +283,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">#</th>
-                                        <th class="text-center">Members of KTMIP</th>
-                                        <th class="text-center">Non-members</th>
+                                        <th class="text-center">Members of KTMIP <p> <span class="label label-warning">Join Us!</span> </p></th>
+                                        <th class="text-center" style="vertical-align:top">Non-members</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
