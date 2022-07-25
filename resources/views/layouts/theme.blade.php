@@ -484,9 +484,28 @@
                     .appendTo("#dependant_set");
             });
 
-            $("#form").on('submit', function() {
-                //Disabled register button after the first successful submission. Restored on page reload.
-                $("#btn-register").prop('disabled', true);
+            $("#form").on('submit', function(e) {
+                var currentForm = this;
+                e.preventDefault();
+                bootbox.confirm({
+                    title: "Joining {{ config('familyday.eventname') }}?",
+                    message: "Are your sure want to proceed with registration </br> and have read the terms & conditions?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes!',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function(confirmed) {
+                        console.log(confirmed)
+                        if (confirmed)
+                            currentForm.submit();
+                    }
+                });
             });
 
             $('.map').on('click', onMapClickHandler);
