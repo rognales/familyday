@@ -19,7 +19,7 @@ class CreateParticipantAction
 
         DB::beginTransaction();
 
-        Log::info('Registering for', [$validated, $isMember]);
+        Log::info('Registering for ' . $validated['staff_id'] . ':' . $validated['email'], [$validated, $isMember]);
 
         $participant = Participant::create($validated);
 
