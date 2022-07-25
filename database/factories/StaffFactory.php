@@ -18,7 +18,7 @@ class StaffFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'staff_id' => $this->faker->numerify('TM1####'),
+            'staff_id' => $this->faker->unique()->numerify('TM1####'),
         ];
     }
 }
