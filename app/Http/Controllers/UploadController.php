@@ -37,7 +37,7 @@ class UploadController extends Controller
 
         $slug->uploads()->create(array_merge($request->validated(), ['filename' => $path]));
 
-        return redirect()->route('registration_show', ['slug' => $slug->load('uploads')])->with('success', 'Upload captured successfully. Admin will verify and issue your receipt accordingly.');
+        return redirect()->route('registration_show', ['slug' => $slug->load('uploads')])->with('status', 'Upload captured successfully. We will notify you with email notification together with QR codes once your payment is verified.');
     }
 
     /**
