@@ -4,6 +4,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
+      <div class="alert alert-warning">
+        <strong>Caution!</strong> You're logged in as admin.
+      </div>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>Welcome Warga
