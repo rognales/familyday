@@ -40,9 +40,9 @@ class Participant extends Model
 
     // protected static $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    protected $casts = [
-        'member' => 'boolean',
-    ];
+    // protected $casts = [
+    //     'member' => 'boolean',
+    // ];
 
     public function dependants()
     {
