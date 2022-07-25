@@ -18,8 +18,7 @@
                     @endif
                     @isset($warning)
                     <div class="alert alert-danger">
-                        <h3 class="text-center"><i class="fa fa-exclamation-triangle " aria-hidden="true"></i>
-                            {{$warning}}</h3>
+                        <h3 class="text-center"><i class="fa fa-exclamation-triangle " aria-hidden="true"></i>                            {{$warning}}</h3>
                     </div>
                     @endisset
                     @if (session('warning'))
@@ -34,34 +33,24 @@
                                 <table class="table table-striped table-hover">
                                     <tbody>
                                         <tr>
-                                            <th>TM Annexe 1 & 2</th>
                                             <td>Mohamad Yusri Mohamad Yusof</td>
-                                            <td>mohdyusriyusof@tm.com.my</td>
                                             <td>011-1000 9385</td>
+                                            <td><a href="https://api.whatsapp.com/send?phone=601110009385" target="_blank"> Whatsapp Me</a></td>
                                         </tr>
                                         <tr>
-                                            <th>Menara TM</th>
-                                            <td>Nur Ashikin Ahmad Kamal</td>
-                                            <td>ashikin.kamal@tm.com.my</td>
-                                            <td>013-344 0364</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Menara TM</th>
-                                            <td>Ruhil Ahlam Adzmi</td>
-                                            <td>ruhil.ahlam@tm.com.my</td>
+                                            <td>Ruhil Ahlam</td>
                                             <td>012-213 0902</td>
+                                            <td><a href="https://api.whatsapp.com/send?phone=60122130902" target="_blank"> Whatsapp Me</a></td>
                                         </tr>
                                         <tr>
-                                            <th>Menara TM One</th>
-                                            <td>Suhana Hashim</td>
-                                            <td>suhana.hashim@tm.com.my</td>
-                                            <td>019-426 0882</td>
+                                            <td>Hizamuddin</td>
+                                            <td>019-327 5754</td>
+                                            <td><a href="https://api.whatsapp.com/send?phone=60193275754" target="_blank"> Whatsapp Me</a></td>
                                         </tr>
                                         <tr>
-                                            <th>Menara KL</th>
-                                            <td>Mohd Syarriman Mohd Stapar</td>
-                                            <td>syarriman@tm.com.my</td>
-                                            <td>017-345 3445</td>
+                                            <td>Hafiz Hamdan</td>
+                                            <td>013-501 4749</td>
+                                            <td><a href="https://api.whatsapp.com/send?phone=60135014749" target="_blank"> Whatsapp Me</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

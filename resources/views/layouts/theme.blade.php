@@ -375,7 +375,7 @@
                     <p><i class="fa fa-user sr-contact"></i> Hafiz Hamdan</p>
                     <p><i class="fa fa-phone sr-contact"></i> 013-501 4749</p>
                     <p><i class="fa fa-whatsapp sr-contact"></i> <a
-                            href="https://api.whatsapp.com/send?phone=60135014749 target="_blank"> Whatsapp Me</a>
+                            href="https://api.whatsapp.com/send?phone=60135014749" target="_blank"> Whatsapp Me</a>
                     </p>
                 </div>
             </div>
