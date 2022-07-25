@@ -158,7 +158,7 @@
             <p class="text-center"><em></em></p>
 </fieldset>
             @if(!$participant->hasPaid())
-            <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{route('registration_upload_store',$participant)}}">
+            <form class="form-horizontal" id="payment" enctype="multipart/form-data" method="POST" action="{{route('registration_upload_store',$participant)}}">
               @csrf
                 <fieldset>
                   <legend>Payment Receipt Upload</legend>
@@ -185,6 +185,7 @@
                     <div class="col-lg-9">
                     <input class="form-control" type="file" id="payment-upload" name="filename" required value="{{old('file')}}">
                     <small>(accepted: PDF, JPG, PNG only)</small>
+                    <small>(max size: 2MB)</small>
                     </div>
                   </div>
                   <div class="form-group">
@@ -233,5 +234,24 @@
       </div>
     </div>
   </div>
+@endsection
 
-  @endsection
+@push('scripts')
+  <script>
+  $('form#payment').on('submit',function(){
+    let fileSelector = document.getElementById('payment-upload')
+    // Do quick checks
+    if (fileSelector.files.length > 0) {
+    const fileSize = fileSelector.files.item(0).size;
+    const fileMb = fileSize / 1024;
+    if (fileMb > {{config('familyday.banking.maxupload')}}){
+      alert('Max filesize reached. Kindly limit upload to max 2MB only.');
+      return false;
+    }
+    return true;
+    }
+    return trfalseue;
+  });
+</script>
+  @endpush
+  

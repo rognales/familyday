@@ -10,6 +10,7 @@ return [
         'bank' => env('BANKING_BANK', 'Bank Islam'),
         'number' => env('BANKING_NUMBER', '1234-5667-89'),
         'name' => env('BANKING_NAME', 'Kelab TM'),
+        'maxupload' => 3096,
     ],
     // All rates must be in sen domination
     'rate' => [
