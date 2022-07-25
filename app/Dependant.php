@@ -19,7 +19,7 @@ class Dependant extends Model
     protected static function booted()
     {
         static::saving(function ($dependant) {
-            return $dependant->price = EntranceRate::calculate($dependant->age, $dependant->member);
+            return $dependant->price = EntranceRate::calculate($dependant->age, $dependant->member, $dependant->relationship === 'Others');
         });
     }
 
