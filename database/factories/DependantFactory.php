@@ -37,4 +37,91 @@ class DependantFactory extends Factory
             },
         ];
     }
+
+    /**
+     * Indicate that the dependant is spouse.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function spouse()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'relationship' => 'Spouse',
+                'age' => $this->faker->numberBetween(18, 50),
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the dependant is kids.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function kids()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'relationship' => 'Kids',
+                'age' => $this->faker->numberBetween(3, 12),
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the dependant is infant.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function infant()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'relationship' => 'Infant',
+                'age' => $this->faker->numberBetween(0, 2),
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the dependant is others.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function others()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'relationship' => 'Others',
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the dependant is adult.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function adult()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'age' => $this->faker->numberBetween(14, 60),
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the dependant is child.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function child()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'age' => $this->faker->numberBetween(4, 13),
+            ];
+        });
+    }
 }

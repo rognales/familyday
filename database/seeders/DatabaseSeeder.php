@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\User;
-use App\Staff;
 use App\Member;
-use App\Upload;
 use App\Participant;
-use Illuminate\Database\Seeder;
+use App\Staff;
+use App\Upload;
+use App\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
