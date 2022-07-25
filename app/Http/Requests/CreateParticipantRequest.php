@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Staff;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CreateParticipantRequest extends FormRequest
 {
@@ -24,7 +22,8 @@ class CreateParticipantRequest extends FormRequest
      * Prepare the data for validation.
      *
      * @return void
-     */protected function prepareForValidation()
+     */
+    protected function prepareForValidation()
     {
         $this->merge([
             'name' => Str::title($this->name),
@@ -56,14 +55,15 @@ class CreateParticipantRequest extends FormRequest
      * Get the error messages for the defined validation rules.
      *
      * @return array
-     */public function messages()
+     */
+    public function messages()
     {
         return [
             'staff_id.unique' => 'Staff Id is already registered.',
             'staff_id.exists' => "You're not member of TM HQ",
             'is_vege.required' => 'Kindly select meal option',
             'dependant_age.*.numeric' => 'Please enter number only for age',
-            'dependant_age.*.required_with' => "Please specify age for Dependant #:position",
+            'dependant_age.*.required_with' => 'Please specify age for Dependant #:position',
             'dependant_relationship.*.required_with' => 'Please specify relationship for Dependant #:position',
             'dependant_relationship.max' => 'You can only register up to 6 peoples (excluding yourself)',
         ];
@@ -74,10 +74,11 @@ class CreateParticipantRequest extends FormRequest
      *
      * @param  \Illuminate\Validation\Validator  $validator
      * @return void
-     */public function withValidator($validator)
+     */
+    public function withValidator($validator)
     {
-    $validator->sometimes('staff_id', ['exists:App\Staff,staff_id'], function () {
-        return Auth::check() ? false : true;
-    });
+        $validator->sometimes('staff_id', ['exists:App\Staff,staff_id'], function () {
+            return Auth::check() ? false : true;
+        });
     }
 }

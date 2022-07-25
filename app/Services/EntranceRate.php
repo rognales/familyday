@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Services;
 
 class EntranceRate
 {
-
     public static function calculate(int $age, $isMember = false, $others = false): int
     {
         // others

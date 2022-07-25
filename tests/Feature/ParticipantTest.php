@@ -2,17 +2,18 @@
 
 namespace Tests\Feature;
 
-use App\User;
-use App\Staff;
-use Tests\TestCase;
 use App\Participant;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Staff;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class ParticipantTest extends TestCase
 {
     use RefreshDatabase;
     use WithFaker;
+
     /**
      * A basic feature test example.
      *
@@ -28,13 +29,13 @@ class ParticipantTest extends TestCase
         $response = $this->actingAs($admin)->post(route('registration_create'), $single->toArray());
 
         $response->assertSessionDoesntHaveErrors();
-        $this->assertDatabaseCount(Participant::class , 1);
+        $this->assertDatabaseCount(Participant::class, 1);
     }
 
     public function test_it_can_create_single_participant()
     {
         // $this->markTestIncomplete();
-    
+
         Staff::factory()->create(['staff_id' => 'TM12345']);
 
         $this->assertDatabaseHas(Staff::class, ['staff_id' => 'TM12345']);
@@ -47,7 +48,7 @@ class ParticipantTest extends TestCase
         ]);
 
         $response->assertSessionDoesntHaveErrors();
-        $this->assertDatabaseCount(Participant::class , 1);
+        $this->assertDatabaseCount(Participant::class, 1);
         // $response->assertRedirect(route('registration_show', $single));
     }
 
@@ -59,6 +60,6 @@ class ParticipantTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors();
-        $this->assertDatabaseCount(Participant::class , 0);
+        $this->assertDatabaseCount(Participant::class, 0);
     }
 }

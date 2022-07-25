@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use Tests\CreatesApplication;
 use App\Services\EntranceRate;
 use Illuminate\Foundation\Testing\WithFaker;
+use Tests\CreatesApplication;
+use Tests\TestCase;
 
 class EntranceRateTest extends TestCase
 {

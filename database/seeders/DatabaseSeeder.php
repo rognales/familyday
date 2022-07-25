@@ -45,8 +45,6 @@ class DatabaseSeeder extends Seeder
                 ->hasUploads(1)
                 ->count(15)
                 ->create();
-
-            
         }
     }
 }

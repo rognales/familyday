@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Upload;
 use App\Http\Requests\StoreUploadRequest;
-use App\Http\Requests\UpdateUploadRequest;
 use App\Participant;
+use App\Upload;
 
 class UploadController extends Controller
 {
@@ -16,12 +15,11 @@ class UploadController extends Controller
      */
     public function index()
     {
-    //
+        //
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      */
     public function create(Participant $slug)
     {
@@ -50,8 +48,9 @@ class UploadController extends Controller
      */
     public function show(Upload $upload)
     {
-        $extension = pathinfo(storage_path('app/' . $upload->filename), PATHINFO_EXTENSION);
-        return response()->file(storage_path('app/' . $upload->filename), ['Content-Disposition' => "inline; filename={$upload->participant->staff_id}_{$upload->id}.{$extension}"]);
+        $extension = pathinfo(storage_path('app/'.$upload->filename), PATHINFO_EXTENSION);
+
+        return response()->file(storage_path('app/'.$upload->filename), ['Content-Disposition' => "inline; filename={$upload->participant->staff_id}_{$upload->id}.{$extension}"]);
     }
 
     /**
@@ -62,6 +61,6 @@ class UploadController extends Controller
      */
     public function destroy(Upload $upload)
     {
-    //
+        //
     }
 }

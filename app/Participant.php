@@ -2,15 +2,15 @@
 
 namespace App;
 
-use App\Services\EntranceRate;
 use App\Mail\PaymentConfirmation;
+use App\Mail\RegistrationConfirmation;
+use App\Services\EntranceRate;
 use Balping\HashSlug\HasHashSlug;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\RegistrationConfirmation;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Participant extends Model
 {

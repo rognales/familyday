@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Staff;
-use App\Member;
 use App\Dependant;
+use App\Member;
 use App\Participant;
+use App\Staff;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -48,7 +48,8 @@ class ParticipantFactory extends Factory
      * Indicate that the participant is member.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */public function member()
+     */
+    public function member()
     {
         return $this->state(function (array $attributes) {
             return [
@@ -61,7 +62,8 @@ class ParticipantFactory extends Factory
      * Indicate that the participant is non-member.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */public function nonMember()
+     */
+    public function nonMember()
     {
         return $this->state(function (array $attributes) {
             return [
@@ -74,10 +76,12 @@ class ParticipantFactory extends Factory
      * Indicate that the participant is HQ staff.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */public function belongToHq()
+     */
+    public function belongToHq()
     {
         return $this->state(function (array $attributes) {
             Staff::factory()->create(['staff_id' => $attributes['staff_id']]);
+
             return [];
         });
     }
@@ -87,7 +91,7 @@ class ParticipantFactory extends Factory
         $count = $count ?? rand(0, 1);
 
         return $this->afterCreating(
-        fn(Participant $participant) => Dependant::factory()
+        fn (Participant $participant) => Dependant::factory()
         ->count($count)
         ->for($participant)
         ->create(['relationship' => 'Spouse'])
@@ -99,7 +103,7 @@ class ParticipantFactory extends Factory
         $count = $count ?? rand(0, 3);
 
         return $this->afterCreating(
-        fn(Participant $participant) => Dependant::factory()
+        fn (Participant $participant) => Dependant::factory()
         ->count($count)
         ->for($participant)
         ->create(['relationship' => 'Kids'])
@@ -111,7 +115,7 @@ class ParticipantFactory extends Factory
         $count = $count ?? rand(0, 1);
 
         return $this->afterCreating(
-        fn(Participant $participant) => Dependant::factory()
+        fn (Participant $participant) => Dependant::factory()
         ->count($count)
         ->for($participant)
         ->create(['relationship' => 'Infant'])
@@ -123,7 +127,7 @@ class ParticipantFactory extends Factory
         $count = $count ?? rand(0, 2);
 
         return $this->afterCreating(
-        fn(Participant $participant) => Dependant::factory()
+        fn (Participant $participant) => Dependant::factory()
         ->count($count)
         ->for($participant)
         ->create(['relationship' => 'Others'])

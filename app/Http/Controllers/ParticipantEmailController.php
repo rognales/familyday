@@ -9,13 +9,13 @@ class ParticipantEmailController extends Controller
 {
     public function __invoke(Request $request)
     {
-        if (!$request->has('type')) {
+        if (! $request->has('type')) {
             return;
         }
 
         $participant = Participant::whereId($request->input('pid'))->first();
 
-        if (!$participant) {
+        if (! $participant) {
             return;
         }
 

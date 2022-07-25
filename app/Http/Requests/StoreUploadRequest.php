@@ -27,7 +27,7 @@ class StoreUploadRequest extends FormRequest
             'amount' => ['required', 'numeric'],
             'reference' => ['required', 'string:255'],
             'paid_at' => ['required', 'date'],
-            'filename' => ['required', 'file', 'mimes:pdf,jpg,png', 'max:2000']
+            'filename' => ['required', 'file', 'mimes:pdf,jpg,png', 'max:2000'],
         ];
     }
 
@@ -35,14 +35,15 @@ class StoreUploadRequest extends FormRequest
      * Get the error messages for the defined validation rules.
      *
      * @return array
-     */public function messages()
+     */
+    public function messages()
     {
         return [
             'amount.numeric' => 'Amount entered must be numeric',
             'reference.required' => 'Reference Number is required',
             'reference.string' => 'Reference Number must be a string',
             'filename.mimes' => 'Only PDF, JPG, PNG is supported',
-            'filename.max' => 'Maximum file size is 2MB'
+            'filename.max' => 'Maximum file size is 2MB',
         ];
     }
 }

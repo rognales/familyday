@@ -31,6 +31,6 @@ class PaymentConfirmation extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject(config('app.name') . ' - ' . config('familyday.eventname') . ' Payment Confirmation')->view('registration.final');
+        return $this->subject(config('app.name').' - '.config('familyday.eventname').' Payment Confirmation')->view('registration.final');
     }
 }

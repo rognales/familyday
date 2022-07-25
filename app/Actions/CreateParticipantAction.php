@@ -5,12 +5,9 @@ namespace App\Actions;
 use App\Member;
 use App\Participant;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
-use App\Exceptions\FailedRegistrationException;
-use App\Services\EntranceRate;
+use Illuminate\Support\Str;
 
 class CreateParticipantAction
 {
@@ -40,15 +37,14 @@ class CreateParticipantAction
             $participant->dependants()->createMany($dependants);
         }
 
-
-
         if ($participant) {
             DB::commit();
+
             return $participant;
         }
 
         DB::rollBack();
 
-        return redirect()->to(URL::previous() . '#registration')->withErrors('Registration failed. Please contact admin for details.')->withInput();
+        return redirect()->to(URL::previous().'#registration')->withErrors('Registration failed. Please contact admin for details.')->withInput();
     }
 }

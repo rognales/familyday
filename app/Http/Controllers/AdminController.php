@@ -60,27 +60,27 @@ class AdminController extends Controller
         return datatables()->of($p)
             ->removeColumn('member')
             ->addColumn('action', function ($p) {
-            $disabled = ($p->hasPaid()) ? 'disabled' : '';
-            $enabled = ($p->hasPaid()) ? '' : 'disabled';
+                $disabled = ($p->hasPaid()) ? 'disabled' : '';
+                $enabled = ($p->hasPaid()) ? '' : 'disabled';
 
-            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+                $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" role="button" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-            $href .= '<button type="button" data-pid="' . $p->id . '" id="edit-' . $p->id . '" class="btn btn-primary btn-edit" title="Update payment details" ' . $disabled . '><i class="glyphicon glyphicon-edit"></i></button>';
-            $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend payment confirmation email." ' . $enabled . '><i class="glyphicon glyphicon-envelope"></i></button>';
-            $href .= '</div>';
+                $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" role="button" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+                $href .= '<button type="button" data-pid="'.$p->id.'" id="edit-'.$p->id.'" class="btn btn-primary btn-edit" title="Update payment details" '.$disabled.'><i class="glyphicon glyphicon-edit"></i></button>';
+                $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="'.$p->id.'" title="Resend payment confirmation email." '.$enabled.'><i class="glyphicon glyphicon-envelope"></i></button>';
+                $href .= '</div>';
 
-            return $href;
-        })
+                return $href;
+            })
             ->addColumn('details_url', function ($p) {
-            return route('admin_dependants_ajax', ['pid' => $p->id]);
-        })
+                return route('admin_dependants_ajax', ['pid' => $p->id]);
+            })
             ->addColumn('uploads_count', function ($p) {
-            return $p->uploads_count;
-        })
+                return $p->uploads_count;
+            })
             ->setRowClass(function ($p) {
-            return $p->member == 1 ? 'member' : '';
-        })
+                return $p->member == 1 ? 'member' : '';
+            })
             ->make(true);
     }
 
@@ -142,26 +142,24 @@ class AdminController extends Controller
         return datatables()->of($p)
             ->removeColumn('member')
             ->addColumn('action', function ($p) {
-            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+                $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
+                $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
 
-            return $href;
-        })
+                return $href;
+            })
             ->addColumn('details_url', function ($p) {
-            return route('admin_dependants_ajax', ['pid' => $p->id]);
-        })
+                return route('admin_dependants_ajax', ['pid' => $p->id]);
+            })
             ->setRowClass(function ($p) {
-            if ($p->member == 1 && $p->attend == 1) {
-                return 'member attend';
-            }
-            elseif ($p->member == 1 && $p->attend == 0) {
-                return 'member';
-            }
-            elseif ($p->member == 0 && $p->attend == 1) {
-                return 'attend';
-            }
-        })
+                if ($p->member == 1 && $p->attend == 1) {
+                    return 'member attend';
+                } elseif ($p->member == 1 && $p->attend == 0) {
+                    return 'member';
+                } elseif ($p->member == 0 && $p->attend == 1) {
+                    return 'attend';
+                }
+            })
             ->make(true);
     }
 
@@ -210,44 +208,42 @@ class AdminController extends Controller
             ->latest()
             ->wherePaymentStatus('Paid')
             ->withCount([
-            'dependants as spouse' => function ($query) {
-            $query->whereRelationship('Spouse');
-        },
-            'adultsFamily',
-            'kidsFamily',
-            'infantsFamily',
-            'othersAdults',
-            'othersKids',
-            'othersInfants',
-            'adults',
-            'kids',
-            'infants',
-        ]);
+                'dependants as spouse' => function ($query) {
+                    $query->whereRelationship('Spouse');
+                },
+                'adultsFamily',
+                'kidsFamily',
+                'infantsFamily',
+                'othersAdults',
+                'othersKids',
+                'othersInfants',
+                'adults',
+                'kids',
+                'infants',
+            ]);
 
         return datatables()->of($p)
             ->removeColumn('member')
             ->addColumn('action', function ($p) {
-            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+                $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
+                $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank"><i class="glyphicon glyphicon-qrcode"></i></a>';
 
-            return $href;
-        })
+                return $href;
+            })
             ->addColumn('details_url', function ($p) {
-            return route('admin_dependants_ajax', ['pid' => $p->id]);
-        })
+                return route('admin_dependants_ajax', ['pid' => $p->id]);
+            })
             ->editColumn('adults_family_count', '{{$adults_family_count+1}}')
             ->setRowClass(function ($p) {
-            if ($p->member == 1 && $p->attend == 1) {
-                return 'member attend';
-            }
-            elseif ($p->member == 1 && $p->attend == 0) {
-                return 'member';
-            }
-            elseif ($p->member == 0 && $p->attend == 1) {
-                return 'attend';
-            }
-        })
+                if ($p->member == 1 && $p->attend == 1) {
+                    return 'member attend';
+                } elseif ($p->member == 1 && $p->attend == 0) {
+                    return 'member';
+                } elseif ($p->member == 0 && $p->attend == 1) {
+                    return 'attend';
+                }
+            })
             ->make(true);
     }
 
@@ -286,21 +282,21 @@ class AdminController extends Controller
 
         return datatables()->of($p)
             ->addColumn('action', function ($p) {
-            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+                $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-            $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend registration confirmation email."><i class="glyphicon glyphicon-envelope"></i></button>';
-            $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="' . $p->id . '" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
+                $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+                $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="'.$p->id.'" title="Resend registration confirmation email."><i class="glyphicon glyphicon-envelope"></i></button>';
+                $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="'.$p->id.'" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
 
-            $href .= '</div>';
+                $href .= '</div>';
 
-            return $href;
-        })
+                return $href;
+            })
             //->editColumn('adults_count','{{$adults_count+1}}')
             //->editColumn('adults_family_count','{{$adults_family_count+1}}')
             ->setRowClass(function ($p) {
-            return $p->member == 1 ? 'member' : '';
-        })
+                return $p->member == 1 ? 'member' : '';
+            })
             ->make(true);
     }
 
@@ -335,23 +331,23 @@ class AdminController extends Controller
 
         return datatables()->of($p)
             ->addColumn('action', function ($p) {
-            $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
+                $href = '<div class="btn-group btn-group-sm" role="group" aria-label="...">';
 
-            $href .= '<a href="' . route('registration_show', ['slug' => $p->slug()]) . '" data-pid="' . $p->id . '" id="view-' . $p->id . '" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
-            if ($p->deleted_at != null) {
-                $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="' . $p->id . '" title="Resend registration confirmation email."><i class="glyphicon glyphicon-envelope"></i></button>';
-                $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="' . $p->id . '" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
-            }
-            $href .= '</div>';
+                $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
+                if ($p->deleted_at != null) {
+                    $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="'.$p->id.'" title="Resend registration confirmation email."><i class="glyphicon glyphicon-envelope"></i></button>';
+                    $href .= '<button type="button" class="btn btn btn-primary btn-prompt" data-type="delete" data-pid="'.$p->id.'" title="Delete the registration  "><i class="glyphicon glyphicon-trash"></i></button>';
+                }
+                $href .= '</div>';
 
-            return $href;
-        })
+                return $href;
+            })
             ->editColumn('soft_deleted_by.name', function ($p) {
-            return ucwords(strtolower($p->softDeletedBy->name));
-        })
+                return ucwords(strtolower($p->softDeletedBy->name));
+            })
             ->setRowClass(function ($p) {
-            return $p->member == 1 ? 'member' : '';
-        })
+                return $p->member == 1 ? 'member' : '';
+            })
             ->make(true);
     }
 
@@ -385,5 +381,5 @@ class AdminController extends Controller
         return view('admin.staff');
     }
 
-//================================STAFF ENDS=========================//
+    //================================STAFF ENDS=========================//
 }

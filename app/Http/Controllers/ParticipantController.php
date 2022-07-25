@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Member;
-use Carbon\Carbon;
-use App\Participant;
-use Illuminate\Http\Request;
-use App\Actions\CreateFormAction;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Auth;
 use App\Actions\CreateParticipantAction;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\RegistrationIsConfirmed;
 use App\Http\Requests\CreateParticipantRequest;
-use App\Mail\RegistrationConfirmation;
+use App\Notifications\RegistrationIsConfirmed;
+use App\Participant;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class ParticipantController extends Controller
 {

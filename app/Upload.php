@@ -32,6 +32,6 @@ class Upload extends Model
      */
     public function verifier()
     {
-        return $this->belongsTo(User::class , 'verified_by', 'id');
+        return $this->belongsTo(User::class, 'verified_by', 'id');
     }
 }

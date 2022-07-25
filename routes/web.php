@@ -1,17 +1,15 @@
 <?php
 
-use App\Participant;
-use App\Services\EntranceRate;
-use App\Mail\PaymentConfirmation;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Mail\RegistrationConfirmation;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AttendanceController;
-use App\Notifications\RegistrationIsConfirmed;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ParticipantEmailController;
+use App\Http\Controllers\UploadController;
+use App\Mail\PaymentConfirmation;
+use App\Mail\RegistrationConfirmation;
+use App\Participant;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,10 +69,12 @@ Route::prefix('admin')->group(function () {
 
 Route::get('preview', function () {
     $participant = Participant::inRandomOrder()->first();
-    return (new RegistrationConfirmation($participant));
+
+    return new RegistrationConfirmation($participant);
 });
 
-Route::get('/paid', function(){
+Route::get('/paid', function () {
     $participant = Participant::inRandomOrder()->first();
-    return (new PaymentConfirmation($participant));
+
+    return new PaymentConfirmation($participant);
 });
