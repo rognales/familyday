@@ -12,7 +12,7 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Styles -->
-    <link href="https://bootswatch.com/3/readable/bootstrap.min.css" rel="stylesheet">
+    <link href="https://bootswatch.com/3/flatly/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap.min.css"
