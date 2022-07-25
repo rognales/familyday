@@ -101,14 +101,14 @@
                                         <th class="col-sm-2 text-right">Relationship</th>
                                         <th class="col-sm-6">Name</th>
                                         <th class="col-sm-2 text-center">Age</th>
-                                        <th class="col-sm-2 text-center">Price</th>
+                                        <th class="col-sm-2 text-right">Price</th>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td class="text-right">Self</td>
                                             <td>{{ $participant->name }}</td>
                                             <td class="text-center">-</td>
-                                            <td class="text-center">RM {{ $participant->price }}</td>
+                                            <td class="text-right">RM {{ $participant->price }}</td>
                                         </tr>
                                         @isset($participant->dependants)
                                             @foreach ($participant->dependants as $dependant)
@@ -116,7 +116,7 @@
                                                     <td class="text-right">{{ $dependant['relationship'] }}</td>
                                                     <td>{{ $dependant['name'] }}</td>
                                                     <td class="text-center">{{ $dependant['age'] }}</td>
-                                                    <td class="text-center">RM {{ $dependant['price'] }}</td>
+                                                    <td class="text-right">RM {{ $dependant['price'] }}</td>
                                                 </tr>
                                             @endforeach
                                         @endisset
@@ -124,7 +124,7 @@
                                     <tfoot>
                                         <tr>
                                             <th colspan="3" class="text-center">Total</th>
-                                            <th class="text-center">RM {{ $participant->total_price }}</th>
+                                            <th class="text-right">RM {{ $participant->total_price }}</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -241,7 +241,8 @@
                                             <tbody>
                                                 @foreach ($participant->uploads as $upload)
                                                     <tr>
-                                                        <td class="text-right" title="{{ $upload->paid_at }}">
+                                                        <td class="text-right"
+                                                            title="{{ $upload->paid_at->toDateString() }}">
                                                             {{ $upload->paid_at->toDateString() }}</td>
                                                         <td>{{ $upload->reference }}</td>
                                                         <td class="text-right">RM {{ $upload->amount }}</td>
