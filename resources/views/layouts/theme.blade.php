@@ -488,15 +488,15 @@
                 var currentForm = this;
                 e.preventDefault();
                 bootbox.confirm({
-                    title: "Joining {{ config('familyday.eventname') }}?",
-                    message: "Are your sure want to proceed with registration </br> and have read the terms & conditions?",
+                    title: "Are your sure want to join {{ config('familyday.eventname') }}?",
+                    message: "<ul><li>I have read &amp; fully understand the terms &amp; conditions</li><li>I no longer can make changes to the registration</li><li>I understand that payment is via online channel</li></ul>",
                     buttons: {
                         confirm: {
-                            label: 'Yes!',
+                            label: 'Yes, I agree. Proceed!',
                             className: 'btn-success'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'No, I changed my mind.',
                             className: 'btn-danger'
                         }
                     },
