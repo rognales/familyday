@@ -288,13 +288,13 @@
                                 <tbody class="text-center">
                                     <tr >
                                         <td><mark>Adult</mark> <br /> (age 13 &amp; above)</td>
-                                        <td style="vertical-align: middle">RM15</td>
-                                        <td style="vertical-align: middle">RM35</td>
+                                        <td style="vertical-align: middle">RM {{config('familyday.rate.adult.member') / 100}}</td>
+                                        <td style="vertical-align: middle">RM {{config('familyday.rate.adult.nonmember') / 100}}</td>
                                     </tr>
                                     <tr>
                                         <td><mark>Kids</mark> <br /> (age 3-12 years old)</td>
-                                        <td style="vertical-align: middle">RM10</td>
-                                        <td style="vertical-align: middle"> RM25</td>
+                                        <td style="vertical-align: middle">RM {{config('familyday.rate.kids.member') / 100}}</td>
+                                        <td style="vertical-align: middle">RM {{config('familyday.rate.kids.nonmember') / 100}}</td>
                                     </tr>
                                     <tr>
                                         <td><mark>Infant</mark> <br /> (age less than 3 years old)
@@ -309,13 +309,13 @@
                                     </tr>
                                     <tr>
                                         <td><mark>Adult</mark> <br /> (age 13 &amp; above)</td>
-                                        <td style="vertical-align: middle">RM35</td>
-                                        <td style="vertical-align: middle">RM35</td>
+                                        <td style="vertical-align: middle">RM {{config('familyday.rate.adult.others') / 100}}</td>
+                                        <td style="vertical-align: middle">RM {{config('familyday.rate.adult.others') / 100}}</td>
                                     </tr>
                                     <tr>
                                         <td><mark>Kids</mark> <br /> (age 3-12 years old)</td>
-                                        <td style="vertical-align: middle">RM25</td>
-                                        <td style="vertical-align: middle">RM25</td>
+                                        <td style="vertical-align: middle">RM {{config('familyday.rate.kids.others') / 100}}</td>
+                                        <td style="vertical-align: middle">RM {{config('familyday.rate.kids.others') / 100}}</td>
                                     </tr>
                                 </tbody>
                             </table>
