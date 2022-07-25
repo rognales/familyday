@@ -13,11 +13,12 @@ class CreateParticipantAction
 {
     public function handle($validated)
     {
-        // dd($validated);
-        $isMember = Member::where('staff_id', strtoupper($validated['staff_id']))->exists();
+        $isMember = Member::where('staff_id', $validated['staff_id'])->exists();
         Arr::add($validated, 'member', $isMember);
 
         DB::beginTransaction();
+
+        Log::info('Registering for', [$validated, $isMember]);
 
         $participant = Participant::create($validated);
 
