@@ -15,7 +15,7 @@ class CreateParticipantAction
     public function handle($validated)
     {
         $isMember = Member::where('staff_id', $validated['staff_id'])->count();
-        Arr::add($validated, 'member', $isMember);
+        $validated = Arr::add($validated, 'member', $isMember);
 
         DB::beginTransaction();
 
