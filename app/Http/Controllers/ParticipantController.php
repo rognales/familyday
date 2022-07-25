@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Actions\CreateParticipantAction;
 use App\Http\Requests\CreateParticipantRequest;
-use App\Notifications\RegistrationIsConfirmed;
 use App\Participant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 
 class ParticipantController extends Controller
 {
@@ -27,7 +25,6 @@ class ParticipantController extends Controller
     {
         $participant = $action->handle($request->validated());
 
-        // Notification::send($participant, new RegistrationIsConfirmed($participant));
         $participant->sendConfirmationEmail();
 
         return redirect()->route('registration_show', ['slug' => $participant->slug()]);
