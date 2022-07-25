@@ -55,7 +55,7 @@ class AdminController extends Controller
 
     public function payment_ajax()
     {
-        $p = Participant::withCount(['uploads'])->latest();
+        $p = Participant::withCount(['uploads'])->whereHas('uploads')->latest();
 
         return datatables()->of($p)
             ->removeColumn('member')
@@ -278,7 +278,7 @@ class AdminController extends Controller
 
     public function user_ajax()
     {
-        $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member']);
+        $p = Participant::select(['id', 'name', 'email', 'staff_id', 'member'])->withCount(['uploads']);
 
         return datatables()->of($p)
             ->addColumn('action', function ($p) {
@@ -292,7 +292,7 @@ class AdminController extends Controller
 
                 return $href;
             })
-            //->editColumn('adults_count','{{$adults_count+1}}')
+            // ->addColumn('uploads_count','{{$adults_count}}')
             //->editColumn('adults_family_count','{{$adults_family_count+1}}')
             ->setRowClass(function ($p) {
                 return $p->member == 1 ? 'member' : '';

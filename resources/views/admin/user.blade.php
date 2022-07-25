@@ -72,6 +72,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Staff Id</th>
+                    <th>Uploads Count</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -148,6 +149,7 @@
         {data: 'name', name: 'name'},
         {data: 'email', name: 'email'},
         {data: 'staff_id', name: 'staff_id'},
+        {data: 'uploads_count', name: 'uploads_count', className: 'text-center',searchable: false, orderable: false},
         /*{data: 'adults_family_count', name: 'family_adults', className: 'text-center', width: "1em", orderable: false, searchable:false},
         {data: 'kids_family_count', name: 'family_kids', className: 'text-center', width: "1em", orderable: false, searchable:false},
         {data: 'infants_family_count', name: 'family_infants', className: 'text-center', width: "1em", orderable: false, searchable:false},
