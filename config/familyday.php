@@ -7,12 +7,12 @@ return [
     'eventday' => env('EVENT_DAY', '20220821'),
     'paymentday' => env('PAYMENT_DAY', '20220821'),
     'banking' => [
-        'bank' => env('BANKING_BANK', 'Bank Islam'),
-        'number' => env('BANKING_NUMBER', '1234-5667-89'),
-        'name' => env('BANKING_NAME', 'Kelab TM'),
+        'bank' => env('BANKING_BANK', 'Bank Islam Malaysia Berhad'),
+        'number' => env('BANKING_NUMBER', '14180010000531'),
+        'name' => env('BANKING_NAME', 'Kelab TM Ibu Pejabat'),
         'maxupload' => 3096,
     ],
-    // All rates must be in sen domination
+    // All rates must be in Sen domination
     'rate' => [
         'adult' => [
             'member' => 1500,
