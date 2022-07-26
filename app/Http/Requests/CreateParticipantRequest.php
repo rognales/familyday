@@ -44,7 +44,7 @@ class CreateParticipantRequest extends FormRequest
             'staff_id' => ['required', 'unique:participants,staff_id,NULL,id,deleted_at,NULL'],
             'email' => ['required', 'email'],
             'is_vege' => ['required', 'boolean'],
-            'dependant_relationship' => ['nullable', 'array', 'max:6'],
+            'dependant_relationship' => ['nullable', 'array'],
             'dependant_relationship.*' => ['nullable', 'required_with:dependant_name.*'],
             'dependant_age.*' => ['nullable', 'required_with:dependant_name.*', 'numeric'],
             'dependant_name.*' => ['nullable', 'required_with:dependant_name.*', 'string'],
