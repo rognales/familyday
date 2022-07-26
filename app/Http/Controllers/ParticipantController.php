@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Actions\CreateParticipantAction;
+use App\Actions\DeleteParticipantAction;
 use App\Http\Requests\CreateParticipantRequest;
+use App\Http\Requests\DeleteParticipantRequest;
 use App\Participant;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ParticipantController extends Controller
 {
@@ -30,14 +30,9 @@ class ParticipantController extends Controller
         return redirect()->route('registration_show', ['slug' => $participant->slug()]);
     }
 
-    public function delete(Request $request)
+    public function delete(DeleteParticipantRequest $request, DeleteParticipantAction $action)
     {
-        $p = Participant::find($request->pid);
-        $p->deleted_by = Auth::user()->id;
-        $p->save();
-
-        $p->delete();
-        $p->dependants()->delete();
+        return $action->handle($request->validated(), $request->user());
     }
 
     public function attend($slug)
