@@ -493,7 +493,7 @@
                 e.preventDefault();
                 bootbox.confirm({
                     title: "Are your sure want to join {{ config('familyday.eventname') }}?",
-                    message: "<ul><li>I have read &amp; fully understand the terms &amp; conditions</li><li>I no longer can make changes to the registration</li><li>I understand that payment is to be made via online transfer to Kelab TM Ibu Pejabat. For more info, check your inbox. </li></ul>",
+                    message: "<ul><li>I have read &amp; fully understand the terms &amp; conditions</li><li>I no longer can make changes to the registration</li><li>I understand that payment is to be made via online transfer to Kelab TM Ibu Pejabat. For more info, check your <mark>inbox</mark>. </li></ul><small><strong>Note:</strong> If you do not receive confirmation email in a few minutes, kindly check your <mark>spam</mark> folder</small>",
                     buttons: {
                         confirm: {
                             label: 'Yes, I agree. Proceed!',
