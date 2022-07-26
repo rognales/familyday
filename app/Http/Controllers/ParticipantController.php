@@ -38,7 +38,7 @@ class ParticipantController extends Controller
     public function attend($slug)
     {
         $eventDay = Carbon::parse(config('familyday.eventday'));
-        if (now()->lessThan($eventDay)) {
+        if (now()->isBefore($eventDay)) {
             return view('registration.error')->with('warning', "Hold up! You're here too soon. Come back on the event day.");
         }
 
