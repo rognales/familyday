@@ -40,4 +40,18 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    /**
+     * Indicate that the model's is activated.
+     *
+     * @return static
+     */
+    public function activated()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'active' => true,
+            ];
+        });
+    }
 }
