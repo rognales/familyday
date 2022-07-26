@@ -18,7 +18,7 @@ class UploadTest extends TestCase
     public function test_it_should_have_valid_form()
     {
         $response = $this->get('/participant/this-is-slug/upload');
-        $response->assertSee('Registration not found.');
+        $response->assertNotFound();
     }
 
     public function test_is_should_validate_record()
