@@ -40,9 +40,9 @@ class Participant extends Model
 
     // protected static $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    // protected $casts = [
-    //     'member' => 'boolean',
-    // ];
+    protected $casts = [
+        'attend_timestamp' => 'datetime',
+    ];
 
     public function dependants()
     {
@@ -64,9 +64,9 @@ class Participant extends Model
         return $this->hasOne('App\User', 'id', 'deleted_by');
     }
 
-    public function attend()
+    public function attendee()
     {
-        return $this->hasOne('App\User', 'id', 'attend_by')->withDefault();
+        return $this->hasOne('App\User', 'id', 'attended_by')->withDefault();
     }
 
     public function adultsFamily()

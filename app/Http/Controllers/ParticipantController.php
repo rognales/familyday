@@ -55,7 +55,10 @@ class ParticipantController extends Controller
         }
 
         if ($participant->isAttended()) {
-            return view('registration.error')->with('warning', 'QR code already scanned. Please contact commitee for assistance.');
+            return view('registration.error')->with([
+                'warning' => 'QR code already scanned. Please contact commitee for assistance.',
+                'participant' => $participant
+            ]);
         }
 
         $participant->markAttendance();

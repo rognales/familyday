@@ -10,7 +10,6 @@
                 <div class="panel-heading">Oh no!</div>
 
                 <div class="panel-body">
-
                     @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
@@ -26,6 +25,14 @@
                         {{ session('warning') }}
                     </div>
                     @endif
+                    @isset($participant)
+                    <div class="alert alert-info">
+                        <ol>
+                            <li>Attended By: {{$participant->attendee->name}} ({{$participant->attendee->username}})</li>
+                            <li>Attended At: {{$participant->attend_timestamp->toDateTimeString()}} ({{$participant->attend_timestamp->diffForHumans()}})</li>
+                        </ol>
+                    </div>
+                    @endisset
                     <div class="row">
                         <div class="col-md-12">
                             <p>For more info, please contact:-</p>
