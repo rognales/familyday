@@ -69,14 +69,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/attend_full/ajax', [AdminController::class, 'attend_full_ajax'])->name('admin_attend_full_ajax');
 });
 
-Route::get('preview', function () {
-    $participant = Participant::inRandomOrder()->first();
+// Route::get('preview', function () {
+//     $participant = Participant::inRandomOrder()->first();
 
-    return new RegistrationConfirmation($participant);
-});
+//     return new RegistrationConfirmation($participant);
+// });
 
-Route::get('/paid', function () {
-    $participant = Participant::inRandomOrder()->first();
+// Route::get('/paid', function () {
+//     $participant = Participant::inRandomOrder()->first();
 
-    return new PaymentConfirmation($participant);
-});
+//     return new PaymentConfirmation($participant);
+// });
