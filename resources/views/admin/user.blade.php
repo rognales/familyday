@@ -191,7 +191,7 @@ $('#participants-table tbody').on('click', 'td.details-control', function () {
       prompt_url = "{{route('admin_resend_email', ['type' => 'payment'])}}";
       break;
     case 'delete':
-      method = "DELETE";
+      method = "POST";
       prompt_message = "This will permanently delete the registration.<br />Do you want to proceed?";
       prompt_url = "{{route('admin_user_delete')}}";
       break;

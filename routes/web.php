@@ -45,7 +45,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/user/ajax', [AdminController::class, 'user_ajax'])->name('admin_user_ajax');
     Route::get('/user/deleted/ajax', [AdminController::class, 'user_deleted_ajax'])->name('admin_user_deleted_ajax');
     Route::post('/user/email', [ParticipantEmailController::class])->name('admin_resend_email');
-    Route::delete('/user/delete', [ParticipantController::class, 'delete'])->name('admin_user_delete');
+    // Changed from DELETE to POST due to TM nub    
+    // Route::delete('/user/delete', [ParticipantController::class, 'delete'])->name('admin_user_delete');
+    Route::post('/user/delete', [ParticipantController::class, 'delete'])->name('admin_user_delete');
 
     Route::get('/dependants/ajax/{pid}', [AdminController::class, 'dependants_ajax'])->name('admin_dependants_ajax');
 
