@@ -137,8 +137,9 @@
                                         <legend>Payment Instructions</legend>
                                         <ul>
                                             <li>Confirmation email has been sent to
-                                                <mark><strong>{{ $participant->email }}</strong></mark>
+                                                <mark><strong>{{ $participant->email }}</strong></mark>.
                                             </li>
+                                            <li><strong>Note:</strong> If you do not receive confirmation email in a few minutes, kindly check your <mark>spam</mark> folder.</li>
                                             <li>You may now proceed with online payment.</li>
                                             <li>Payment must be done before
                                                 <mark><strong>{{ \Carbon\Carbon::parse(config('familyday.paymentday'))->format('jS F Y') }}</strong></mark>.
