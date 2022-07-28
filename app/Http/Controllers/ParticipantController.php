@@ -47,18 +47,18 @@ class ParticipantController extends Controller
         $participant = Participant::findBySlug($slug);
 
         // QR code not valid or payment status = Pending
-        if (!$participant) {
+        if (! $participant) {
             return view('registration.error')->with('warning', 'QR code not valid or no payment info has been captured.');
         }
 
-        if (!$participant->isPaid()) {
+        if (! $participant->isPaid()) {
             return view('registration.error')->with('warning', 'No payment info has been captured.');
         }
 
         if ($participant->isAttended()) {
             return view('registration.error')->with([
                 'warning' => 'QR code already scanned. Please contact commitee for assistance.',
-                'participant' => $participant
+                'participant' => $participant,
             ]);
         }
 
@@ -71,7 +71,7 @@ class ParticipantController extends Controller
     {
         $participant = Participant::findBySlug($slug);
 
-        if (!$participant) {
+        if (! $participant) {
             return response()->view('registration.error', ['warning' => 'Registration not found.'], Response::HTTP_NOT_FOUND);
         }
 

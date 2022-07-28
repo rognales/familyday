@@ -91,10 +91,10 @@ class ParticipantFactory extends Factory
         $count = $count ?? rand(0, 1);
 
         return $this->afterCreating(
-        fn (Participant $participant) => Dependant::factory()
-        ->count($count)
-        ->for($participant)
-        ->create(['relationship' => 'Spouse'])
+            fn (Participant $participant) => Dependant::factory()
+            ->count($count)
+            ->for($participant)
+            ->create(['relationship' => 'Spouse'])
         );
     }
 
@@ -103,10 +103,10 @@ class ParticipantFactory extends Factory
         $count = $count ?? rand(0, 3);
 
         return $this->afterCreating(
-        fn (Participant $participant) => Dependant::factory()
-        ->count($count)
-        ->for($participant)
-        ->create(['relationship' => 'Kids'])
+            fn (Participant $participant) => Dependant::factory()
+            ->count($count)
+            ->for($participant)
+            ->create(['relationship' => 'Kids'])
         );
     }
 
@@ -115,10 +115,10 @@ class ParticipantFactory extends Factory
         $count = $count ?? rand(0, 1);
 
         return $this->afterCreating(
-        fn (Participant $participant) => Dependant::factory()
-        ->count($count)
-        ->for($participant)
-        ->create(['relationship' => 'Infant'])
+            fn (Participant $participant) => Dependant::factory()
+            ->count($count)
+            ->for($participant)
+            ->create(['relationship' => 'Infant'])
         );
     }
 
@@ -127,10 +127,10 @@ class ParticipantFactory extends Factory
         $count = $count ?? rand(0, 2);
 
         return $this->afterCreating(
-        fn (Participant $participant) => Dependant::factory()
-        ->count($count)
-        ->for($participant)
-        ->create(['relationship' => 'Others'])
+            fn (Participant $participant) => Dependant::factory()
+            ->count($count)
+            ->for($participant)
+            ->create(['relationship' => 'Others'])
         );
     }
 }

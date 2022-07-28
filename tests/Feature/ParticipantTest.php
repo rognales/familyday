@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Participant;
 use App\Staff;
 use App\User;
-use Aws\Endpoint\Partition;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -79,7 +78,7 @@ class ParticipantTest extends TestCase
     {
         $participant = Participant::factory()->create();
 
-        $response = $this->get(route('registration_show', ['slug' => $participant->slug() . 'zaiman']));
+        $response = $this->get(route('registration_show', ['slug' => $participant->slug().'zaiman']));
 
         $response->assertNotFound();
     }
