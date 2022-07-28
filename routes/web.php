@@ -5,9 +5,6 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ParticipantEmailController;
 use App\Http\Controllers\UploadController;
-use App\Mail\PaymentConfirmation;
-use App\Mail\RegistrationConfirmation;
-use App\Participant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,10 +48,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/dependants/ajax/{pid}', [AdminController::class, 'dependants_ajax'])->name('admin_dependants_ajax');
 
     Route::get('/member', [AdminController::class, 'member'])->name('admin_member');
-    Route::get('/member/ajax', [AdminController::class, 'member_ajax'])->name('admin_member_ajax');
-
     Route::get('/staff', [AdminController::class, 'staff'])->name('admin_staff');
-    Route::get('/staff/ajax', [AdminController::class, 'staff-ajax'])->name('admin_staff_ajax');
 
     Route::prefix('payment')->group(function () {
         Route::get('/', [AdminController::class, 'payment'])->name('admin_payment');
@@ -67,15 +61,3 @@ Route::prefix('admin')->group(function () {
     Route::get('/attend/ajax', [AdminController::class, 'attend_ajax'])->name('admin_attend_ajax');
     Route::get('/attend_full/ajax', [AdminController::class, 'attend_full_ajax'])->name('admin_attend_full_ajax');
 });
-
-// Route::get('preview', function () {
-//     $participant = Participant::inRandomOrder()->first();
-
-//     return new RegistrationConfirmation($participant);
-// });
-
-// Route::get('/paid', function () {
-//     $participant = Participant::inRandomOrder()->first();
-
-//     return new PaymentConfirmation($participant);
-// });
