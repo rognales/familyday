@@ -538,6 +538,7 @@
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1014386-11"></script>
+    @production
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -548,6 +549,7 @@
 
         gtag('config', 'UA-1014386-11');
     </script>
+    @endproduction
 </body>
 
 </html>

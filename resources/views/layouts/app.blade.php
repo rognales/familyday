@@ -106,6 +106,7 @@
         integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1014386-11"></script>
+    @production
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -116,6 +117,7 @@
 
         gtag('config', 'UA-1014386-11');
     </script>
+    @endproduction
     @stack('scripts')
 </body>
 
