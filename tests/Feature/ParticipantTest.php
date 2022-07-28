@@ -93,17 +93,4 @@ class ParticipantTest extends TestCase
         $response->assertSee(config('familyday.banking.name'));
         $response->assertSee(config('familyday.banking.number'));
     }
-
-    public function test_it_should_not_show_payment_instructions_for_admins()
-    {
-        $admin = User::factory()->activated()->create();
-
-        $participant = Participant::factory()->create();
-
-        $response = $this->actingAs($admin)->get(route('registration_show', ['slug' => $participant->slug()]));
-
-        $response->assertSuccessful();
-        $response->assertDontSee(config('familyday.banking.name'));
-        $response->assertDontSee(config('familyday.banking.number'));
-    }
 }
