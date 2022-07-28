@@ -27,7 +27,7 @@ class Dependant extends Model
 
     public function participant()
     {
-        return $this->belongsTo('App\Participant')->withDefault();
+        return $this->belongsTo(Participant::class)->withDefault();
     }
 
     public function scopeOthers($query)

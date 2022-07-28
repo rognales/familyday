@@ -46,7 +46,7 @@ class Participant extends Model
 
     public function dependants()
     {
-        return $this->hasMany('App\Dependant');
+        return $this->hasMany(Dependant::class);
     }
 
     public function qr()
@@ -56,62 +56,62 @@ class Participant extends Model
 
     public function payment()
     {
-        return $this->hasOne('App\User', 'id', 'payment_by')->withDefault();
+        return $this->hasOne(User::class, 'id', 'payment_by')->withDefault();
     }
 
     public function softDeletedBy()
     {
-        return $this->hasOne('App\User', 'id', 'deleted_by');
+        return $this->hasOne(User::class, 'id', 'deleted_by');
     }
 
     public function attendee()
     {
-        return $this->hasOne('App\User', 'id', 'attended_by')->withDefault();
+        return $this->hasOne(User::class, 'id', 'attended_by')->withDefault();
     }
 
     public function adultsFamily()
     {
-        return $this->hasMany('App\Dependant')->family()->adult();
+        return $this->hasMany(Dependant::class)->family()->adult();
     }
 
     public function kidsFamily()
     {
-        return $this->hasMany('App\Dependant')->family()->kids();
+        return $this->hasMany(Dependant::class)->family()->kids();
     }
 
     public function infantsFamily()
     {
-        return $this->hasMany('App\Dependant')->family()->infant();
+        return $this->hasMany(Dependant::class)->family()->infant();
     }
 
     public function adults()
     {
-        return $this->hasMany('App\Dependant')->adult();
+        return $this->hasMany(Dependant::class)->adult();
     }
 
     public function kids()
     {
-        return $this->hasMany('App\Dependant')->kids();
+        return $this->hasMany(Dependant::class)->kids();
     }
 
     public function infants()
     {
-        return $this->hasMany('App\Dependant')->infant();
+        return $this->hasMany(Dependant::class)->infant();
     }
 
     public function othersAdults()
     {
-        return $this->hasMany('App\Dependant')->others()->where('age', '>', 10);
+        return $this->hasMany(Dependant::class)->others()->where('age', '>', 10);
     }
 
     public function othersKids()
     {
-        return $this->hasMany('App\Dependant')->others()->whereBetween('age', [3, 10]);
+        return $this->hasMany(Dependant::class)->others()->whereBetween('age', [3, 10]);
     }
 
     public function othersInfants()
     {
-        return $this->hasMany('App\Dependant')->others()->where('age', '<', 3);
+        return $this->hasMany(Dependant::class)->others()->where('age', '<', 3);
     }
 
     /**
