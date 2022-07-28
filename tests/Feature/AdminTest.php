@@ -20,7 +20,7 @@ class AdminTest extends TestCase
 
         $toBeDelete = $participants->first();
 
-        $response = $this->actingAs($admin)->delete(route('admin_user_delete'), ['pid' => $toBeDelete->id]);
+        $response = $this->actingAs($admin)->post(route('admin_user_delete'), ['pid' => $toBeDelete->id]);
 
         $response->assertSuccessful();
         $response->assertSessionDoesntHaveErrors();

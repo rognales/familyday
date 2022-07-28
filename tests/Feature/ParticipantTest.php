@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Participant;
 use App\Staff;
 use App\User;
+use Aws\Endpoint\Partition;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -61,5 +62,49 @@ class ParticipantTest extends TestCase
 
         $response->assertSessionHasErrors();
         $this->assertDatabaseCount(Participant::class, 0);
+    }
+
+    public function test_it_can_find_by_slug()
+    {
+        $participant = Participant::factory()->create();
+
+        $response = $this->get(route('registration_show', ['slug' => $participant->slug()]));
+
+        $response->assertSuccessful();
+        $response->assertSee($participant->name);
+        $response->assertSee($participant->staff_id);
+    }
+
+    public function test_it_should_return_404_for_modified_slug()
+    {
+        $participant = Participant::factory()->create();
+
+        $response = $this->get(route('registration_show', ['slug' => $participant->slug() . 'zaiman']));
+
+        $response->assertNotFound();
+    }
+
+    public function test_it_should_show_payment_instructions()
+    {
+        $participant = Participant::factory()->create();
+
+        $response = $this->get(route('registration_show', ['slug' => $participant->slug()]));
+
+        $response->assertSuccessful();
+        $response->assertSee(config('familyday.banking.name'));
+        $response->assertSee(config('familyday.banking.number'));
+    }
+
+    public function test_it_should_not_show_payment_instructions_for_admins()
+    {
+        $admin = User::factory()->activated()->create();
+
+        $participant = Participant::factory()->create();
+
+        $response = $this->actingAs($admin)->get(route('registration_show', ['slug' => $participant->slug()]));
+
+        $response->assertSuccessful();
+        $response->assertDontSee(config('familyday.banking.name'));
+        $response->assertDontSee(config('familyday.banking.number'));
     }
 }
