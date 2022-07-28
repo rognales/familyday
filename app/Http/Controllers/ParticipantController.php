@@ -8,6 +8,7 @@ use App\Http\Requests\CreateParticipantRequest;
 use App\Http\Requests\DeleteParticipantRequest;
 use App\Participant;
 use Carbon\Carbon;
+use Symfony\Component\HttpFoundation\Response;
 
 class ParticipantController extends Controller
 {
@@ -46,11 +47,11 @@ class ParticipantController extends Controller
         $participant = Participant::findBySlug($slug);
 
         // QR code not valid or payment status = Pending
-        if (! $participant) {
+        if (!$participant) {
             return view('registration.error')->with('warning', 'QR code not valid or no payment info has been captured.');
         }
 
-        if (! $participant->isPaid()) {
+        if (!$participant->isPaid()) {
             return view('registration.error')->with('warning', 'No payment info has been captured.');
         }
 
@@ -68,11 +69,12 @@ class ParticipantController extends Controller
 
     public function show($slug)
     {
-        $participant = Participant::findBySlug($slug)->load('uploads');
-        if (! $participant) {
-            return view('registration.error')->with('warning', 'Registration not found.');
+        $participant = Participant::findBySlug($slug);
+
+        if (!$participant) {
+            return response()->view('registration.error', ['warning' => 'Registration not found.'], Response::HTTP_NOT_FOUND);
         }
 
-        return view('registration.show', compact('participant'));
+        return response()->view('registration.show', ['participant' => $participant->load('uploads')]);
     }
 }
