@@ -26,7 +26,7 @@ class StoreUploadRequest extends FormRequest
         return [
             'amount' => ['required', 'numeric'],
             'reference' => ['required', 'string:255'],
-            'paid_at' => ['required', 'date'],
+            'paid_at' => ['required', 'date', 'before_or_equal:' . now()],
             'filename' => ['required', 'file', 'mimes:pdf,jpg,png', 'max:2000'],
         ];
     }
@@ -43,6 +43,7 @@ class StoreUploadRequest extends FormRequest
             'reference.required' => 'Reference Number is required',
             'reference.string' => 'Reference Number must be a string',
             'filename.mimes' => 'Only PDF, JPG, PNG is supported',
+            'paid_at.before_or_equal' => 'Payment date cannot be future date',
             'filename.max' => 'Maximum file size is 2MB',
         ];
     }
