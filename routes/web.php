@@ -29,7 +29,6 @@ Auth::routes();
 Route::get('/registration', [ParticipantController::class, 'index'])->name('registration_home');
 Route::post('/registration', [ParticipantController::class, 'store'])->name('registration_create');
 
-Route::get('/participant/{slug}/upload', [UploadController::class, 'create'])->name('registration_upload');
 Route::post('/participant/{slug}/upload', [UploadController::class, 'store'])->name('registration_upload_store');
 Route::get('/uploads/{upload}', [UploadController::class, 'show'])->name('upload_show');
 Route::get('/participant/{slug}', [ParticipantController::class, 'show'])->name('registration_show');
