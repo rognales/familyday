@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Upload;
 use App\Participant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreUploadRequest;
 
@@ -30,10 +31,10 @@ class UploadController extends Controller
      * @param  \App\Upload  $upload
      * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function show(Upload $upload)
+    public function show(Request $request, Upload $upload)
     {
         $extension = pathinfo(storage_path('app/'.$upload->filename), PATHINFO_EXTENSION);
-        Log::info('Upload::show', [$upload->participant->staff_id, $upload]);
+        Log::info('Upload::show', [$upload->participant->staff_id, $upload, $request->user()]);
 
         return response()->file(storage_path('app/'.$upload->filename), ['Content-Disposition' => "inline; filename={$upload->participant->staff_id}_{$upload->id}.{$extension}"]);
     }
