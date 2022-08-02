@@ -24,6 +24,7 @@ class EntranceRate
             return $isMember ? config('familyday.rate.kids.member') : config('familyday.rate.kids.nonmember');
         }
 
-        return 0;
+        // All thats left is infant
+        return config('familyday.rate.infant.others');
     }
 }

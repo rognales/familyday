@@ -24,6 +24,12 @@ return [
             'nonmember' => 2000,
             'others' => 2000,
         ],
+        'infant' => [
+            'others' => 0,
+        ],
+        'oku' => [
+            'others' => 0,
+        ],
     ],
     'counters' => [
         [

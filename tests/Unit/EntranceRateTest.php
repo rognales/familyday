@@ -121,4 +121,42 @@ class EntranceRateTest extends TestCase
 
         $this->assertEquals(50 + 50 + 20 + 20 + 0 + 50 + 20, $nonMember->total_price);
     }
+
+    public function test_members_with_family_and_oku()
+    {
+        $member = Participant::factory()->member()->create();
+
+        Dependant::factory()
+            ->for($member)
+            ->count(5)
+            ->state(new Sequence(
+                ['relationship' => 'Spouse', 'age' => 20],
+                ['relationship' => 'Kids', 'age' => 11],
+                ['relationship' => 'Kids', 'age' => 5],
+                ['relationship' => 'Infant', 'age' => 1],
+                ['relationship' => 'OKU', 'age' => 14],
+            ))
+            ->create();
+
+        $this->assertEquals(15 + 15 + 10 + 10 + 0 + 0, $member->total_price);
+    }
+
+    public function test_non_members_with_family_and_oku()
+    {
+        $nonMember = Participant::factory()->nonMember()->create();
+
+        Dependant::factory()
+            ->for($nonMember)
+            ->count(5)
+            ->state(new Sequence(
+                ['relationship' => 'Spouse', 'age' => 20],
+                ['relationship' => 'Kids', 'age' => 11],
+                ['relationship' => 'Kids', 'age' => 5],
+                ['relationship' => 'Infant', 'age' => 1],
+                ['relationship' => 'OKU', 'age' => 14],
+            ))
+            ->create();
+
+        $this->assertEquals(50 + 50 + 20 + 20 + 0 + 0, $nonMember->total_price);
+    }
 }

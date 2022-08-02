@@ -19,6 +19,10 @@ class Dependant extends Model
     protected static function booted()
     {
         static::saving(function ($dependant) {
+            if ($dependant->relationship === 'OKU') {
+                return $dependant->price = config('familyday.rate.oku.others');
+            }
+
             return $dependant->price = EntranceRate::calculate($dependant->age, $dependant->member, $dependant->relationship === 'Others');
         });
     }

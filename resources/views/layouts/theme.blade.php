@@ -220,6 +220,7 @@
                                                 <option value="Kids">Children</option>
                                                 <option value="Infant">Infant</option>
                                                 <option value="Others">Others</option>
+                                                <option value="OKU">OKU</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-7">
