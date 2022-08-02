@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Participant;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Tests\TestCase;
 
 class UploadTest extends TestCase
 {
@@ -19,7 +19,7 @@ class UploadTest extends TestCase
 
         $response = $this->post(route('registration_upload_store', ['slug' => $participant->slug()]), [
             'amount' => 112,
-            'reference' => "this is a reference number",
+            'reference' => 'this is a reference number',
             'paid_at' => now()->subDay(),
             'filename' => UploadedFile::fake()->create('document.pdf', $sizeInKilobytes = 2000),
         ]);

@@ -26,7 +26,7 @@ class StoreUploadRequest extends FormRequest
         return [
             'amount' => ['required', 'numeric'],
             'reference' => ['required', 'string:255'],
-            'paid_at' => ['required', 'date', 'before_or_equal:' . now()],
+            'paid_at' => ['required', 'date', 'before_or_equal:'.now()],
             'filename' => ['required', 'file', 'mimes:pdf,jpg,png', 'max:2000'],
         ];
     }
