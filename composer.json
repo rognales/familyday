@@ -19,7 +19,7 @@
         "laravel/octane": "^1.2",
         "laravel/telescope": "^4.9",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.0",
+        "laravel/ui": "^4.0",
         "league/flysystem-aws-s3-v3": "^3.0",
         "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-backup": "^8.1",
