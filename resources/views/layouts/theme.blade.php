@@ -197,6 +197,9 @@
                                                     <option value="Others"
                                                         @if (old('dependant_relationship' . '.' . $key) == 'Others') selected="selected" @endif>
                                                         Others</option>
+                                                    <option value="Oku"
+                                                        @if (old('dependant_relationship' . '.' . $key) == 'Oku') selected="selected" @endif>
+                                                        Oku</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-7">
@@ -220,7 +223,7 @@
                                                 <option value="Kids">Children</option>
                                                 <option value="Infant">Infant</option>
                                                 <option value="Others">Others</option>
-                                                <option value="OKU">OKU</option>
+                                                <option value="Oku">OKU</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-7">
