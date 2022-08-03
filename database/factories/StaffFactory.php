@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Member;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,5 +21,19 @@ class StaffFactory extends Factory
             'name' => $this->faker->name(),
             'staff_id' => $this->faker->unique()->numerify('TM1####'),
         ];
+    }
+
+    /**
+     * Indicate that the staff is member.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function member()
+    {
+        return $this->state(function (array $attributes) {
+            Member::factory()->create(['staff_id' => $attributes['staff_id']]);
+
+            return [];
+        });
     }
 }
