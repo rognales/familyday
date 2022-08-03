@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ParticipantEmailController;
 use App\Http\Controllers\UploadController;
@@ -31,7 +30,6 @@ Route::get('/uploads/{upload}', [UploadController::class, 'show'])->name('upload
 Route::get('/participant/{slug}', [ParticipantController::class, 'show'])->name('registration_show');
 
 Route::get('/attend/{slug}', [ParticipantController::class, 'attend'])->name('attend');
-Route::get('/attend', [AttendanceController::class, 'index'])->name('attendance_index');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin_index');
