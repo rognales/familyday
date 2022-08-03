@@ -5,6 +5,7 @@ namespace App;
 use App\Services\EntranceRate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Dependant extends Model
 {
@@ -19,7 +20,7 @@ class Dependant extends Model
     protected static function booted()
     {
         static::saving(function ($dependant) {
-            if ($dependant->relationship === 'OKU') {
+            if (Str::lower($dependant->relationship) === 'oku') {
                 return $dependant->price = config('familyday.rate.oku.others');
             }
 
