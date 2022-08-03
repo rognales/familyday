@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Dependant;
 use App\Participant;
 use App\Staff;
 use App\User;
@@ -92,5 +93,143 @@ class ParticipantTest extends TestCase
         $response->assertSuccessful();
         $response->assertSee(config('familyday.banking.name'));
         $response->assertSee(config('familyday.banking.number'));
+    }
+
+    public function test_it_can_assign_correct_price_for_member()
+    {
+        $staff = Staff::factory()->member()->create();
+
+        $response = $this->post(route('registration_create'), [
+            'name' => 'zaiman',
+            'staff_id' => $staff->staff_id,
+            'email' => 'rognales@gmail.com',
+            'is_vege' => '1',
+            'dependant_relationship' => ['Spouse'],
+            'dependant_name' => ['Waifu'],
+            'dependant_age' => ['22'],
+        ]);
+
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseCount(Participant::class, 1);
+        $this->assertDatabaseCount(Dependant::class, 1);
+
+        $participant = Participant::first();
+
+        $this->assertEquals(15 + 15, $participant->total_price);
+    }
+
+    public function test_it_can_assign_correct_price_for_member_with_free_dependants()
+    {
+        $staff = Staff::factory()->member()->create();
+
+        $response = $this->post(route('registration_create'), [
+            'name' => 'zaiman',
+            'staff_id' => $staff->staff_id,
+            'email' => 'rognales@gmail.com',
+            'is_vege' => '1',
+            'dependant_relationship' => ['Spouse', 'Infant', 'OKU'],
+            'dependant_name' => ['Waifu', 'Anakku', 'Anak Syurga'],
+            'dependant_age' => ['22', '2', '14'],
+        ]);
+
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseCount(Participant::class, 1);
+        $this->assertDatabaseCount(Dependant::class, 3);
+
+        $participant = Participant::first();
+
+        $this->assertEquals(15 + 15 + 0 + 0, $participant->total_price);
+    }
+
+    public function test_it_can_assign_correct_price_for_member_with_paying_dependants()
+    {
+        $staff = Staff::factory()->member()->create();
+
+        $response = $this->post(route('registration_create'), [
+            'name' => 'zaiman',
+            'staff_id' => $staff->staff_id,
+            'email' => 'rognales@gmail.com',
+            'is_vege' => '1',
+            'dependant_relationship' => ['Spouse', 'Kids', 'Others'],
+            'dependant_name' => ['Waifu', 'Anakku', 'Anak Jiran'],
+            'dependant_age' => ['22', '4', '14'],
+        ]);
+
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseCount(Participant::class, 1);
+        $this->assertDatabaseCount(Dependant::class, 3);
+
+        $participant = Participant::first();
+
+        $this->assertEquals(15 + 15 + 10 + 50, $participant->total_price);
+    }
+
+    public function test_it_can_assign_correct_price_for_non_member()
+    {
+        $staff = Staff::factory()->create();
+
+        $response = $this->post(route('registration_create'), [
+            'name' => 'zaiman',
+            'staff_id' => $staff->staff_id,
+            'email' => 'rognales@gmail.com',
+            'is_vege' => '1',
+            'dependant_relationship' => ['Spouse'],
+            'dependant_name' => ['Waifu'],
+            'dependant_age' => ['22'],
+        ]);
+
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseCount(Participant::class, 1);
+        $this->assertDatabaseCount(Dependant::class, 1);
+
+        $participant = Participant::first();
+
+        $this->assertEquals(50 + 50, $participant->total_price);
+    }
+
+    public function test_it_can_assign_correct_price_for_non_member_with_free_dependants()
+    {
+        $staff = Staff::factory()->create();
+
+        $response = $this->post(route('registration_create'), [
+            'name' => 'zaiman',
+            'staff_id' => $staff->staff_id,
+            'email' => 'rognales@gmail.com',
+            'is_vege' => '1',
+            'dependant_relationship' => ['Spouse', 'Infant', 'OKU'],
+            'dependant_name' => ['Waifu', 'Anakku', 'Anak Syurga'],
+            'dependant_age' => ['22', '2', '14'],
+        ]);
+
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseCount(Participant::class, 1);
+        $this->assertDatabaseCount(Dependant::class, 3);
+
+        $participant = Participant::first();
+
+        $this->assertEquals(50 + 50 + 0 + 0, $participant->total_price);
+    }
+
+    public function test_it_can_assign_correct_price_for_non_member_with_paying_dependants()
+    {
+        $staff = Staff::factory()->create();
+
+        $response = $this->post(route('registration_create'), [
+            'name' => 'zaiman',
+            'staff_id' => $staff->staff_id,
+            'email' => 'rognales@gmail.com',
+            'is_vege' => '1',
+            'dependant_relationship' => ['Spouse', 'Kids', 'Others'],
+            'dependant_name' => ['Waifu', 'Anakku', 'Anak Jiran'],
+            'dependant_age' => ['22', '4', '14'],
+        ]);
+
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseCount(Participant::class, 1);
+        $this->assertDatabaseCount(Dependant::class, 3);
+
+        $participant = Participant::first();
+
+        $this->assertEquals(50 + 50 + 20 + 50, $participant->total_price);
     }
 }

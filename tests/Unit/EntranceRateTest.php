@@ -134,7 +134,7 @@ class EntranceRateTest extends TestCase
                 ['relationship' => 'Kids', 'age' => 11],
                 ['relationship' => 'Kids', 'age' => 5],
                 ['relationship' => 'Infant', 'age' => 1],
-                ['relationship' => 'OKU', 'age' => 14],
+                ['relationship' => 'Oku', 'age' => 14],
             ))
             ->create();
 
@@ -153,7 +153,7 @@ class EntranceRateTest extends TestCase
                 ['relationship' => 'Kids', 'age' => 11],
                 ['relationship' => 'Kids', 'age' => 5],
                 ['relationship' => 'Infant', 'age' => 1],
-                ['relationship' => 'OKU', 'age' => 14],
+                ['relationship' => 'Oku', 'age' => 14],
             ))
             ->create();
 
