@@ -6,6 +6,7 @@ use App\Dependant;
 use App\Member;
 use App\Participant;
 use App\Staff;
+use App\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -86,15 +87,48 @@ class ParticipantFactory extends Factory
         });
     }
 
+    /**
+     * Indicate that the participant already paid.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function markAsPaid()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'payment_status' => 'Paid',
+                'payment_details' => $this->faker->text(10),
+                'payment_timestamp' => now(),
+                'payment_by' => User::factory()->activated(),
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the participant already paid.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function markAsAttended()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'attend' => 1,
+                'attend_timestamp' => now(),
+                'attended_by' => User::factory()->activated(),
+            ];
+        });
+    }
+
     public function addSpouse(int $count = null): self
     {
         $count = $count ?? rand(0, 1);
 
         return $this->afterCreating(
             fn (Participant $participant) => Dependant::factory()
-            ->count($count)
-            ->for($participant)
-            ->create(['relationship' => 'Spouse'])
+                ->count($count)
+                ->for($participant)
+                ->create(['relationship' => 'Spouse'])
         );
     }
 
@@ -104,9 +138,9 @@ class ParticipantFactory extends Factory
 
         return $this->afterCreating(
             fn (Participant $participant) => Dependant::factory()
-            ->count($count)
-            ->for($participant)
-            ->create(['relationship' => 'Kids'])
+                ->count($count)
+                ->for($participant)
+                ->create(['relationship' => 'Kids'])
         );
     }
 
@@ -116,9 +150,9 @@ class ParticipantFactory extends Factory
 
         return $this->afterCreating(
             fn (Participant $participant) => Dependant::factory()
-            ->count($count)
-            ->for($participant)
-            ->create(['relationship' => 'Infant'])
+                ->count($count)
+                ->for($participant)
+                ->create(['relationship' => 'Infant'])
         );
     }
 
@@ -128,9 +162,9 @@ class ParticipantFactory extends Factory
 
         return $this->afterCreating(
             fn (Participant $participant) => Dependant::factory()
-            ->count($count)
-            ->for($participant)
-            ->create(['relationship' => 'Others'])
+                ->count($count)
+                ->for($participant)
+                ->create(['relationship' => 'Others'])
         );
     }
 }
