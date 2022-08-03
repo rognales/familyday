@@ -11,6 +11,26 @@ class AdminTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_it_should_redirect_to_login_page_when_unauthenticated()
+    {
+        $response = $this->get(route('admin_index'));
+
+        $response->assertRedirect(route('login'));
+    }
+
+    public function test_it_should_reject_non_activated_admins_from_logging_in()
+    {
+        $admin = User::factory()->create();
+
+        $response = $this->post(route('login'), [
+            'username' => $admin->username,
+            'password' => $admin->password,
+        ]);
+
+        $this->assertGuest();
+        $response->assertSessionHasErrors();
+    }
+
     public function test_it_should_able_to_delete_participant()
     {
         $admin = User::factory()->activated()->create();
