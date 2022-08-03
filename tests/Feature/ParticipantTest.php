@@ -15,11 +15,13 @@ class ParticipantTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    public function test_it_should_return_landing_page()
+    {
+        $response = $this->get(route('index'));
+
+        $response->assertViewIs('layouts.theme');
+    }
+
     public function test_it_can_bypass_hq_requirement_if_created_by_admin()
     {
         /* var User $admin */
@@ -231,5 +233,25 @@ class ParticipantTest extends TestCase
         $participant = Participant::first();
 
         $this->assertEquals(50 + 50 + 20 + 50, $participant->total_price);
+    }
+
+    public function test_it_should_redirect_to_show_page_after_registration()
+    {
+        $staff = Staff::factory()->create();
+
+        $response = $this->post(route('registration_create'), [
+            'name' => 'zaiman',
+            'staff_id' => $staff->staff_id,
+            'email' => 'rognales@gmail.com',
+            'is_vege' => '1',
+            'dependant_relationship' => ['Spouse', 'Kids', 'Others'],
+            'dependant_name' => ['Waifu', 'Anakku', 'Anak Jiran'],
+            'dependant_age' => ['22', '4', '14'],
+        ]);
+
+        $participant = Participant::first();
+
+        $response->assertSessionDoesntHaveErrors();
+        $response->assertRedirect(route('registration_show', ['slug' => $participant->slug()]));
     }
 }

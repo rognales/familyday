@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Mail\PaymentConfirmation;
 use App\Participant;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class AdminTest extends TestCase
@@ -48,5 +50,21 @@ class AdminTest extends TestCase
         $this->assertCount(4, Participant::all());
         $this->assertSoftDeleted($toBeDelete);
         $this->assertEquals($admin->id, $toBeDelete->fresh()->deleted_by);
+    }
+
+    public function test_it_should_able_to_update_payment_and_send_email()
+    {
+        Mail::fake();
+
+        $admin = User::factory()->activated()->create();
+        $participant = Participant::factory()->create();
+
+        $response = $this->actingAs($admin)->post(route('admin_payment_ajax_update'), [
+            'pid' => $participant->id,
+            'details' => 'this is payment details',
+        ]);
+
+        $response->assertSessionHasNoErrors();
+        Mail::assertQueued(PaymentConfirmation::class);
     }
 }
