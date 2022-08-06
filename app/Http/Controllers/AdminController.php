@@ -67,7 +67,7 @@ class AdminController extends Controller
 
                 $href .= '<a href="'.route('registration_show', ['slug' => $p->slug()]).'" data-pid="'.$p->id.'" id="view-'.$p->id.'" class="btn btn-primary btn-view" role="button" target="_blank" title="View registration summary &amp; details"><i class="glyphicon glyphicon-qrcode"></i></a>';
                 $href .= '<button type="button" data-pid="'.$p->id.'" id="edit-'.$p->id.'" class="btn btn-primary btn-edit" title="Update payment details" '.$disabled.'><i class="glyphicon glyphicon-edit"></i></button>';
-                $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="email" data-pid="'.$p->id.'" title="Resend payment confirmation email." '.$enabled.'><i class="glyphicon glyphicon-envelope"></i></button>';
+                $href .= '<button type="button" class="btn btn-primary btn-prompt" data-type="payment" data-pid="'.$p->id.'" title="Resend payment confirmation email." '.$enabled.'><i class="glyphicon glyphicon-envelope"></i></button>';
                 $href .= '</div>';
 
                 return $href;

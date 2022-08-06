@@ -172,6 +172,56 @@ var table = $('#participants-table').DataTable({
               });
           }
           }})
+}).on('click','.btn-prompt',function (e) {
+  e.preventDefault();
+  pid = $(this).data('pid');
+  type = $(this).data('type');
+  switch (type){
+    case 'email':
+      method = "POST";
+      prompt_message = "This will resend the registration confimation email (without QR code) to the registered email address.<br />Do you want to proceed?";
+      prompt_url = "{{route('admin_resend_email', ['type' => 'registration'])}}";
+      break;
+    case 'payment':
+      method = "POST";
+      prompt_message = "This will resend the payment confimation email (with QR code) to the registered email address.<br />Do you want to proceed?";
+      prompt_url = "{{route('admin_resend_email', ['type' => 'payment'])}}";
+      break;
+    case 'delete':
+      method = "POST";
+      prompt_message = "This will permanently delete the registration.<br />Do you want to proceed?";
+      prompt_url = "{{route('admin_user_delete')}}";
+      break;
+  };
+  bootbox.confirm({
+    message: prompt_message,
+    buttons: {
+        confirm: {
+            className: 'btn-primary',
+            label: '<i class="fa fa-check"></i> Confirm'
+        },
+        cancel: {
+            className: 'btn-default',
+            label: '<i class="fa fa-times"></i> Cancel'
+        }
+    },
+    callback: function (result) {
+      if (result){
+        $.ajax({
+          url: prompt_url,
+          method : method,
+          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+          data: {pid: pid},
+          error: function(data){
+            console.log('error' + data);
+          },
+          success: function(data){
+            if (type == 'delete') $('table').DataTable().draw(false);
+          }
+        });
+      }
+    }
+  });
 });
 
 // Add event listener for opening and closing details
