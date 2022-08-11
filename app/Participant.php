@@ -28,7 +28,7 @@ class Participant extends Model
     {
         static::saving(function ($participant) {
             // If price already exists, skipped adjusting price
-            if ($participant->price){
+            if ($participant->price > 0) {
                 return;
             }
 
