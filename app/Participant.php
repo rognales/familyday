@@ -27,6 +27,11 @@ class Participant extends Model
     protected static function booted()
     {
         static::saving(function ($participant) {
+            // If price already exists, skipped adjusting price
+            if ($participant->price){
+                return;
+            }
+
             // Always adult price
             $participant->price = EntranceRate::calculate(21, $participant->member);
 

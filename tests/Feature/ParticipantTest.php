@@ -262,4 +262,17 @@ class ParticipantTest extends TestCase
 
         $this->assertEquals($slug, $participant->permalink);
     }
+
+    public function test_it_should_not_change_price_on_update()
+    {
+        $participant = Participant::factory()->create(['price' => 5000]);
+
+        $participant->payment_details = 'cubaan update';
+        $participant->timestamps = false;
+        $participant->saveQuietly();
+
+        $participant->refresh();
+
+        $this->assertEquals(5000, $participant->getRawOriginal('price'));
+    }
 }
