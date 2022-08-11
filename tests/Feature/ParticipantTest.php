@@ -265,7 +265,7 @@ class ParticipantTest extends TestCase
 
     public function test_it_should_not_change_price_on_update()
     {
-        $participant = Participant::factory()->create(['price' => 5000]);
+        $participant = Participant::factory()->createQuietly(['price' => 5000]);
 
         $participant->payment_details = 'cubaan update';
         $participant->timestamps = false;
@@ -274,5 +274,12 @@ class ParticipantTest extends TestCase
         $participant->refresh();
 
         $this->assertEquals(5000, $participant->getRawOriginal('price'));
+    }
+
+    public function test_it_should_not_update_price_if_listener_is_skipped()
+    {
+        $participant = Participant::factory()->createQuietly();
+
+        $this->assertEquals(null, $participant->getRawOriginal('price'));
     }
 }

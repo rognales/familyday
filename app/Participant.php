@@ -27,8 +27,8 @@ class Participant extends Model
     protected static function booted()
     {
         static::saving(function ($participant) {
-            // If price already exists, skipped adjusting price
-            if ($participant->price > 0) {
+            // If price (phycically instead thru accessor) already exists, skipped adjusting price
+            if (filled($participant->getRawOriginal('price'))) {
                 return;
             }
 
