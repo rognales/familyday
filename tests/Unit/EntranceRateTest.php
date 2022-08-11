@@ -72,7 +72,7 @@ class EntranceRateTest extends TestCase
     {
         $nonMember = Participant::factory()->nonMember()->create();
 
-        $this->assertEquals(50, $nonMember->total_price);
+        $this->assertEquals(25, $nonMember->total_price);
     }
 
     public function test_non_members_with_spouse()
@@ -81,7 +81,7 @@ class EntranceRateTest extends TestCase
 
         Dependant::factory()->for($nonMember)->spouse()->create();
 
-        $this->assertEquals(50 + 50, $nonMember->total_price);
+        $this->assertEquals(25 + 25, $nonMember->total_price);
     }
 
     public function test_non_members_with_family()
@@ -99,7 +99,7 @@ class EntranceRateTest extends TestCase
             ))
             ->create();
 
-        $this->assertEquals(50 + 50 + 20 + 20 + 0, $nonMember->total_price);
+        $this->assertEquals(25 + 25 + 10 + 10 + 0, $nonMember->total_price);
     }
 
     public function test_non_members_with_family_and_others()
@@ -119,7 +119,7 @@ class EntranceRateTest extends TestCase
             ))
             ->create();
 
-        $this->assertEquals(50 + 50 + 20 + 20 + 0 + 50 + 20, $nonMember->total_price);
+        $this->assertEquals(25 + 25 + 10 + 10 + 0 + 50 + 20, $nonMember->total_price);
     }
 
     public function test_members_with_family_and_oku()
@@ -157,6 +157,6 @@ class EntranceRateTest extends TestCase
             ))
             ->create();
 
-        $this->assertEquals(50 + 50 + 20 + 20 + 0 + 0, $nonMember->total_price);
+        $this->assertEquals(25 + 25 + 10 + 10 + 0 + 0, $nonMember->total_price);
     }
 }

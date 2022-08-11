@@ -186,7 +186,7 @@ class ParticipantTest extends TestCase
 
         $participant = Participant::first();
 
-        $this->assertEquals(50 + 50, $participant->total_price);
+        $this->assertEquals(25 + 25, $participant->total_price);
     }
 
     public function test_it_can_assign_correct_price_for_non_member_with_free_dependants()
@@ -209,7 +209,7 @@ class ParticipantTest extends TestCase
 
         $participant = Participant::first();
 
-        $this->assertEquals(50 + 50 + 0 + 0, $participant->total_price);
+        $this->assertEquals(25 + 25 + 0 + 0, $participant->total_price);
     }
 
     public function test_it_can_assign_correct_price_for_non_member_with_paying_dependants()
@@ -232,7 +232,7 @@ class ParticipantTest extends TestCase
 
         $participant = Participant::first();
 
-        $this->assertEquals(50 + 50 + 20 + 50, $participant->total_price);
+        $this->assertEquals(25 + 25 + 10 + 50, $participant->total_price);
     }
 
     public function test_it_should_redirect_to_show_page_after_registration()
