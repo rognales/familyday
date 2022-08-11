@@ -81,7 +81,7 @@ class ParticipantTest extends TestCase
     {
         $participant = Participant::factory()->create();
 
-        $response = $this->get(route('registration_show', ['slug' => $participant->slug().'zaiman']));
+        $response = $this->get(route('registration_show', ['slug' => $participant->slug() . 'zaiman']));
 
         $response->assertNotFound();
     }
@@ -253,5 +253,13 @@ class ParticipantTest extends TestCase
 
         $response->assertSessionDoesntHaveErrors();
         $response->assertRedirect(route('registration_show', ['slug' => $participant->slug()]));
+    }
+
+    public function test_it_should_store_permalink()
+    {
+        $participant = Participant::factory()->create();
+        $slug = route('registration_show', $participant);
+
+        $this->assertEquals($slug, $participant->permalink);
     }
 }

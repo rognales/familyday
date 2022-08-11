@@ -28,7 +28,9 @@ class Participant extends Model
     {
         static::saving(function ($participant) {
             // Always adult price
-            return $participant->price = EntranceRate::calculate(21, $participant->member);
+            $participant->price = EntranceRate::calculate(21, $participant->member);
+            $participant->permalink = route('registration_show', $participant);
+            return $participant;
         });
     }
 
