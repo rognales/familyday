@@ -81,7 +81,7 @@ class ParticipantTest extends TestCase
     {
         $participant = Participant::factory()->create();
 
-        $response = $this->get(route('registration_show', ['slug' => $participant->slug() . 'zaiman']));
+        $response = $this->get(route('registration_show', ['slug' => $participant->slug().'zaiman']));
 
         $response->assertNotFound();
     }

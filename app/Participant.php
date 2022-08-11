@@ -30,6 +30,7 @@ class Participant extends Model
             // Always adult price
             $participant->price = EntranceRate::calculate(21, $participant->member);
             $participant->permalink = route('registration_show', $participant);
+
             return $participant;
         });
     }
