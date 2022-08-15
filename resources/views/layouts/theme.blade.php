@@ -309,7 +309,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><mark>Kids</mark> <br /> (age 3-12 years old)</td>
+                                        <td><mark>Kids</mark> <br /> (age 4-12 years old)</td>
                                         <td style="vertical-align: middle">
                                             RM {{ config('familyday.rate.kids.member') / 100 }}
                                         </td>
@@ -319,7 +319,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><mark>Infant</mark> <br /> (age less than 3 years old) </td>
+                                        <td><mark>Infant</mark> <br /> (age 0-3 years old) </td>
                                         <td style="vertical-align: middle">Free</td>
                                         <td style="vertical-align: middle">Free</td>
                                     </tr>
@@ -338,13 +338,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><mark>Kids</mark> <br /> (age 3-12 years old)</td>
+                                        <td><mark>Kids</mark> <br /> (age 4-12 years old)</td>
                                         <td style="vertical-align: middle">
                                             RM {{ config('familyday.rate.kids.others') / 100 }}
                                         </td>
                                         <td style="vertical-align: middle">
                                             RM {{ config('familyday.rate.kids.others') / 100 }}
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td><mark>Infant</mark> <br /> (age 0-3 years old) </td>
+                                        <td style="vertical-align: middle">Free</td>
+                                        <td style="vertical-align: middle">Free</td>
                                     </tr>
                                 </tbody>
                             </table>

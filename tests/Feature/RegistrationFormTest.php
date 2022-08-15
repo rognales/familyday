@@ -27,7 +27,7 @@ class RegistrationFormTest extends TestCase
 
         $response->assertSeeInOrder([
             'Kids',
-            '(age 3-12 years old)',
+            '(age 4-12 years old)',
             config('familyday.rate.kids.member') / 100,
             config('familyday.rate.kids.nonmember_old') / 100,
             config('familyday.rate.kids.nonmember') / 100,
@@ -40,7 +40,7 @@ class RegistrationFormTest extends TestCase
 
         $response->assertSeeInOrder([
             'Infant',
-            '(age less than 3 years old)',
+            '(age 0-3 years old)',
             'Free',
             'Free'
         ]);
