@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RegistrationFormTest extends TestCase
@@ -42,7 +40,7 @@ class RegistrationFormTest extends TestCase
             'Infant',
             '(age 0-3 years old)',
             'Free',
-            'Free'
+            'Free',
         ]);
     }
 

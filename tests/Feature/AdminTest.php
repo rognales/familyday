@@ -75,14 +75,14 @@ class AdminTest extends TestCase
         $admin = User::factory()->activated()->create();
         $participant = Participant::factory()->nonMember()->createQuietly(['price' => 5000]);
 
-        $this->assertEquals("50.00", $participant->price, 'Old price of non-member');
+        $this->assertEquals('50.00', $participant->price, 'Old price of non-member');
 
         $response = $this->actingAs($admin)->post(route('admin_payment_ajax_update'), [
             'pid' => $participant->id,
             'details' => 'this is payment details',
         ]);
 
-        $this->assertEquals("50.00", $participant->price, 'Old price of non-member');
+        $this->assertEquals('50.00', $participant->price, 'Old price of non-member');
 
         $response->assertSessionHasNoErrors();
         Mail::assertQueued(PaymentConfirmation::class);
