@@ -368,8 +368,8 @@
                         </li>
                         <li>For TM staff who are husband and wife, please register in two separate forms. Do make sure
                             your children information are only in one of the form.</li>
-                        <li>For information on locker &amp; tube rental, <a href="{{$info}}" target="_blank">view this infopack</a>.</li>
-                        <li>For information on security aspect of Bangi Wonderland, <a href="{{$security}}" target="_blank">view this security infopack</a>.</li>
+                        <li>For information on locker &amp; tube rental, <a href="https://familyday2022.s3.ap-southeast-1.amazonaws.com/infopack/PENYEWAAN+LOKER+DAN+PELAMPUNG.pdf" target="_blank">view this infopack</a>.</li>
+                        <li>For information on security aspect of Bangi Wonderland, <a href="https://familyday2022.s3.ap-southeast-1.amazonaws.com/infopack/Info+Keselamatan+Bangi+Wonderland+Theme+Park+and+Resort.pdf" target="_blank">view this security infopack</a>.</li>
                     </ol>
                 </div>
             </div>

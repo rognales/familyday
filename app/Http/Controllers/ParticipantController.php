@@ -20,10 +20,7 @@ class ParticipantController extends Controller
 
     public function index()
     {
-        $security = Storage::disk('s3')->temporaryUrl('infopack/Info Keselamatan Bangi Wonderland Theme Park and Resort.pdf', now()->addMinutes(10));
-        $info = Storage::disk('s3')->temporaryUrl('infopack/PENYEWAAN LOKER DAN PELAMPUNG.pdf', now()->addMinutes(10));
-
-        return view('layouts.theme')->with(['security' => $security, 'info' => $info]);
+        return view('layouts.theme');
     }
 
     public function store(CreateParticipantRequest $request, CreateParticipantAction $action)
