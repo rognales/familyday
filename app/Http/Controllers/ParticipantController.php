@@ -8,6 +8,7 @@ use App\Http\Requests\CreateParticipantRequest;
 use App\Http\Requests\DeleteParticipantRequest;
 use App\Participant;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class ParticipantController extends Controller
@@ -19,7 +20,10 @@ class ParticipantController extends Controller
 
     public function index()
     {
-        return view('layouts.theme');
+        $security = Storage::disk('s3')->temporaryUrl('infopack/Info Keselamatan Bangi Wonderland Theme Park and Resort.pdf', now()->addMinutes(10));
+        $info = Storage::disk('s3')->temporaryUrl('infopack/PENYEWAAN LOKER DAN PELAMPUNG.pdf', now()->addMinutes(10));
+
+        return view('layouts.theme')->with(['security' => $security, 'info' => $info]);
     }
 
     public function store(CreateParticipantRequest $request, CreateParticipantAction $action)
