@@ -115,17 +115,17 @@ class Participant extends Model
 
     public function othersAdults()
     {
-        return $this->hasMany(Dependant::class)->others()->where('age', '>', 10);
+        return $this->hasMany(Dependant::class)->others()->where('age', '>', config('familyday.age.adult.from'));
     }
 
     public function othersKids()
     {
-        return $this->hasMany(Dependant::class)->others()->whereBetween('age', [3, 10]);
+        return $this->hasMany(Dependant::class)->others()->whereBetween('age', [config('familyday.age.kids.from'), config('familyday.age.kids.to')]);
     }
 
     public function othersInfants()
     {
-        return $this->hasMany(Dependant::class)->others()->where('age', '<', 3);
+        return $this->hasMany(Dependant::class)->others()->whereBetween('age', [config('familyday.age.infant.from'), config('familyday.age.infant.to')]);
     }
 
     /**

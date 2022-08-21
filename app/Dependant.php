@@ -47,17 +47,17 @@ class Dependant extends Model
 
     public function scopeAdult($query)
     {
-        return $query->where('age', '>', 10);
+        return $query->where('age', '>', config('familyday.age.adult.from'));
     }
 
     public function scopeKids($query)
     {
-        return $query->whereBetween('age', [3, 10]);
+        return $query->whereBetween('age', [config('familyday.age.kids.from'), config('familyday.age.adult.to')]);
     }
 
     public function scopeInfant($query)
     {
-        return $query->where('age', '<', 3);
+        return $query->whereBetween('age', [config('familyday.age.infant.from'), config('familyday.age.infant.to')]);
     }
 
     public function getPriceAttribute($value)

@@ -20,9 +20,9 @@ class DependantFactory extends Factory
         $relationships = ['Spouse', 'Kids', 'Infant', 'Others'];
 
         $age = [
-            'Spouse' => $this->faker->numberBetween(23, 60),
-            'Kids' => $this->faker->numberBetween(3, 21),
-            'Infant' => $this->faker->numberBetween(0, 2),
+            'Spouse' => $this->faker->numberBetween(config('familyday.age.adult.from'), config('familyday.age.adult.to')),
+            'Kids' => $this->faker->numberBetween(config('familyday.age.kids.from'), config('familyday.age.kids.to')),
+            'Infant' => $this->faker->numberBetween(config('familyday.age.infant.from'), config('familyday.age.infant.to')),
             'Others' => $this->faker->numberBetween(0, 60),
 
         ];
@@ -48,7 +48,7 @@ class DependantFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'relationship' => 'Spouse',
-                'age' => $this->faker->numberBetween(18, 50),
+                'age' => $this->faker->numberBetween(config('familyday.age.adult.from'), config('familyday.age.adult.to')),
             ];
         });
     }
@@ -63,7 +63,7 @@ class DependantFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'relationship' => 'Kids',
-                'age' => $this->faker->numberBetween(3, 12),
+                'age' => $this->faker->numberBetween(config('familyday.age.kids.from'), config('familyday.age.kids.to')),
             ];
         });
     }
@@ -78,7 +78,7 @@ class DependantFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'relationship' => 'Infant',
-                'age' => $this->faker->numberBetween(0, 2),
+                'age' => $this->faker->numberBetween(config('familyday.age.infant.from'), config('familyday.age.infant.to')),
             ];
         });
     }
@@ -106,7 +106,7 @@ class DependantFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'age' => $this->faker->numberBetween(14, 60),
+                'age' => $this->faker->numberBetween(config('familyday.age.adult.from'), config('familyday.age.adult.to')),
             ];
         });
     }
@@ -120,7 +120,7 @@ class DependantFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'age' => $this->faker->numberBetween(4, 13),
+                'age' => $this->faker->numberBetween(config('familyday.age.kids.from'), config('familyday.age.kids.to')),
             ];
         });
     }
