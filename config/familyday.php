@@ -6,6 +6,11 @@ return [
     'eventname' => env('EVENT_NAME', 'Hari Keluarga 2022'),
     'eventday' => env('EVENT_DAY', '20220821'),
     'paymentday' => env('PAYMENT_DAY', '20220821'),
+    'age' => [ // both brackets is inclusive
+        'adult' => ['from' => 14, 'to' => 100], // 13 and above
+        'kids' => ['from' => 4, 'to' => 12],  // 4 - 12
+        'infant' => ['from' => 0, 'to' => 3], // 0 - 3
+    ],
     'banking' => [
         'bank' => env('BANKING_BANK', 'Bank Islam Malaysia Berhad'),
         'number' => env('BANKING_NUMBER', '14180010000531'),
