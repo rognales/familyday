@@ -23,7 +23,10 @@ class QrCodeTest extends TestCase
 
     public function test_it_should_prompt_warning_if_scanned_prior_to_event_day()
     {
-        $participant = Participant::factory()->create();
+        $beforeEventDay = Carbon::parse(config('familyday.registrationday'));
+        $this->travelTo($beforeEventDay );
+
+        $participant = Participant::factory()->markAsPaid()->create();
         $admin = User::factory()->activated()->create();
 
         $response = $this->actingAs($admin)->get(route('attend', ['slug' => $participant->slug()]));
